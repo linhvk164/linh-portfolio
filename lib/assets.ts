@@ -1,9 +1,17 @@
-/** Encode path segments for public assets (handles spaces in filenames). */
+import { BASE_PATH } from "@/lib/basePath";
+
+/** Encode path segments and prefix basePath for GitHub Pages deploy. */
 export function publicPath(path: string): string {
-  return path
+  if (path.startsWith("http://") || path.startsWith("https://")) {
+    return path;
+  }
+
+  const encoded = path
     .split("/")
     .map((segment, index) =>
       index === 0 || segment === "" ? segment : encodeURIComponent(segment),
     )
     .join("/");
+
+  return `${BASE_PATH}${encoded}`;
 }
