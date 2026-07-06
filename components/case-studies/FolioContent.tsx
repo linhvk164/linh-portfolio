@@ -190,7 +190,6 @@ export function FolioContent() {
         <p>
         Every interaction was designed around one goal: protecting the learner's momentum.
         </p>
-        <CaseStudyImagePlaceholder label="Add Folio writing interface image" />
       </CaseStudySection>
       <CaseStudySection eyebrow="Design Decisions"  title="Designing around flow, not features">
         <p>
