@@ -10,6 +10,7 @@ type ProjectTitleRowProps = ProjectTitleParts & {
 };
 
 export function ProjectTitleRow({
+  slug,
   year,
   productName,
   title,
@@ -19,24 +20,22 @@ export function ProjectTitleRow({
   titleAs: TitleTag = "h2",
   layout = "stacked",
 }: ProjectTitleRowProps) {
+  const meta = formatProductYear({ year, productName, slug });
+
   if (layout === "split") {
     return (
       <div className={`flex items-start justify-between gap-4 ${className}`}>
         <TitleTag className={`min-w-0 text-balance ${titleClassName}`}>
           {title}
         </TitleTag>
-        <span className={`shrink-0 ${labelCaps} ${metaClassName}`}>
-          {formatProductYear({ year, productName })}
-        </span>
+        <span className={`shrink-0 ${labelCaps} ${metaClassName}`}>{meta}</span>
       </div>
     );
   }
 
   return (
     <div className={className}>
-      <span className={`${labelCaps} ${metaClassName}`}>
-        {formatProductYear({ year, productName })}
-      </span>
+      <span className={`${labelCaps} ${metaClassName}`}>{meta}</span>
       <TitleTag className={`${titleClassName} mt-2`}>
         {title}
       </TitleTag>

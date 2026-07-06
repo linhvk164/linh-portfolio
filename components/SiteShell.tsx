@@ -10,7 +10,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <CustomCursor />
       <div className="min-h-screen bg-bg">
         <SiteSidebar />
-        <div className="md:pl-[280px]">
+        <div className="lg:pl-[280px]">
           <div className={mainArea}>{children}</div>
         </div>
       </div>

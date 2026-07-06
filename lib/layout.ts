@@ -9,11 +9,12 @@ export const mainPadding = "px-4 py-6 md:px-5 md:py-8 lg:px-6";
 export const mainContent =
   "w-full min-w-0 px-4 py-6 md:pl-5 md:pr-10 md:py-8 lg:pl-6";
 
-/** Main area beside the sidebar */
-export const mainArea = "min-h-screen pt-14 md:pt-0";
+/** Main area */
+export const mainArea = "min-h-screen";
 
 /** Single-column feed */
-export const contentSingleColumn = "mx-auto flex w-full flex-col items-center gap-6";
+export const contentSingleColumn =
+  "mx-auto flex w-full flex-col items-stretch gap-6";
 
 /** Two independent columns; items stack vertically within each. */
 export const contentColumns =

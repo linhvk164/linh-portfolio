@@ -19,7 +19,7 @@ function ViewWebsiteButton({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`mt-5 self-center ${pillButton} md:self-start`}
+      className={`mt-5 self-start ${pillButton}`}
     >
       View website
       <ArrowUpRightIcon size={14} />
@@ -29,7 +29,7 @@ function ViewWebsiteButton({ href }: { href: string }) {
 
 function ProjectTextContent({ project }: { project: FeaturedProject }) {
   return (
-    <div className="flex min-w-0 flex-[0.7] flex-col justify-center text-center md:text-left">
+    <div className="flex min-w-0 w-full flex-col justify-center text-left lg:flex-[0.7]">
       <ProjectTitleRow {...project} />
       <ProjectTags tags={project.tagList} />
       <p className="mt-4 text-base leading-relaxed text-ink-muted">
@@ -62,7 +62,7 @@ function ProjectMedia({
   return (
     <Link
       href={href}
-      className="group block w-full min-w-0 flex-[1.2] md:max-w-[58%]"
+      className="group block w-full min-w-0 lg:flex-[1.2] lg:max-w-[58%]"
     >
       <div className={gridCardShell}>
         <CardHoverOverlay
@@ -92,9 +92,9 @@ export function ProjectGridCard({ project, index }: ProjectGridCardProps) {
 
   return (
     <article
-      className={`flex w-full flex-col items-center gap-8 md:gap-8 ${
-        imageFirst ? "md:flex-row-reverse" : "md:flex-row"
-      } md:items-center`}
+      className={`flex w-full flex-col items-stretch gap-8 ${
+        imageFirst ? "lg:flex-row-reverse" : "lg:flex-row"
+      } lg:items-center`}
     >
       <ProjectTextContent project={project} />
       <ProjectMedia project={project} href={projectHref} />

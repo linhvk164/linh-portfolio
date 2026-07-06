@@ -4,9 +4,9 @@ export const site = {
   phone: "+1 (548) 333-1604",
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
   resume: "#",
-  role: "UX/UI Designer",
+  role: "designing tools that make difficult things feel approachable.",
   location: "Based in Ontario, Canada",
-  status: "Previously at UN-Habitat",
+  status: "Prev @ United Nations",
   intro: {
     line1: "Hi, I'm Linh 👋 — a",
     line2: "UX/UI designer based in Ontario, Canada",
