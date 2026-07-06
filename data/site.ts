@@ -21,8 +21,8 @@ export const site = {
   about: {
     paragraphs: [
       "Hey there, I'm Linh — a UX/UI designer from Vietnam, based in Canada.",
-      "I love all things design aka beautiful art that is useful and practical. I enjoy creating digital products that simplify complexity and make information easier to understand and use.",
-      "Currently, I'm working as a UX/UI Designer at UN-Habitat’s Quality of Life Initiative! We are creating a platform to showcase over 100 cities’ quality of life and it has been an incredibly rewarding and informative journey.",
+      "I love all things design aka art that is useful and practical. I enjoy creating digital products that simplify complexity and make information easier to understand and use.",
+      "Most recently, I worked as a UX/UI Designer at UN-Habitat’s Quality of Life Initiative! We created a platform to showcase over 100 cities’ quality of life and it was an incredibly rewarding and informative journey.",
       "From contributing to a global urban data platform to exploring AI-powered creative tools, my work sits at the intersection of design, technology, and human behavior. I’m especially interested in using design to support real communities and create meaningful, human-centered experiences.",
       "My goal when it comes to design is to understand people, to have empathy towards the challenges they are presented with, and to help them find solutions through intuitive and insightful interactions.",
       "If you'd like to learn more about my work or want to chat, don't hesitate to reach out over email or LinkedIn. 🎉",
@@ -34,7 +34,7 @@ export const site = {
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/#work" },
-  { label: "Archive", href: "/#archive" },
+  { label: "Fun", href: "/#fun" },
   { label: "About", href: "/#about" },
   { label: "Blogs", href: "#" },
   { label: "Contact", href: "/#contact" },
@@ -44,5 +44,4 @@ export const footerNavItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/#work" },
   { label: "About", href: "/#about" },
-  { label: "Archive", href: "/#archive" },
 ] as const;

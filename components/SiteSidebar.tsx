@@ -52,6 +52,13 @@ function NavLinks({
 
   return (
     <nav className={`sidebar-nav-links flex flex-col gap-2.5 ${className}`}>
+      <Link
+        href="/"
+        onClick={onNavigate}
+        className={`sidebar-nav-item ${navLink}`}
+      >
+        Home
+      </Link>
       <button
         type="button"
         onClick={() => {

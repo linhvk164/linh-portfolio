@@ -1,89 +1,89 @@
-import { CaseStudySection } from "@/components/case-studies/CaseStudySection";
-
-const meta = [
-  { label: "Year", value: "2020" },
-  { label: "Industry", value: "Mental Health / Mobile Application" },
-  { label: "Project Duration", value: "4 months" },
-  { label: "Role", value: "UX/UI Designer, Researcher" },
-  { label: "Team Size", value: "7" },
-];
+import {
+  CaseStudyImagePlaceholder,
+  CaseStudyMeta,
+  CaseStudyPullQuote,
+  CaseStudySection,
+  CaseStudySections,
+} from "@/components/case-studies/CaseStudySection";
+import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function LofuContent() {
   return (
-    <div className="space-y-12">
-      <CaseStudySection title="Overview">
+    <CaseStudySections>
+      <CaseStudySection
+        eyebrow="Overview"
+        title="How might we make emotional wellness less intimidating?"
+      >
         <p>
-          For many people, seeking mental health support is already difficult.
+        Meet Lofu - your mind's best friend who manages emotional health through 
+        gamification techniques. The Lofu app enables users to regulate mental 
+        health resources while taking care of virtual pets that are based on 
+        animals from countries within Asia. Lofu's end goal is to spark change 
+        in the stigma surrounding mental health and well being in the Asian community.
+        </p>
+        <p>
+        For many people, seeking mental health support is already difficult.
           Within many Asian communities, that challenge is often compounded by
           cultural stigma, language barriers, and the pressure to appear
           resilient. As a result, many people avoid asking for help until
           they&apos;re already struggling.
         </p>
+        <CaseStudyImagePlaceholder label="Lofu app screens" src="/images/lofu/overview.jpg" />
         <p>Lofu began with a simple question.</p>
-        <p>
+        <CaseStudyPullQuote>
           How might we make emotional wellness feel less intimidating to engage
           with?
-        </p>
+        </CaseStudyPullQuote>
         <p>
-          As a UX/UI designer and researcher on a team of seven, I helped design
+          As a UX/UI designer and visual designer on a team of seven, I created
           a mobile experience that combined mental wellness resources with gentle
           gamification to encourage consistent self-reflection in a way that felt
           welcoming rather than clinical.
         </p>
-        <dl className="grid gap-4 border-t-2 border-border pt-6 sm:grid-cols-2">
-          {meta.map((item) => (
-            <div key={item.label}>
-              <dt className="text-base font-semibold text-ink">{item.label}</dt>
-              <dd className="mt-1 text-base leading-relaxed text-ink-muted">
-                {item.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <CaseStudyMeta items={getCaseStudyMetaItems("lofu")} />
       </CaseStudySection>
-
-      <CaseStudySection title="The Challenge">
+      
+      <CaseStudySection
+        eyebrow="Problem"
+        title="Lowering the barrier to the first step"
+      >
         <p>
           Most mental health apps ask users to confront difficult emotions the
-          moment they open the app.
+          moment they open the app. For someone already hesitant to seek support,
+          that can feel overwhelming. Our challenge wasn&apos;t designing another
+          mental health resource. It was designing an experience that lowered the
+          emotional barrier to taking the first step.
         </p>
-        <p>
-          For someone already hesitant to seek support, that can feel
-          overwhelming.
-        </p>
-        <p>
-          Our challenge wasn&apos;t designing another mental health resource. It
-          was designing an experience that lowered the emotional barrier to
-          taking the first step.
-        </p>
-        <p>We wanted users to feel comforted, not judged.</p>
+        <CaseStudyPullQuote>We wanted users to feel comforted, not judged.</CaseStudyPullQuote>
       </CaseStudySection>
 
-      <CaseStudySection title="Research">
+      <CaseStudySection eyebrow="Research" title="Understanding cultural barriers">
         <p>
           Before exploring solutions, we researched the unique barriers that
           prevent many people within Asian communities from accessing mental
-          health support.
-        </p>
-        <p>Several themes consistently emerged.</p>
+          health support. Several themes consistently emerged.</p>
         <p>
           Mental health was often viewed as something that should remain
           private, making it difficult for individuals to ask for help without
-          fearing judgment. The &ldquo;model minority&rdquo; stereotype further
-          reinforced the misconception that mental health struggles were uncommon
-          within these communities. Language barriers and limited awareness of
+          fearing judgment. Language barriers and limited awareness of
           culturally relevant resources created additional obstacles, even for
           those actively looking for support.
         </p>
+        
+        <CaseStudyImagePlaceholder label="Research insights" src="/images/lofu/market-research.jpg" />
         <p>These findings shifted our focus.</p>
-        <p>
-          Instead of asking how we could encourage people to seek therapy, we
-          asked how we could create an experience that simply felt safe enough to
-          open.
-        </p>
+
+        <CaseStudyPullQuote>
+          Instead of asking how we could guide people to seek therapy, we
+          asked how we could create an experience that firstly, encourages them to take care of themselves.
+        </CaseStudyPullQuote>
+
       </CaseStudySection>
 
-      <CaseStudySection title="From Research to Design">
+      <CaseStudySection
+        eyebrow="Solution"
+        title="Designing around small, approachable habits"
+      >
         <p>
           Rather than centering the experience around symptoms or diagnoses, we
           focused on building positive daily habits through small, approachable
@@ -107,9 +107,10 @@ export function LofuContent() {
           across different regions of Asia, giving the product a stronger sense
           of familiarity and representation.
         </p>
+        <CaseStudyImagePlaceholder label="Lofu app screens" src="/images/lofu/key-functions.jpg" />
       </CaseStudySection>
 
-      <CaseStudySection title="Visual Identity">
+      <CaseStudySection eyebrow="Visual Identity" title="A warm, handcrafted aesthetic">
         <p>
           I wanted Lofu to feel warm, personal, and comforting from the very
           first screen.
@@ -131,9 +132,14 @@ export function LofuContent() {
           illustrations, and soft interface elements designed to reduce feelings
           of intimidation.
         </p>
+        <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/visual-influences.jpg" />
+        <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/colors.jpg" />
+        <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/introducing-lofu.png" />
+
+
       </CaseStudySection>
 
-      <CaseStudySection title="Testing and Iteration">
+      <CaseStudySection eyebrow="Testing & Iteration" title="Refining for clarity and warmth">
         <p>
           Across two rounds of usability testing with participants of Asian
           descent, we refined both the experience and the interface based on
@@ -152,9 +158,17 @@ export function LofuContent() {
           a natural part of everyday life rather than something reserved for
           moments of crisis.
         </p>
+        <div className="gap-0">
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/onboarding.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/homepage.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/progress.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/self-care.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/chat.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/settings.jpg"/>
+        </div>
       </CaseStudySection>
 
-      <CaseStudySection title="Reflection">
+      <CaseStudySection eyebrow="Reflection" title="Designing with empathy first">
         <p>
           Lofu taught me that designing for sensitive topics requires empathy
           long before visual design.
@@ -171,7 +185,12 @@ export function LofuContent() {
           reduced intimidation, and helped create an experience that felt
           supportive from the very first interaction.
         </p>
+        <CaseStudyImagePlaceholder
+          label="Thank you message"
+          src="/images/lofu/ty!.png"
+          bare
+        />
       </CaseStudySection>
-    </div>
+    </CaseStudySections>
   );
 }

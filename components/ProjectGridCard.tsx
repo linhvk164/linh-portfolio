@@ -1,31 +1,17 @@
 import Link from "next/link";
 import { CardHoverOverlay } from "@/components/CardHoverOverlay";
 import { CoverMedia } from "@/components/CoverMedia";
+import { ViewWebsiteButton } from "@/components/ViewWebsiteButton";
 import type { FeaturedProject } from "@/data/featuredProjects";
-import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
 import { PlaceholderCover } from "@/components/PlaceholderCover";
 import { ProjectTags } from "@/components/ProjectTags";
 import { ProjectTitleRow } from "@/components/ProjectTitleRow";
-import { gridCardShell, pillButton } from "@/lib/layout";
+import { gridCardShell } from "@/lib/layout";
 
 type ProjectGridCardProps = {
   project: FeaturedProject;
   index: number;
 };
-
-function ViewWebsiteButton({ href }: { href: string }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`mt-5 self-start ${pillButton}`}
-    >
-      View website
-      <ArrowUpRightIcon size={14} />
-    </a>
-  );
-}
 
 function ProjectTextContent({ project }: { project: FeaturedProject }) {
   return (
@@ -36,7 +22,7 @@ function ProjectTextContent({ project }: { project: FeaturedProject }) {
         {project.overview}
       </p>
       {project.externalUrl && (
-        <ViewWebsiteButton href={project.externalUrl} />
+        <ViewWebsiteButton href={project.externalUrl} className="mt-5 self-start" />
       )}
     </div>
   );

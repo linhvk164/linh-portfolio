@@ -1,81 +1,74 @@
-import Image from "next/image";
-import { CaseStudySection } from "@/components/case-studies/CaseStudySection";
-import { publicPath } from "@/lib/assets";
-
-const meta = [
-  { label: "Year", value: "2023" },
-  { label: "Client", value: "Start-up" },
-  { label: "Industry", value: "Music / Productivity Tools" },
-  { label: "Project Duration", value: "1 year" },
-  { label: "Role", value: "Founder, UX/UI Designer" },
-  { label: "Team Size", value: "2" },
-];
-
-function CaseStudyImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="overflow-hidden rounded-[var(--radius-card)] bg-surface">
-      <Image
-        src={publicPath(src)}
-        alt={alt}
-        width={1200}
-        height={800}
-        className="h-auto w-full"
-        sizes="(max-width: 768px) 100vw, 672px"
-      />
-    </div>
-  );
-}
+import Link from "next/link";
+import {
+  CASE_STUDY_PLACEHOLDER_IMAGE,
+  CaseStudyImage,
+  CaseStudyImagePlaceholder,
+  CaseStudyImageRow,
+  CaseStudyMeta,
+  CaseStudyPullQuote,
+  CaseStudySection,
+  CaseStudySections,
+} from "@/components/case-studies/CaseStudySection";
+import { CaseStudyImageSlideshow } from "@/components/case-studies/CaseStudyImageSlideshow";
+import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function ChordioContent() {
   return (
-    <div className="space-y-12">
-      <CaseStudySection title="Overview">
+    <CaseStudySections>
+      <CaseStudySection
+        eyebrow="Overview"
+        title="Rethinking how musicians save and organize ideas"
+      >
         <p>
-          Songwriting rarely happens in a studio. Ideas appear during a
-          late-night practice session, while strumming on the couch, or in the
+          Actual songwriting rarely happens in a studio. Like all good ideas,
+          inspirations for songs appear right before bed, in the middle of a 
+          bus ride, while strumming on the couch, or in the
           middle of a walk. The problem is that capturing those moments often
-          means juggling multiple apps, interrupting the creative flow.
+          means juggling multiple apps, there must be a better way.
         </p>
+        <CaseStudyPullQuote>
+          What if musicians could capture lyrics, chords, recordings, and song
+          ideas all in one place?
+        </CaseStudyPullQuote>
         <p>
-          Chordio started from a simple question. What if musicians could
-          capture lyrics, chords, recordings, and song ideas all in one place?
+          While there are numerous note-taking and voice memo apps available, 
+          none are tailored specifically for musicians, particularly those 
+          using acoustic instruments like the ukulele, guitar, or piano. 
+          I identifed a real lack of tools to help musicians document 
+          their creations, and collaborate. Enter Chordio – an online application 
+          designed to streamline the creative process for musicians by seamlessly 
+          integrating the functionality of a notes app with a voice memo app.
         </p>
-        <p>
-          As the founder and UX/UI designer, I led the project from user
-          research and interaction design to branding, prototyping, and
-          eventually building a working proof of concept using AI-assisted
-          development.
-        </p>
-        <dl className="grid gap-4 border-t-2 border-border pt-6 sm:grid-cols-2">
-          {meta.map((item) => (
-            <div key={item.label}>
-              <dt className="text-base font-semibold text-ink">{item.label}</dt>
-              <dd className="mt-1 text-base leading-relaxed text-ink-muted">
-                {item.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+        <CaseStudyMeta items={getCaseStudyMetaItems("chordio")} />
+        <CaseStudyImagePlaceholder label="overview" src="/images/songwriting-app/hero-image.png" />
+
       </CaseStudySection>
 
-      <CaseStudySection title="The Challenge">
+      <CaseStudySection
+        eyebrow="Problem"
+        title="Creativity interrupted by too many apps"
+      >
         <p>
           During interviews, I noticed musicians had developed surprisingly
           complicated workflows just to remember a song idea. Someone might
           record a voice memo, type lyrics into Notes, save chords in another
           app, then send recordings to friends for feedback.
         </p>
+        <CaseStudyPullQuote>
+        "How might we use design to help musicians manage their creations seamlessly 
+        and efficiently?"
+        </CaseStudyPullQuote>
         <p>
-          The biggest problem wasn&apos;t that these tools were bad. It was that
-          creativity was constantly interrupted by switching between them.
-        </p>
-        <p>
-          I wanted to explore whether one focused experience could help
-          musicians capture inspiration before it disappeared.
+         The biggest problem wasn&apos;t that these tools were bad. It was that
+        creativity was constantly interrupted by switching between them. 
+        I wanted to explore whether one focused experience could help
+        musicians capture inspiration before it disappeared.
         </p>
       </CaseStudySection>
+      <CaseStudyImagePlaceholder label="problem" src="/images/songwriting-app/user pain points.png" />
 
-      <CaseStudySection title="Research">
+
+      <CaseStudySection eyebrow="Research" title="Understanding how musicians work">
         <p>
           I interviewed musicians from different musical backgrounds to better
           understand how they wrote, organized, and revisited their ideas.
@@ -93,13 +86,9 @@ export function ChordioContent() {
           recording apps to understand common interaction patterns, identify
           opportunities, and uncover gaps in the current experience.
         </p>
-        <CaseStudyImage
-          src="/images/songwriting-app/user pain points.png"
-          alt="Common pain points identified through musician interviews"
-        />
       </CaseStudySection>
 
-      <CaseStudySection title="Ideation">
+      <CaseStudySection eyebrow="Ideation" title="Exploring ideas before polished screens">
         <p>
           Rather than jumping straight into polished screens, I explored a wide
           range of ideas through Crazy 8s, rapid sketching, and low fidelity
@@ -115,13 +104,26 @@ export function ChordioContent() {
           translated them into wireframes to validate the experience before
           moving into visual design.
         </p>
-        <CaseStudyImage
-          src="/images/songwriting-app/Low-fis.png"
-          alt="Low-fidelity wireframes for Chordio"
+        <CaseStudyImageRow
+          images={[
+            {
+              src: "/images/songwriting-app/chordio-moodboard.png",
+              alt: "Chordio Moodboard in Figma",
+            },
+            {
+              src: "/images/songwriting-app/chordio-workspace.png",
+              alt: "Chordio Workspace in Figma",
+            },
+            {
+              src: "/images/songwriting-app/exploration.png",
+              alt: "Low-fidelity Chordio wireframes",
+            },
+          ]}
         />
+        
       </CaseStudySection>
 
-      <CaseStudySection title="Prototyping">
+      <CaseStudySection eyebrow="Prototyping" title="Refining the core experience">
         <p>
           The first prototype focused on solving the core problem instead of
           trying to build every possible feature.
@@ -137,38 +139,47 @@ export function ChordioContent() {
           iteration uncovered new opportunities to make the experience feel
           faster, clearer, and more intuitive.
         </p>
-        <div className="grid gap-4 sm:grid-cols-3">
-          <CaseStudyImage
-            src="/images/songwriting-app/Low-fis.png"
-            alt="Low-fidelity Chordio prototype"
-          />
-          <CaseStudyImage
-            src="/images/songwriting-app/Medium-fis.png"
-            alt="Mid-fidelity Chordio prototype"
-          />
-          <CaseStudyImage
-            src="/images/songwriting-app/High-fis.png"
-            alt="High-fidelity Chordio mockup"
-          />
-        </div>
+        <CaseStudyImageSlideshow
+          slides={[
+            {
+              src: "/images/songwriting-app/Low-fis.png",
+              alt: "Low-fidelity Chordio wireframes",
+            },
+            {
+              src: "/images/songwriting-app/Medium-fis.png",
+              alt: "Mid-fidelity Chordio prototype",
+            },
+            {
+              src: "/images/songwriting-app/High-fis.png",
+              alt: "High-fidelity Chordio mockup",
+            },
+          ]}
+        />
       </CaseStudySection>
 
-      <CaseStudySection title="Bringing the idea to life with AI">
+      <CaseStudySection
+        eyebrow="Building"
+        title="Bringing the idea to life with AI"
+      >
         <p>
           After validating the experience through design, I wanted to see if the
           concept could become a real product.
         </p>
         <p>
-          Using Windsurf AI, I translated my UX designs into a functioning web
-          application without having a traditional software engineering
-          background. Working alongside AI allowed me to rapidly prototype
-          interactions, experiment with features, and better understand the
-          tradeoffs between ideal user experiences and technical implementation.
+          Using Windsurf AI, I translated my UX designs into a{" "}
+          <Link
+            href="https://chordio-linhs-projects-e35fe93f.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline-offset-2 hover:underline"
+          >
+            functioning web application
+          </Link>{" "}
+          without having a traditional software engineering background. Working
+          alongside AI allowed me to rapidly prototype interactions, experiment
+          with features, and better understand the tradeoffs between ideal user
+          experiences and technical implementation.
         </p>
-        <CaseStudyImage
-          src="/images/songwriting-app/MusicMemo Hero Image.png"
-          alt="Chordio proof of concept website"
-        />
         <p>
           Although the final proof of concept differs slightly from the original
           prototype, the process completely changed how I think about product
@@ -185,6 +196,6 @@ export function ChordioContent() {
           friction so people can stay focused on what they actually came to do.
         </p>
       </CaseStudySection>
-    </div>
+    </CaseStudySections>
   );
 }

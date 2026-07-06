@@ -1,9 +1,13 @@
 "use client";
 
 import { X } from "lucide-react";
+import Image from "next/image";
 import { useEffect } from "react";
 import { ToolStackMarquee } from "@/components/ToolStackMarquee";
 import { site } from "@/data/site";
+import { publicPath } from "@/lib/assets";
+
+const PROFILE_IMAGE = "/images/general/Profile pic.JPG";
 
 type AboutModalProps = {
   open: boolean;
@@ -54,10 +58,24 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
         </button>
 
         <div className="overflow-y-auto px-8 py-10 md:px-14 md:py-14">
-          <div className="space-y-5 pr-8 text-base leading-relaxed text-ink-muted md:space-y-6 md:text-lg">
-            {site.about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+            <div className="mx-auto w-full max-w-[240px] shrink-0 md:mx-0 md:max-w-[280px] md:flex-[0.9]">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[var(--radius-card)] border border-border bg-bg">
+                <Image
+                  src={publicPath(PROFILE_IMAGE)}
+                  alt="Linh Khuong"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 240px, 280px"
+                />
+              </div>
+            </div>
+
+            <div className="min-w-0 flex-1 space-y-5 pr-8 text-base leading-relaxed text-ink-muted md:space-y-6 md:text-lg">
+              {site.about.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+              ))}
+            </div>
           </div>
 
           <ToolStackMarquee />

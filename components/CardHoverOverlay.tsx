@@ -5,7 +5,7 @@ import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
 import type { ProjectHoverType } from "@/data/featuredProjects";
 import { Eye } from "lucide-react";
 
-export type CardHoverVariant = ProjectHoverType | "project";
+export type CardHoverVariant = ProjectHoverType | "project" | "article";
 
 type CardHoverOverlayProps = {
   type: CardHoverVariant;
@@ -17,6 +17,7 @@ const labels: Record<CardHoverVariant, string> = {
   website: "View website",
   "case-study": "View case study",
   project: "View project",
+  article: "Read article",
 };
 
 const DRAG_EASE = 0.16;
@@ -32,7 +33,7 @@ export function CardHoverOverlay({
   const rafId = useRef<number | null>(null);
   const hovering = useRef(false);
   const [isHovering, setIsHovering] = useState(false);
-  const isWebsite = type === "website";
+  const isWebsite = type === "website" || type === "article";
 
   function runDragLoop() {
     current.current.x += (target.current.x - current.current.x) * DRAG_EASE;

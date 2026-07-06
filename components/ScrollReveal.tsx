@@ -27,7 +27,7 @@ export function ScrollReveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" },
     );
 
     observer.observe(element);

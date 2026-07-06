@@ -94,23 +94,6 @@ export const projects: Project[] = [
     ],
     images: [],
   },
-  {
-    slug: "tako-inc",
-    order: 8,
-    year: "2023",
-    productName: "Tako Inc.",
-    title: "Tako Inc.",
-    accent: "blue",
-    coverImage: "/images/tako/tako-cover.png",
-    homeCaption: "Tako Inc.",
-    tags: ["work"],
-    sections: [
-      { id: "overview", label: "Overview", content: "" },
-      { id: "process", label: "Process", content: "" },
-      { id: "outcome", label: "Outcome", content: "" },
-    ],
-    images: [],
-  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

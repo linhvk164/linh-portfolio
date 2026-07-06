@@ -8,6 +8,7 @@ export type FeaturedProject = {
   year: string;
   productName: string;
   title: string;
+  footerLabel?: string;
   overview: string;
   tagList: string[];
   coverImage: string;
@@ -25,6 +26,7 @@ export const unHabitatFeaturedProjects: FeaturedProject[] =
     year: study.year,
     productName: study.productName,
     title: study.title,
+    footerLabel: study.footerLabel,
     overview: study.summary,
     tagList: study.tagList,
     coverImage: study.coverImage,
@@ -90,17 +92,6 @@ export const otherFeaturedProjects: FeaturedProject[] = [
     accent: "green",
     hoverType: "case-study",
   },
-  {
-    slug: "tako-inc",
-    year: "2023",
-    productName: "Tako Inc.",
-    title: "Tako Inc.",
-    overview: "Visual branding and mascot design for Tako Inc.",
-    tagList: ["Visual Designer", "Visual Branding", "Mascot", "Illustration"],
-    coverImage: "/images/tako/tako-cover.png",
-    accent: "blue",
-    hoverType: "case-study",
-  },
 ];
 
 const folio = otherFeaturedProjects.find((project) => project.slug === "folio")!;
@@ -123,3 +114,11 @@ export const featuredProjects: FeaturedProject[] = [
 export const caseStudyProjects = featuredProjects.filter(
   (project) => project.hoverType === "case-study",
 );
+
+export function getProjectFooterLabel(project: FeaturedProject) {
+  return project.footerLabel ?? project.productName;
+}
+
+export function getProjectExternalUrl(slug: string) {
+  return featuredProjects.find((project) => project.slug === slug)?.externalUrl;
+}
