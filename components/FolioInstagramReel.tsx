@@ -108,7 +108,7 @@ export function FolioInstagramReel() {
           ref={videoRef}
           src={publicPath(FOLIO_REEL_VIDEO)}
           autoPlay
-          muted
+          muted={muted}
           loop
           playsInline
           preload="metadata"
