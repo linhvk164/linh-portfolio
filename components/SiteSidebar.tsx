@@ -77,7 +77,13 @@ function NavLinks({
       >
         LinkedIn
       </a>
-      <a href={site.resume} className={`sidebar-nav-item ${navLink}`}>
+      <a
+        href={publicPath(site.resume)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View resume/CV"
+        className={`sidebar-nav-item ${navLink}`}
+      >
         Resume/CV
       </a>
     </nav>

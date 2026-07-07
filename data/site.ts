@@ -3,7 +3,7 @@ export const site = {
   email: "linhvkdesign@gmail.com",
   phone: "+1 (548) 333-1604",
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
-  resume: "#",
+  resume: "/images/general/resume.pdf",
   role: "designing tools that make difficult things feel approachable.",
   location: "Based in Ontario, Canada",
   status: "Prev @ United Nations",
