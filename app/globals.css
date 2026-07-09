@@ -1,4 +1,3 @@
-@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -21,7 +20,7 @@
   --accent-green: #586e5e;
   --border: #e8e2d8;
   --rail: #586e5e;
-  --font-satoshi: "Satoshi", system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
 
   /* Radius — moderate, consistent (flat design) */
   --radius-sm: 0.25rem;
@@ -48,6 +47,7 @@
 
   /* Project title sizes — single source of truth */
   --project-card-title-size: 1.5rem;
+  --article-card-title-size: 1rem;
   --case-study-title-size: 2.5rem;
 
   /* Sidebar intro sizes */
@@ -80,21 +80,21 @@
   --color-accent-green: var(--accent-green);
   --color-border: var(--border);
   --color-rail: var(--rail);
-  --font-sans: var(--font-satoshi);
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
   --radius-card: var(--radius-card);
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
 }
 
 html {
-  font-family: var(--font-satoshi);
+  font-family: var(--font-sans);
 }
 
 body {
   position: relative;
   background-color: var(--bg);
   color: var(--ink);
-  font-family: var(--font-satoshi);
+  font-family: var(--font-sans);
   font-size: var(--text-body);
   font-weight: 400;
   line-height: var(--leading-normal);
@@ -403,10 +403,18 @@ h2.project-card-title,
   color: var(--ink);
 }
 
+p.article-card-title,
+.article-card-title {
+  font-size: var(--article-card-title-size) !important;
+  font-weight: 600 !important;
+  line-height: var(--leading-snug);
+  color: var(--ink);
+}
+
 .case-study-header h1,
 h1.case-study-header-title,
 .case-study-header-title {
-  font-family: var(--font-satoshi);
+  font-family: var(--font-sans);
   font-size: var(--case-study-title-size) !important;
   font-weight: 700 !important;
   letter-spacing: -0.02em;
@@ -415,7 +423,7 @@ h1.case-study-header-title,
 }
 
 .case-study-section-title {
-  font-family: var(--font-satoshi);
+  font-family: var(--font-sans);
   font-weight: 700 !important;
   letter-spacing: -0.02em;
   line-height: 1.12;

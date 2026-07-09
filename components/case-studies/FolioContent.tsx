@@ -144,7 +144,7 @@ export function FolioContent() {
             </div>
           <div className="bg-surface p-10 rounded-xl space-y-3">
             <h3>Theme 2: Without real-life context, it’s hard to remember vocabulary (5 of 5 participants)</h3>
-            <p>PAll participants expressed that memorizing word lists doesn't translate to actual usage. Words learned in isolation are quickly forgotten. The ones who retained vocab best learned it through situations that were personally meaningful.
+            <p>All participants expressed that memorizing word lists doesn't translate to actual usage. Words learned in isolation are quickly forgotten. The ones who retained vocab best learned it through situations that were personally meaningful.
             </p>
           </div>
           <div className="bg-surface p-10 rounded-xl space-y-3">

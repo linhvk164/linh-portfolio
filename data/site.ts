@@ -4,7 +4,7 @@ export const site = {
   phone: "+1 (548) 333-1604",
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
   resume: "/images/general/resume.pdf",
-  role: "designing tools that make difficult things easy ツ.",
+  role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
   status: "Prev @ United Nations",
   intro: {

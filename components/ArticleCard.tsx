@@ -20,7 +20,7 @@ export function ArticleCard({ title, url, coverImage, year }: Article) {
           />
         </div>
       </div>
-      <p className="mt-2 text-xs font-semibold capitalize leading-snug text-ink">
+      <p className="article-card-title mt-2 capitalize text-ink">
         {title}
       </p>
       <span className={`mt-2 inline-flex ${pillTag}`}>{year}</span>
