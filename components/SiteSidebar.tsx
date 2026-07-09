@@ -8,13 +8,14 @@ import { site } from "@/data/site";
 import { navLink } from "@/lib/layout";
 
 const LOGO_SRC = "/images/general/logo/linhvk logo black.png";
+const PROFILE_SRC = "/images/general/profile-cropped.jpg";
 
 function SiteLogo({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Link
       href="/"
       onClick={onNavigate}
-      className="sidebar-intro-item mb-7 inline-block transition-transform duration-300 ease-out hover:scale-105"
+      className="sidebar-intro-item mb-3 inline-block transition-transform duration-300 ease-out hover:scale-105"
       aria-label="Home"
     >
       <Image
@@ -29,10 +30,25 @@ function SiteLogo({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
+function ProfilePhoto() {
+  return (
+    <div className="sidebar-intro-item mb-5">
+      <Image
+        src={publicPath(PROFILE_SRC)}
+        alt={site.name}
+        width={55}
+        height={55}
+        className="h-16 w-16 rounded-full object-cover"
+      />
+    </div>
+  );
+}
+
 function IntroBlock({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="sidebar-intro">
       <SiteLogo onNavigate={onNavigate} />
+      <ProfilePhoto />
       <p className="sidebar-name sidebar-intro-item">{site.name}</p>
       <p className="sidebar-tagline sidebar-intro-item">{site.role}</p>
       <p className="sidebar-detail sidebar-intro-item">{site.status}</p>
