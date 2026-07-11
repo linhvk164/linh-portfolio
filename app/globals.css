@@ -299,6 +299,152 @@ p {
   }
 }
 
+/* Opening curtain — green field lifts to reveal the page */
+html:has(#opening-boot),
+html:has(.opening-overlay) {
+  overflow: hidden;
+}
+
+html:has(#opening-boot) body,
+html:has(.opening-overlay) body {
+  overflow: hidden;
+}
+
+/* Covers the page before React hydrates so cream never flashes */
+#opening-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.opening-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.opening-overlay--enter {
+  animation: opening-curtain-in 420ms var(--ease-out) both;
+}
+
+.opening-overlay--hold {
+  transform: translateY(0);
+}
+
+.opening-overlay--exit {
+  animation: opening-curtain-out 780ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.opening-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.opening-logo {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.opening-overlay--enter .opening-logo,
+.opening-overlay--hold .opening-logo {
+  animation: opening-logo-in 520ms var(--ease-out) 120ms both;
+}
+
+.opening-overlay--exit .opening-logo {
+  animation: opening-logo-out 280ms ease-in both;
+}
+
+.opening-rule {
+  display: block;
+  height: 2px;
+  width: 0;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--bg) 88%, white);
+  transform-origin: center;
+}
+
+.opening-overlay--enter .opening-rule,
+.opening-overlay--hold .opening-rule {
+  animation: opening-rule-in 560ms var(--ease-out) 280ms both;
+}
+
+.opening-overlay--exit .opening-rule {
+  animation: opening-rule-out 220ms ease-in both;
+}
+
+@keyframes opening-curtain-in {
+  from {
+    transform: translateY(0);
+    opacity: 0.92;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes opening-curtain-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-105%);
+  }
+}
+
+@keyframes opening-logo-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes opening-logo-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes opening-rule-in {
+  from {
+    width: 0;
+    opacity: 0.4;
+  }
+  to {
+    width: 3.5rem;
+    opacity: 1;
+  }
+}
+
+@keyframes opening-rule-out {
+  from {
+    width: 3.5rem;
+    opacity: 1;
+  }
+  to {
+    width: 0;
+    opacity: 0;
+  }
+}
+
 @keyframes sidebar-intro-in {
   from {
     opacity: 0;
@@ -358,6 +504,12 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .opening-overlay,
+  .opening-logo,
+  .opening-rule {
+    animation: none !important;
+  }
+
   .sidebar-intro-item,
   .sidebar-footer-item,
   .sidebar-nav-item {

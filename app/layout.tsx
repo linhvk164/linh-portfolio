@@ -26,6 +26,13 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} h-full scroll-smooth font-sans`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var k='linhvk-opening-seen';var skip=window.matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem(k)==='1';if(skip)return;var el=document.createElement('div');el.id='opening-boot';el.setAttribute('aria-hidden','true');document.documentElement.appendChild(el);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full bg-bg font-sans text-base text-ink antialiased">
         <SiteShell>{children}</SiteShell>
       </body>

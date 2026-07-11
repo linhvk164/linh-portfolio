@@ -10,8 +10,8 @@ export type CaseStudyMetaData = {
 export const caseStudyMetaBySlug: Record<string, CaseStudyMetaData> = {
   folio: {
     role: "Co-founder, Founding UX/UI Designer",
-    timeline: "May 2025 — present",
-    team: "2 co-founders (designer + engineer), 1 UX research contributor",
+    timeline: "May 2026 — present",
+    team: "2 co-founders (designer + engineer)",
     skills: ["Startup Founder", "EdTech", "User Research"],
   },
   chordio: {
