@@ -1,6 +1,6 @@
 import { BASE_PATH } from "@/lib/basePath";
 
-/** Encode path segments and prefix basePath for GitHub Pages deploy. */
+/** Encode path segments and prefix basePath when set (custom domain uses ""). */
 export function publicPath(path: string): string {
   if (path.startsWith("http://") || path.startsWith("https://")) {
     return path;
