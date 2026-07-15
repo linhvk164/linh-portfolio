@@ -28,6 +28,11 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # Ensure GitHub Pages skips Jekyll so `_next/` (underscore prefix) is served.
+      # public/.nojekyll is copied by Next export; this is a belt-and-suspenders copy from repo root.
+      - name: Ensure .nojekyll in deploy output
+        run: cp .nojekyll out/.nojekyll
+
       - uses: actions/upload-pages-artifact@v4
         with:
           path: out
