@@ -2,13 +2,11 @@ import {
   CaseStudyImagePlaceholder,
   CaseStudyImageRow,
   CaseStudyList,
-  CaseStudyMeta,
   CaseStudyPullQuote,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
 import { CaseStudyYouTube } from "@/components/case-studies/CaseStudyYouTube";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function UnHabitatUrbanDataContent() {
   return (
@@ -37,7 +35,6 @@ export function UnHabitatUrbanDataContent() {
         My role was to design an experience that transformed dense datasets
         into something people could actually explore with confidence.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("un-habitat-urban-data")} />
         <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life-solution.png" />
       </CaseStudySection>
 

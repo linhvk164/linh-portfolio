@@ -1,11 +1,9 @@
 import {
   CaseStudyImagePlaceholder,
   CaseStudyList,
-  CaseStudyMeta,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function UnHabitatDesignSystemContent() {
   return (
@@ -25,7 +23,6 @@ export function UnHabitatDesignSystemContent() {
            creating a design system for a global platform and developing a new
            icons and logos that would be used on future websites and marketing materials.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("un-habitat-design-system")} />
         <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/Qoli image (1).png"/>
       </CaseStudySection>
 

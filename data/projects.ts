@@ -1,5 +1,5 @@
 import type { Accent } from "@/lib/accent";
-import { unHabitatCaseStudies } from "@/data/unHabitatCaseStudies";
+import { featuredProjects } from "@/data/featuredProjects";
 
 export type ProjectSection = {
   id: string;
@@ -22,64 +22,34 @@ export type Project = {
   images: string[];
 };
 
+const homeCaptions: Record<string, string> = {
+  "un-habitat-urban-data": "UN-Habitat · Quality of Life Initiative",
+  "un-habitat-admin": "UN-Habitat · Quality of Life Initiative",
+  "un-habitat-design-system": "UN-Habitat · Quality of Life Initiative",
+  folio: "Folio",
+  chordio: "UX/UI · AI Prototype · Branding",
+  lofu: "Mobile UX · Branding · Mental Health",
+  "qol-hackathon": "Interactive Design · EdTech · Gamification",
+};
+
 export const projects: Project[] = [
-  ...unHabitatCaseStudies.map((study, index) => ({
-    slug: study.slug,
+  ...featuredProjects.map((project, index) => ({
+    slug: project.slug,
     order: index + 1,
-    year: study.year,
-    productName: study.productName,
-    title: study.title,
-    accent: "yellow" as Accent,
-    coverImage: study.coverImage,
-    coverVideo: study.coverVideo,
-    homeCaption: "UN-Habitat · Quality of Life Initiative",
+    year: project.year,
+    productName: project.productName,
+    title: project.title,
+    accent: project.accent,
+    coverImage: project.coverImage,
+    coverVideo: project.coverVideo,
+    homeCaption: homeCaptions[project.slug] ?? project.productName,
     tags: ["work"],
-    sections: [],
-    images: [],
+    sections: [] as ProjectSection[],
+    images: [] as string[],
   })),
   {
-    slug: "folio",
-    order: 4,
-    year: "2026",
-    productName: "Folio",
-    title: "Helping language learners stay in the flow",
-    accent: "blue",
-    coverImage: "",
-    coverVideo: "/images/folio/folio-cover-video.mov",
-    homeCaption: "Folio",
-    tags: ["work"],
-    sections: [],
-    images: [],
-  },
-  {
-    slug: "chordio",
-    order: 5,
-    year: "2023",
-    productName: "Chordio",
-    title: "Rethinking how musicians save and organize ideas",
-    accent: "pink",
-    coverImage: "/images/songwriting-app/chordio-main-image.png",
-    homeCaption: "UX/UI · AI Prototype · Branding",
-    tags: ["work"],
-    sections: [],
-    images: [],
-  },
-  {
-    slug: "lofu",
-    order: 6,
-    year: "2020",
-    productName: "Lofu",
-    title: "A gentler approach to mental wellness",
-    accent: "green",
-    coverImage: "/images/lofu/lofu main image.png",
-    homeCaption: "UX/UI · AI Prototype · Branding",
-    tags: ["work"],
-    sections: [],
-    images: [],
-  },
-  {
     slug: "makoasya",
-    order: 7,
+    order: featuredProjects.length + 1,
     year: "2025",
     productName: "mako asya",
     title: "mako asya",

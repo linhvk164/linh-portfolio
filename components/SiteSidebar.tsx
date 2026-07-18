@@ -93,16 +93,21 @@ function NavLinks({
       >
         LinkedIn
       </a>
-      <a
-        href={publicPath(site.resume)}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="View resume/CV"
-        className={`sidebar-nav-item ${navLink}`}
-      >
-        Resume/CV
-      </a>
     </nav>
+  );
+}
+
+function CvButton({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={publicPath(site.resume)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="View CV"
+      className={`sidebar-nav-item inline-flex w-fit items-center justify-center rounded-full bg-accent px-7 py-3 text-base font-bold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-accent-hover ${className}`}
+    >
+      CV
+    </a>
   );
 }
 
@@ -116,15 +121,17 @@ export function SiteSidebar() {
       >
         <IntroBlock />
         <NavLinks className="mt-6" />
+        <CvButton className="mt-6" />
       </header>
 
-      {/* Tablet — intro left, links right */}
+      {/* Tablet */}
       <header
-        className="hidden items-start justify-between gap-10 border-b border-border px-6 py-8 md:flex lg:hidden"
+        className="hidden border-b border-border px-6 py-8 md:block lg:hidden"
         aria-label="Site introduction"
       >
         <IntroBlock />
-        <NavLinks className="shrink-0 pt-1 text-right" />
+        <NavLinks className="mt-6" />
+        <CvButton className="mt-6" />
       </header>
 
       {/* Desktop — fixed left sidebar */}
@@ -133,7 +140,8 @@ export function SiteSidebar() {
         aria-label="Site navigation"
       >
         <IntroBlock />
-        <NavLinks className="mt-auto pt-10" />
+        <NavLinks className="mt-6" />
+        <CvButton className="mt-auto" />
       </aside>
     </>
   );

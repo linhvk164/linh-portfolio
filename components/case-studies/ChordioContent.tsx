@@ -4,13 +4,11 @@ import {
   CaseStudyImage,
   CaseStudyImagePlaceholder,
   CaseStudyImageRow,
-  CaseStudyMeta,
   CaseStudyPullQuote,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
 import { CaseStudyImageSlideshow } from "@/components/case-studies/CaseStudyImageSlideshow";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function ChordioContent() {
   return (
@@ -39,7 +37,6 @@ export function ChordioContent() {
           designed to streamline the creative process for musicians by seamlessly 
           integrating the functionality of a notes app with a voice memo app.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("chordio")} />
         <CaseStudyImagePlaceholder label="overview" src="/images/songwriting-app/hero-image.png" />
 
       </CaseStudySection>

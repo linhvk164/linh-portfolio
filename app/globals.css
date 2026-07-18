@@ -46,7 +46,7 @@
   --leading-normal: 1.65;
 
   /* Project title sizes — single source of truth */
-  --project-card-title-size: 1.5rem;
+  --project-card-title-size: 1.25rem;
   --article-card-title-size: 1rem;
   --case-study-title-size: 2.5rem;
 
@@ -133,7 +133,7 @@ h2 {
   :root {
     --text-h1: 2.5rem;
     --text-h2: 1.625rem;
-    --project-card-title-size: 1.875rem;
+    --project-card-title-size: 1.5rem;
     --case-study-title-size: 3rem;
     --sidebar-name-size: 1.25rem;
   }

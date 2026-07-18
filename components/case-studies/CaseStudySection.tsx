@@ -64,13 +64,34 @@ export type CaseStudyMetaItem = {
   value: ReactNode;
 };
 
-export function CaseStudyMeta({ items }: { items: CaseStudyMetaItem[] }) {
+export function CaseStudyMeta({
+  items,
+  layout = "grid",
+}: {
+  items: CaseStudyMetaItem[];
+  layout?: "grid" | "stacked";
+}) {
+  if (layout === "stacked") {
+    return (
+      <dl className="flex flex-col gap-4">
+        {items.map((item) => (
+          <div key={item.label} className="min-w-0">
+            <dt className="text-xs leading-snug text-case-study-body/70">
+              {item.label}
+            </dt>
+            <dd className="mt-1 text-sm leading-snug text-ink">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    );
+  }
+
   return (
-    <dl className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-border pt-6 lg:flex lg:items-start lg:gap-x-12">
+    <dl className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-border pt-6 md:grid-cols-4 md:gap-x-8">
       {items.map((item) => (
-        <div key={item.label} className="min-w-0 lg:flex-1 lg:basis-0 lg:self-start">
-          <dt className="text-sm leading-snug text-case-study-body/70">{item.label}</dt>
-          <dd className="mt-1.5 text-base leading-snug text-ink">{item.value}</dd>
+        <div key={item.label} className="min-w-0">
+          <dt className="text-xs leading-snug text-case-study-body/70">{item.label}</dt>
+          <dd className="mt-1 text-sm leading-snug text-ink">{item.value}</dd>
         </div>
       ))}
     </dl>

@@ -5,10 +5,12 @@ type ProjectTitleParts = {
   title: string;
 };
 
-function formatYearLabel(year: string, slug?: string): string {
+export function formatYearLabel(year: string, slug?: string): string {
   if (!slug) return year;
   if (slug === "folio") return `Shipped ${year}`;
-  if (slug.startsWith("un-habitat-")) return `Contract ${year}`;
+  if (slug.startsWith("un-habitat-") || slug === "qol-hackathon") {
+    return `Contract ${year}`;
+  }
   if (slug === "chordio" || slug === "lofu") return `Concept ${year}`;
   return year;
 }

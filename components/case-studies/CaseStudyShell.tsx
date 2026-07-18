@@ -1,12 +1,10 @@
-"use client";
-
+import { CaseStudyMeta } from "@/components/case-studies/CaseStudySection";
 import { CaseStudyTldr } from "@/components/case-studies/CaseStudyTldr";
 import { ViewWebsiteButton } from "@/components/ViewWebsiteButton";
+import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 import { getProjectExternalUrl } from "@/data/featuredProjects";
 import { getCaseStudyTldr } from "@/data/caseStudyTldr";
-import { useState, type ReactNode } from "react";
-
-type CaseStudyView = "detailed" | "tldr";
+import type { ReactNode } from "react";
 
 type CaseStudyShellProps = {
   slug: string;
@@ -16,69 +14,30 @@ type CaseStudyShellProps = {
 
 export function CaseStudyShell({ slug, header, children }: CaseStudyShellProps) {
   const tldr = getCaseStudyTldr(slug);
+  const metaItems = getCaseStudyMetaItems(slug);
   const externalUrl = getProjectExternalUrl(slug);
-  const [view, setView] = useState<CaseStudyView>("detailed");
+  const meta =
+    metaItems.length > 0 ? <CaseStudyMeta items={metaItems} /> : null;
+  const hasOverview = Boolean(tldr) || Boolean(meta);
 
   return (
     <>
-      <header className="case-study-header mt-8 pb-8">
+      <header className="case-study-header mt-8 pb-4">
         {header}
-        {(tldr || externalUrl) && (
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            {tldr && (
-              <div
-                className="inline-flex rounded-full border border-border p-1"
-                role="tablist"
-                aria-label="Case study view"
-              >
-                <ViewToggleButton
-                  active={view === "detailed"}
-                  onClick={() => setView("detailed")}
-                >
-                  Detailed
-                </ViewToggleButton>
-                <ViewToggleButton
-                  active={view === "tldr"}
-                  onClick={() => setView("tldr")}
-                >
-                  TL;DR
-                </ViewToggleButton>
-              </div>
-            )}
-            {externalUrl && <ViewWebsiteButton href={externalUrl} />}
+        {externalUrl && (
+          <div className="mt-6">
+            <ViewWebsiteButton href={externalUrl} />
           </div>
         )}
       </header>
 
-      <div className="mt-10">
-        {view === "detailed" || !tldr ? children : <CaseStudyTldr content={tldr} />}
-      </div>
-    </>
-  );
-}
+      {hasOverview && (
+        <section className="mt-6">
+          {tldr ? <CaseStudyTldr content={tldr} meta={meta} /> : meta}
+        </section>
+      )}
 
-function ViewToggleButton({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={active}
-      onClick={onClick}
-      className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
-        active
-          ? "bg-ink text-[var(--bg)]"
-          : "text-ink-muted hover:text-ink"
-      }`}
-    >
-      {children}
-    </button>
+      <div className="mt-10">{children}</div>
+    </>
   );
 }

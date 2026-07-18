@@ -2,12 +2,10 @@ import {
   CaseStudyImagePlaceholder,
   CaseStudyImageRow,
   CaseStudyList,
-  CaseStudyMeta,
   CaseStudyPullQuote,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function UnHabitatAdminContent() {
   return (
@@ -27,7 +25,6 @@ export function UnHabitatAdminContent() {
           my job was to create workflows for city administrators to manage their data. 
           My goal was to make those workflows feel clear instead of stressful.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("un-habitat-admin")} />
         <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/cityexplorer-main-image.png" />
       </CaseStudySection>
 

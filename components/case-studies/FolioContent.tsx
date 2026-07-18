@@ -4,12 +4,10 @@ import {
   CaseStudyFeature,
   CaseStudyImagePlaceholder,
   CaseStudyList,
-  CaseStudyMeta,
   CaseStudyPullQuote,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 const personas = [
   "International students writing assignments and emails in a second language.",
@@ -72,7 +70,6 @@ export function FolioContent() {
           discovery research and interaction design to branding, prototyping, and
           beta testing alongside my co-founder.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("folio")} />
       </CaseStudySection>
 
       <CaseStudySection eyebrow="Problem" title="Writing shouldn't require five different apps">

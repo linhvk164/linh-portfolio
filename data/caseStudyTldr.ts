@@ -27,6 +27,10 @@ export const caseStudyTldrBySlug: Record<string, CaseStudyTldr> = {
     summary:
       "Designed and researched Lofu, a gentler mental wellness app that lowers the barrier to self-care for Asian communities facing stigma, privacy norms, and language barriers. Pairing hand-drawn virtual pets with short reflection activities, warm visuals, and multilingual support, then validated through two rounds of usability testing so users can build small daily habits without feeling like therapy on day one.",
   },
+  "qol-hackathon": {
+    summary:
+      "Designed an interactive experience for 300+ students to explore Quality of Life domains, turning civic data into something playful and hands-on for the Quality of Life Hackathon program.",
+  },
 };
 
 export function getCaseStudyTldr(slug: string): CaseStudyTldr | undefined {

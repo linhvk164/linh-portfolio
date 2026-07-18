@@ -1,11 +1,9 @@
 import {
   CaseStudyImagePlaceholder,
-  CaseStudyMeta,
   CaseStudyPullQuote,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
-import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 export function LofuContent() {
   return (
@@ -40,7 +38,6 @@ export function LofuContent() {
           gamification to encourage consistent self-reflection in a way that felt
           welcoming rather than clinical.
         </p>
-        <CaseStudyMeta items={getCaseStudyMetaItems("lofu")} />
       </CaseStudySection>
       
       <CaseStudySection

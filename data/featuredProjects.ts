@@ -1,5 +1,4 @@
 import type { Accent } from "@/lib/accent";
-import { unHabitatCaseStudies } from "@/data/unHabitatCaseStudies";
 
 export type ProjectHoverType = "website" | "case-study";
 
@@ -20,38 +19,15 @@ export type FeaturedProject = {
   coverFit?: "cover" | "contain";
 };
 
-export const unHabitatFeaturedProjects: FeaturedProject[] =
-  unHabitatCaseStudies.map((study) => ({
-    slug: study.slug,
-    year: study.year,
-    productName: study.productName,
-    title: study.title,
-    footerLabel: study.footerLabel,
-    overview: study.summary,
-    tagList: study.tagList,
-    coverImage: study.coverImage,
-    coverVideo: study.coverVideo,
-    externalUrl: study.externalUrl,
-    accent: "yellow",
-    hoverType: "case-study",
-    ...(study.slug === "un-habitat-urban-data"
-      ? { coverAspect: "16/10" as const, coverFit: "contain" as const }
-      : {}),
-  }));
-
-export const otherFeaturedProjects: FeaturedProject[] = [
+export const featuredProjects: FeaturedProject[] = [
   {
     slug: "folio",
     year: "2026",
     productName: "Folio",
-    title: "Helping Language Learners Stay in the Flow",
+    title: "A Distraction-Free Journaling App For Language Learners.",
     overview:
-      "A distraction-free writing tool that helps language learners express their thoughts without juggling disconnected apps.",
-    tagList: [
-      "Startup Founder",
-      "EdTech",
-      "User Research",
-    ],
+      "Shipped a distraction-free journaling app for language learners, conducting user interviews to shape a tool that keeps them in the flow.",
+    tagList: ["Product Design", "User Research", "EdTech Founder"],
     coverImage: "",
     coverVideo: "/images/folio/folio-cover-video.mov",
     externalUrl: "https://folioapp.ca",
@@ -59,18 +35,69 @@ export const otherFeaturedProjects: FeaturedProject[] = [
     hoverType: "case-study",
   },
   {
+    slug: "un-habitat-urban-data",
+    year: "2025",
+    productName: "Quality Of Life Initiative",
+    title: "Data Visualizations For A Civic Platform Live Across 100+ Cities.",
+    footerLabel: "QOL — Data Visualization",
+    overview:
+      "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
+    tagList: ["Data Visualization", "Accessibility", "Civic Tech"],
+    coverImage: "/images/un-habitat/quality of life main image.png",
+    coverVideo: "/images/un-habitat/qoli-cover-video.mov",
+    externalUrl: "https://www.qolimpact.com",
+    accent: "yellow",
+    hoverType: "case-study",
+    coverAspect: "16/10",
+    coverFit: "contain",
+  },
+  {
+    slug: "un-habitat-admin",
+    year: "2025",
+    productName: "Quality Of Life Initiative",
+    title: "Administrative Workflows For City Officials Across 100+ Cities.",
+    footerLabel: "QOL — Admin Dashboard",
+    overview:
+      "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
+    tagList: ["Admin Dashboard", "Workflow Design", "UX/UI"],
+    coverImage: "/images/un-habitat/cityexplorer-main-image.png",
+    accent: "yellow",
+    hoverType: "case-study",
+  },
+  {
+    slug: "un-habitat-design-system",
+    year: "2024",
+    productName: "Quality Of Life Initiative",
+    title: "A 200+ Component System That Sped Up Design And Dev By 50%.",
+    footerLabel: "QOL — Design System",
+    overview:
+      "Built a 200+ component design system that accelerated design and dev velocity by 50% across a global platform.",
+    tagList: ["Design Systems", "Accessibility", "Design Ops"],
+    coverImage: "/images/un-habitat/qoli-icons.png",
+    accent: "yellow",
+    hoverType: "case-study",
+  },
+  {
+    slug: "qol-hackathon",
+    year: "2025",
+    productName: "Quality Of Life Hackathon Program",
+    title: "An Interactive Experience Helping 300+ Students Explore Civic Data.",
+    overview:
+      "Created an interactive way for 300+ students to explore Quality of Life domains, making civic data feel playful and hands-on.",
+    tagList: ["Interactive Design", "EdTech", "Gamification"],
+    coverImage: "/images/un-habitat/qolihackathon.png",
+    accent: "yellow",
+    externalUrl: "https://www.qolihackathon.com/gh",
+    hoverType: "website",
+  },
+  {
     slug: "chordio",
     year: "2023",
     productName: "Chordio",
-    title: "Rethinking How Musicians Save and Organize Ideas",
+    title: "A Songwriting Tool Shaped By Interviews With 5 Musicians.",
     overview:
-      "A songwriting tool that helps musicians capture lyrics, chords, recordings, and song ideas in one place without breaking creative flow.",
-    tagList: [
-      "UX/UI",
-      "AI Prototype",
-      "Branding",
-      "Music",
-    ],
+      "Prototyped a songwriting tool from concept, synthesizing insights from 5 musician interviews to guide feature direction.",
+    tagList: ["AI Prototype", "UX/UI", "Branding"],
     coverImage: "/images/songwriting-app/chordio-main-image.png",
     accent: "pink",
     hoverType: "case-study",
@@ -79,37 +106,29 @@ export const otherFeaturedProjects: FeaturedProject[] = [
     slug: "lofu",
     year: "2020",
     productName: "Lofu",
-    title: "A Gentler Approach to Mental Wellness",
+    title: "A Mobile Wellness App Blending Play With Mental Health Support.",
     overview:
-      "A mobile experience combining mental wellness resources with gentle gamification to encourage self-reflection in a welcoming, culturally relevant way.",
-    tagList: [
-      "UX/UI Designer",
-      "Branding",
-      "Mobile",
-      "Mental Health",
-    ],
+      "Crafted a mobile wellness experience blending gentle gamification with culturally relevant mental health resources.",
+    tagList: ["Mobile UX", "Branding", "Mental Health"],
     coverImage: "/images/lofu/lofu main image.png",
     accent: "green",
     hoverType: "case-study",
   },
 ];
 
-const folio = otherFeaturedProjects.find((project) => project.slug === "folio")!;
-const [chordio, lofu] = otherFeaturedProjects.filter(
-  (project) => project.slug === "chordio" || project.slug === "lofu",
-);
+const homeOrder = [
+  "folio",
+  "un-habitat-urban-data",
+  "un-habitat-admin",
+  "un-habitat-design-system",
+  "qol-hackathon",
+  "chordio",
+  "lofu",
+] as const;
 
-export const homeFeaturedProjects: FeaturedProject[] = [
-  folio,
-  ...unHabitatFeaturedProjects,
-  chordio,
-  lofu,
-].filter(Boolean);
-
-export const featuredProjects: FeaturedProject[] = [
-  ...unHabitatFeaturedProjects,
-  ...otherFeaturedProjects,
-];
+export const homeFeaturedProjects: FeaturedProject[] = homeOrder
+  .map((slug) => featuredProjects.find((project) => project.slug === slug))
+  .filter((project): project is FeaturedProject => Boolean(project));
 
 export const caseStudyProjects = featuredProjects.filter(
   (project) => project.hoverType === "case-study",

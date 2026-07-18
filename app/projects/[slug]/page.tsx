@@ -67,7 +67,10 @@ export default async function ProjectPage({ params }: PageProps) {
                 titleAs="h1"
                 titleClassName="case-study-header-title text-balance text-ink"
                 metaClassName="pt-1 text-ink-soft"
-                {...project}
+                slug={project.slug}
+                year={project.year}
+                productName={project.productName}
+                title="About the project"
               />
             }
           >

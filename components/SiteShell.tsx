@@ -1,5 +1,4 @@
 import { AboutModalProvider } from "@/components/AboutModalProvider";
-import { CustomCursor } from "@/components/CustomCursor";
 import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { SiteSidebar } from "@/components/SiteSidebar";
@@ -10,7 +9,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <AboutModalProvider>
       <OpeningAnimation />
-      <CustomCursor />
       <ScrollToTop />
       <div className="min-h-screen bg-bg">
         <SiteSidebar />
