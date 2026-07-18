@@ -39,7 +39,7 @@ export const featuredProjects: FeaturedProject[] = [
     year: "2025",
     productName: "Quality Of Life Initiative",
     title: "Data Visualizations For A Civic Platform Live Across 100+ Cities.",
-    footerLabel: "QOL — Data Visualization",
+    footerLabel: "Quality of Life — Data Visualization",
     overview:
       "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
     tagList: ["Data Visualization", "Accessibility", "Civic Tech"],
@@ -56,7 +56,7 @@ export const featuredProjects: FeaturedProject[] = [
     year: "2025",
     productName: "Quality Of Life Initiative",
     title: "Administrative Workflows For City Officials Across 100+ Cities.",
-    footerLabel: "QOL — Admin Dashboard",
+    footerLabel: "Quality of Life — Admin Dashboard",
     overview:
       "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
     tagList: ["Admin Dashboard", "Workflow Design", "UX/UI"],
@@ -69,7 +69,7 @@ export const featuredProjects: FeaturedProject[] = [
     year: "2024",
     productName: "Quality Of Life Initiative",
     title: "A 200+ Component System That Sped Up Design And Dev By 50%.",
-    footerLabel: "QOL — Design System",
+    footerLabel: "Quality of Life — Design System",
     overview:
       "Built a 200+ component design system that accelerated design and dev velocity by 50% across a global platform.",
     tagList: ["Design Systems", "Accessibility", "Design Ops"],
@@ -82,6 +82,7 @@ export const featuredProjects: FeaturedProject[] = [
     year: "2025",
     productName: "Quality Of Life Hackathon Program",
     title: "An Interactive Experience Helping 300+ Students Explore Civic Data.",
+    footerLabel: "Quality of Life — Hackathon",
     overview:
       "Created an interactive way for 300+ students to explore Quality of Life domains, making civic data feel playful and hands-on.",
     tagList: ["Interactive Design", "EdTech", "Gamification"],

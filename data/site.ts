@@ -3,16 +3,17 @@ export const site = {
   email: "linhvkdesign@gmail.com",
   phone: "+1 (548) 333-1604",
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
+  youtube: "https://www.youtube.com/@linhvk_",
   resume: "/images/general/resume.pdf",
   role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
-  status: "Prev @ United Nations",
+  status: "Prev @ the UN",
   intro: {
-    line1: "Hi, I'm Linh 👋 — a",
-    line2: "UX/UI designer based in Ontario, Canada",
+    line1: "Hey! I'm Linh Khuong",
+    line2: "a UX/UI Designer, a Brand Designer",
     description:
       "Specializing in UX/UI, Branding, Illustrations and No-code development. My goal is to simplify complex processes by utilizing creative solutions.",
-    cta: "Scroll down to see more",
+    cta: "Got a product in mind? Let's chat.",
   },
   philosophy: {
     quote: "Design is art that is useful and practical",
@@ -28,7 +29,7 @@ export const site = {
       "If you'd like to learn more about my work or want to chat, don't hesitate to reach out over email or LinkedIn. 🎉",
     ],
   },
-  copyright: "© Copyright 2026. All Rights Reserved by Van Linh Khuong",
+  copyright: "© 2026. Made with love & Hozier ♫. Last updated July 2026.",
 } as const;
 
 export const navItems = [
@@ -42,6 +43,6 @@ export const navItems = [
 
 export const footerNavItems = [
   { label: "Home", href: "/" },
-  { label: "Work", href: "/#work" },
   { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ] as const;

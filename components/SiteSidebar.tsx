@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useAboutModal } from "@/components/AboutModalProvider";
+import { LinkedInIcon } from "@/components/icons/LinkedInIcon";
 import { publicPath } from "@/lib/assets";
 import { site } from "@/data/site";
 import { navLink } from "@/lib/layout";
+import type { ReactNode } from "react";
 
 const LOGO_SRC = "/images/general/logo/linhvk logo black.png";
 const PROFILE_SRC = "/images/general/profile-cropped.jpg";
@@ -15,7 +18,7 @@ function SiteLogo({ onNavigate }: { onNavigate?: () => void }) {
     <Link
       href="/"
       onClick={onNavigate}
-      className="sidebar-intro-item mb-3 inline-block transition-transform duration-300 ease-out hover:scale-105"
+      className="sidebar-intro-item inline-block transition-transform duration-300 ease-out hover:scale-105"
       aria-label="Home"
     >
       <Image
@@ -32,7 +35,7 @@ function SiteLogo({ onNavigate }: { onNavigate?: () => void }) {
 
 function ProfilePhoto() {
   return (
-    <div className="sidebar-intro-item mb-5">
+    <div className="sidebar-intro-item">
       <Image
         src={publicPath(PROFILE_SRC)}
         alt={site.name}
@@ -47,13 +50,33 @@ function ProfilePhoto() {
 function IntroBlock({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="sidebar-intro">
-      <SiteLogo onNavigate={onNavigate} />
-      <ProfilePhoto />
-      <p className="sidebar-name sidebar-intro-item">{site.name}</p>
-      <p className="sidebar-tagline sidebar-intro-item">{site.role}</p>
-      <p className="sidebar-detail sidebar-intro-item">{site.status}</p>
-      <p className="sidebar-detail sidebar-intro-item">{site.location}</p>
+      <div className="sidebar-intro-stack mb-11 flex flex-col items-start gap-4">
+        <div className="flex items-center gap-3">
+          <ProfilePhoto />
+          <div className="flex min-w-0 flex-col items-start gap-1.5">
+            <SiteLogo onNavigate={onNavigate} />
+            <p className="sidebar-detail sidebar-intro-item !mt-0">{site.status}</p>
+          </div>
+        </div>
+        <p className="sidebar-tagline sidebar-intro-item">{site.role}</p>
+      </div>
     </div>
+  );
+}
+
+const navItemClass = `sidebar-nav-item group inline-flex items-center gap-2 ${navLink}`;
+
+function NavItemLabel({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <span>{children}</span>
+      <ArrowRight
+        size={16}
+        strokeWidth={2.25}
+        aria-hidden
+        className="shrink-0 -translate-x-1 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100"
+      />
+    </>
   );
 }
 
@@ -67,13 +90,9 @@ function NavLinks({
   const { openAbout } = useAboutModal();
 
   return (
-    <nav className={`sidebar-nav-links flex flex-col gap-2.5 ${className}`}>
-      <Link
-        href="/"
-        onClick={onNavigate}
-        className={`sidebar-nav-item ${navLink}`}
-      >
-        Home
+    <nav className={`sidebar-nav-links flex flex-col items-start gap-2.5 ${className}`}>
+      <Link href="/" onClick={onNavigate} className={navItemClass}>
+        <NavItemLabel>Home</NavItemLabel>
       </Link>
       <button
         type="button"
@@ -81,18 +100,13 @@ function NavLinks({
           openAbout();
           onNavigate?.();
         }}
-        className={`sidebar-nav-item ${navLink} text-left`}
+        className={`${navItemClass} text-left`}
       >
-        About me
+        <NavItemLabel>About</NavItemLabel>
       </button>
-      <a
-        href={site.linkedIn}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`sidebar-nav-item ${navLink}`}
-      >
-        LinkedIn
-      </a>
+      <Link href="/#contact" onClick={onNavigate} className={navItemClass}>
+        <NavItemLabel>Contact</NavItemLabel>
+      </Link>
     </nav>
   );
 }
@@ -111,6 +125,41 @@ function CvButton({ className = "" }: { className?: string }) {
   );
 }
 
+function LinkedInButton({ className = "" }: { className?: string }) {
+  return (
+    <a
+      href={site.linkedIn}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn"
+      className={`sidebar-nav-item group inline-flex items-center gap-1.5 text-ink-muted transition-colors duration-200 hover:text-accent-hover ${className}`}
+    >
+      <LinkedInIcon size={18} strokeWidth={1.75} />
+      <ArrowUpRight
+        size={14}
+        strokeWidth={2.25}
+        aria-hidden
+        className="shrink-0 -translate-x-0.5 translate-y-0.5 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
+      />
+    </a>
+  );
+}
+
+function SidebarActions({
+  className = "",
+  cvClassName = "",
+}: {
+  className?: string;
+  cvClassName?: string;
+}) {
+  return (
+    <div className={`flex flex-col items-start gap-3 ${className}`}>
+      <CvButton className={cvClassName} />
+      <LinkedInButton />
+    </div>
+  );
+}
+
 export function SiteSidebar() {
   return (
     <>
@@ -121,7 +170,7 @@ export function SiteSidebar() {
       >
         <IntroBlock />
         <NavLinks className="mt-6" />
-        <CvButton className="mt-6" />
+        <SidebarActions className="mt-6" />
       </header>
 
       {/* Tablet */}
@@ -131,7 +180,7 @@ export function SiteSidebar() {
       >
         <IntroBlock />
         <NavLinks className="mt-6" />
-        <CvButton className="mt-6" />
+        <SidebarActions className="mt-6" />
       </header>
 
       {/* Desktop — fixed left sidebar */}
@@ -141,7 +190,7 @@ export function SiteSidebar() {
       >
         <IntroBlock />
         <NavLinks className="mt-6" />
-        <CvButton className="mt-auto" />
+        <SidebarActions className="mt-auto" />
       </aside>
     </>
   );
