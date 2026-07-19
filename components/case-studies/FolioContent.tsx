@@ -302,7 +302,7 @@ export function FolioContent() {
           href="https://folioapp.ca"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent underline-offset-2 hover:underline"
+          className="text-ink underline-offset-2 hover:underline"
         >
           folioapp.ca
         </Link>

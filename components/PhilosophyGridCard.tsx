@@ -7,7 +7,7 @@ export function PhilosophyGridCard() {
       <blockquote className="text-base leading-snug font-semibold text-ink md:text-lg">
         &ldquo;{site.philosophy.quote}&rdquo;
       </blockquote>
-      <p className="mt-4 label-caps text-accent">
+      <p className="mt-4 label-caps text-ink">
         {site.philosophy.label}
       </p>
     </article>

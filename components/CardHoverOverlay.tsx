@@ -94,7 +94,7 @@ export function CardHoverOverlay({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative h-full w-full overflow-hidden">{children}</div>
+      <div className="relative w-full overflow-hidden">{children}</div>
       {isHovering && (
         <div
           className="pointer-events-none absolute inset-0 z-[1] overflow-hidden rounded-[inherit] bg-[var(--cursor-hover-overlay)]"

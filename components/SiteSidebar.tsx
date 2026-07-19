@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useAboutModal } from "@/components/AboutModalProvider";
-import { LinkedInIcon } from "@/components/icons/LinkedInIcon";
 import { publicPath } from "@/lib/assets";
 import { site } from "@/data/site";
 import { navLink } from "@/lib/layout";
@@ -125,26 +124,6 @@ function CvButton({ className = "" }: { className?: string }) {
   );
 }
 
-function LinkedInButton({ className = "" }: { className?: string }) {
-  return (
-    <a
-      href={site.linkedIn}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="LinkedIn"
-      className={`sidebar-nav-item group inline-flex items-center gap-1.5 text-ink-muted transition-colors duration-200 hover:text-accent-hover ${className}`}
-    >
-      <LinkedInIcon size={18} strokeWidth={1.75} />
-      <ArrowUpRight
-        size={14}
-        strokeWidth={2.25}
-        aria-hidden
-        className="shrink-0 -translate-x-0.5 translate-y-0.5 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"
-      />
-    </a>
-  );
-}
-
 function SidebarActions({
   className = "",
   cvClassName = "",
@@ -153,9 +132,8 @@ function SidebarActions({
   cvClassName?: string;
 }) {
   return (
-    <div className={`flex flex-col items-start gap-3 ${className}`}>
+    <div className={`flex flex-col items-start ${className}`}>
       <CvButton className={cvClassName} />
-      <LinkedInButton />
     </div>
   );
 }

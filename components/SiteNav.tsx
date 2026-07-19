@@ -8,90 +8,100 @@ import {
   getProjectFooterLabel,
 } from "@/data/featuredProjects";
 import { footerNavItems, site } from "@/data/site";
-import { labelCaps, footerColumns, mainContent } from "@/lib/layout";
+import { labelCaps } from "@/lib/layout";
 
+const footerPad = "w-full min-w-0 px-8 py-8 md:px-10 md:py-10";
+const footerLabel = `${labelCaps} text-white/55`;
 const footerLink =
-  "interactive-link group inline-flex items-center gap-1.5 text-base text-ink-muted hover:text-accent-hover";
+  "group inline-flex items-center gap-1.5 text-base text-white/85 transition-colors duration-200 hover:text-white";
 
 export function SiteFooter() {
   const { openAbout } = useAboutModal();
 
   return (
-    <footer id="contact" className="bg-surface">
-      <div className={`${mainContent} py-8 md:py-10`}>
-        <div className={footerColumns}>
-          <div className="flex shrink-0 flex-col items-start gap-2">
-            <p className={`${labelCaps} text-ink`}>Connect</p>
-            <a
-              href={site.linkedIn}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={footerLink}
-            >
-              LinkedIn
-              <ArrowUpRight
-                size={14}
-                strokeWidth={2.25}
-                aria-hidden
-                className="shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
-              />
-            </a>
-            <a
-              href={site.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={footerLink}
-            >
-              YouTube
-              <ArrowUpRight
-                size={14}
-                strokeWidth={2.25}
-                aria-hidden
-                className="shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
-              />
-            </a>
-            <a href={`mailto:${site.email}`} className={footerLink}>
-              Email
-            </a>
+    <footer
+      id="contact"
+      className="overflow-hidden rounded-tl-[2.75rem] bg-accent md:rounded-tl-[3.5rem]"
+    >
+      <div className={footerPad}>
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-12">
+          <div className="flex flex-col gap-10 sm:flex-row sm:gap-x-12 lg:gap-x-16">
+            <div className="flex shrink-0 flex-col items-start gap-2">
+              <p className={footerLabel}>Connect</p>
+              <a
+                href={site.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={footerLink}
+              >
+                LinkedIn
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={2.25}
+                  aria-hidden
+                  className="shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
+                />
+              </a>
+              <a
+                href={site.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={footerLink}
+              >
+                YouTube
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={2.25}
+                  aria-hidden
+                  className="shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
+                />
+              </a>
+              <a href={`mailto:${site.email}`} className={footerLink}>
+                Email
+              </a>
+            </div>
+
+            <div className="shrink-0">
+              <p className={`${footerLabel} mb-2`}>Navigation</p>
+              <ul className="space-y-1.5">
+                {footerNavItems.map((item) => (
+                  <li key={item.label}>
+                    {item.label === "About" ? (
+                      <button
+                        type="button"
+                        onClick={openAbout}
+                        className={footerLink}
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <Link href={item.href} className={footerLink}>
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="shrink-0">
-            <p className={`${labelCaps} mb-2 text-ink`}>Navigation</p>
-            <ul className="space-y-1.5">
-              {footerNavItems.map((item) => (
-                <li key={item.label}>
-                  {item.label === "About" ? (
-                    <button
-                      type="button"
-                      onClick={openAbout}
-                      className={footerLink}
-                    >
-                      {item.label}
-                    </button>
-                  ) : (
-                    <Link href={item.href} className={footerLink}>
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="min-w-0 md:max-w-sm md:flex-1">
-            <p className={`${labelCaps} mb-3 text-ink`}>Featured Projects</p>
-            <ul className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-1">
+
+          <div className="min-w-0 md:max-w-sm md:shrink-0 md:text-left">
+            <p className={`${footerLabel} mb-3`}>Featured Projects</p>
+            <ul className="grid grid-cols-1 gap-1.5">
               {homeFeaturedProjects.map((project) => {
                 const label = getProjectFooterLabel(project);
                 const isExternal =
-                  project.hoverType === "website" && Boolean(project.externalUrl);
+                  project.hoverType === "website" &&
+                  Boolean(project.externalUrl);
                 const className =
-                  "interactive-link group flex items-baseline justify-between gap-3 rounded-[var(--radius-sm)] py-1 text-sm leading-snug text-ink-muted transition-colors duration-200 hover:text-accent-hover";
+                  "group flex items-baseline justify-between gap-20 rounded-[var(--radius-sm)] py-1 text-sm leading-snug text-white/85 transition-colors duration-200 hover:text-white sm:gap-20";
 
                 const content = (
                   <>
-                    <span className="min-w-0 font-medium text-ink group-hover:text-accent-hover">
+                    <span className="min-w-0 font-medium text-white/90 group-hover:text-white">
                       {label}
                     </span>
-                    <span className="shrink-0 tabular-nums text-xs text-ink-soft">
+                    <span className="shrink-0 tabular-nums text-xs text-white/45">
                       {project.year}
                     </span>
                   </>
@@ -123,8 +133,8 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className={`${mainContent} bg-surface-muted py-5`}>
-        <p className="text-base text-ink-soft">{site.copyright}</p>
+      <div className="w-full min-w-0 border-t border-white/10 px-8 py-5 md:px-10">
+        <p className="text-right text-base text-white/50">{site.copyright}</p>
       </div>
     </footer>
   );

@@ -24,9 +24,9 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "folio",
     year: "2026",
     productName: "Folio",
-    title: "A Distraction-Free Journaling App For Language Learners.",
+    title: "A Distraction-Free Language Learning Tool",
     overview:
-      "Shipped a distraction-free journaling app for language learners, conducting user interviews to shape a tool that keeps them in the flow.",
+      "Shipped a distraction-free language learning tool, conducting user interviews to shape a tool that keeps them in the flow.",
     tagList: ["Product Design", "User Research", "EdTech Founder"],
     coverImage: "",
     coverVideo: "/images/folio/folio-cover-video.mov",
@@ -37,8 +37,8 @@ export const featuredProjects: FeaturedProject[] = [
   {
     slug: "un-habitat-urban-data",
     year: "2025",
-    productName: "Quality Of Life Initiative",
-    title: "Data Visualizations For A Civic Platform Live Across 100+ Cities.",
+    productName: "UN Quality Of Life Initiative",
+    title: "Data Visualizations For a Global Platform Live Across 100+ Cities",
     footerLabel: "Quality of Life — Data Visualization",
     overview:
       "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
@@ -54,8 +54,8 @@ export const featuredProjects: FeaturedProject[] = [
   {
     slug: "un-habitat-admin",
     year: "2025",
-    productName: "Quality Of Life Initiative",
-    title: "Administrative Workflows For City Officials Across 100+ Cities.",
+    productName: "UN Quality Of Life Initiative",
+    title: "Administrative Workflows For City Officials Across 100+ Cities",
     footerLabel: "Quality of Life — Admin Dashboard",
     overview:
       "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
@@ -67,8 +67,8 @@ export const featuredProjects: FeaturedProject[] = [
   {
     slug: "un-habitat-design-system",
     year: "2024",
-    productName: "Quality Of Life Initiative",
-    title: "A 200+ Component System That Sped Up Design And Dev By 50%.",
+    productName: "UN Quality Of Life Initiative",
+    title: "200+ Design System, Sped Up Design And Dev By 50%",
     footerLabel: "Quality of Life — Design System",
     overview:
       "Built a 200+ component design system that accelerated design and dev velocity by 50% across a global platform.",
@@ -81,12 +81,13 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "qol-hackathon",
     year: "2025",
     productName: "Quality Of Life Hackathon Program",
-    title: "An Interactive Experience Helping 300+ Students Explore Civic Data.",
+    title: "Interactive Experience For 300+ Students To Explore Civic Data",
     footerLabel: "Quality of Life — Hackathon",
     overview:
       "Created an interactive way for 300+ students to explore Quality of Life domains, making civic data feel playful and hands-on.",
     tagList: ["Interactive Design", "EdTech", "Gamification"],
     coverImage: "/images/un-habitat/qolihackathon.png",
+    coverVideo: "/images/un-habitat/qolihackathon.mov",
     accent: "yellow",
     externalUrl: "https://www.qolihackathon.com/gh",
     hoverType: "website",
@@ -95,7 +96,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "chordio",
     year: "2023",
     productName: "Chordio",
-    title: "A Songwriting Tool Shaped By Interviews With 5 Musicians.",
+    title: "A Songwriting Tool Shaped By Interviews With Musicians",
     overview:
       "Prototyped a songwriting tool from concept, synthesizing insights from 5 musician interviews to guide feature direction.",
     tagList: ["AI Prototype", "UX/UI", "Branding"],
@@ -107,7 +108,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "lofu",
     year: "2020",
     productName: "Lofu",
-    title: "A Mobile Wellness App Blending Play With Mental Health Support.",
+    title: "A Wellness App Blending Play With Mental Health Support",
     overview:
       "Crafted a mobile wellness experience blending gentle gamification with culturally relevant mental health resources.",
     tagList: ["Mobile UX", "Branding", "Mental Health"],
@@ -121,10 +122,10 @@ const homeOrder = [
   "folio",
   "un-habitat-urban-data",
   "un-habitat-admin",
-  "un-habitat-design-system",
   "qol-hackathon",
-  "chordio",
+  "un-habitat-design-system",
   "lofu",
+  "chordio",
 ] as const;
 
 export const homeFeaturedProjects: FeaturedProject[] = homeOrder

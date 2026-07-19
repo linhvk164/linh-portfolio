@@ -10,7 +10,7 @@ const VINYL_COVER_SRC = "/images/general/vinyl-cover.png";
 
 const TORONTO_TZ = "America/Toronto";
 const HERO_CARD =
-  "rounded-[1.75rem] bg-white shadow-[0_1px_0_rgba(26,43,36,0.04)]";
+  "rounded-[1.75rem] bg-surface shadow-[0_1px_0_rgba(26,43,36,0.04)]";
 const heroWidgetLabel =
   "text-[0.65rem] font-semibold leading-snug tracking-wide text-ink-soft";
 const heroWidgetTitle =
@@ -18,7 +18,7 @@ const heroWidgetTitle =
 
 function RoleTag({ children }: { children: string }) {
   return (
-    <span className="inline-block bg-white px-2 py-0.5 font-semibold text-ink">
+    <span className="inline-block bg-surface px-2 py-0.5 font-semibold text-ink">
       {children}
     </span>
   );
@@ -61,7 +61,7 @@ function MusicWidget() {
           href={hero.currentlyPlaying.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex w-fit items-center gap-1.5 text-xs font-medium text-ink-muted transition-colors hover:text-accent-hover"
+          className="mt-3 inline-flex w-fit items-center gap-1.5 text-xs font-medium text-ink-muted transition-colors hover:text-ink"
         >
           <span className="inline-flex h-5 w-5 items-center justify-center rounded-sm bg-badge text-ink">
             <ArrowUpRight size={12} strokeWidth={2.5} aria-hidden />
@@ -142,7 +142,7 @@ export function HomeHero() {
           {hero.chatLead}{" "}
           <a
             href="#contact"
-            className="underline decoration-ink/25 underline-offset-[0.2em] transition-colors hover:text-accent-hover hover:decoration-accent-hover"
+            className="underline decoration-ink/25 underline-offset-[0.2em] transition-colors hover:text-ink hover:decoration-ink"
           >
             {hero.chatCta}
           </a>

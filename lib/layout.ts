@@ -52,4 +52,4 @@ export const pillTag =
 export const labelCaps = "label-caps text-ink-soft";
 
 export const navLink =
-  "interactive-link text-base font-semibold text-accent hover:text-accent-hover";
+  "interactive-link text-base font-semibold text-ink";

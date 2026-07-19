@@ -168,7 +168,7 @@ export function ChordioContent() {
             href="https://chordio-linhs-projects-e35fe93f.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent underline-offset-2 hover:underline"
+            className="text-ink underline-offset-2 hover:underline"
           >
             functioning web application
           </Link>{" "}

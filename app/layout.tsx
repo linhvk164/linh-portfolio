@@ -29,7 +29,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='linhvk-opening-seen';var skip=window.matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem(k)==='1';if(skip)return;var el=document.createElement('div');el.id='opening-boot';el.setAttribute('aria-hidden','true');document.documentElement.appendChild(el);}catch(e){}})();`,
+            __html: `(function(){try{if('scrollRestoration'in history)history.scrollRestoration='manual';var nav=performance.getEntriesByType('navigation')[0];if(nav&&nav.type==='reload'){if(location.hash)history.replaceState(null,'',location.pathname+location.search);window.scrollTo(0,0);}var k='linhvk-opening-seen';var skip=window.matchMedia('(prefers-reduced-motion: reduce)').matches||sessionStorage.getItem(k)==='1';if(skip)return;var el=document.createElement('div');el.id='opening-boot';el.setAttribute('aria-hidden','true');document.documentElement.appendChild(el);}catch(e){}})();`,
           }}
         />
       </head>
