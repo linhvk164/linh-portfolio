@@ -36,7 +36,22 @@ export function FunModal({ item, onClose }: FunModalProps) {
     if (!item) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (gallery.length <= 1) return;
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setActiveIndex((index) => (index + 1) % gallery.length);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActiveIndex(
+          (index) => (index - 1 + gallery.length) % gallery.length,
+        );
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -46,7 +61,7 @@ export function FunModal({ item, onClose }: FunModalProps) {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [item, onClose]);
+  }, [item, onClose, gallery.length]);
 
   if (!item) return null;
 

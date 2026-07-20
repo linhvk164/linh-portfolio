@@ -27,8 +27,13 @@ export const funItems: FunItem[] = [
     context: "Music video",
     description:
       "Official lyrics video — visual storytelling, pacing, and mood through motion and sound.",
-    images: [],
-    coverImage: "/images/explore/whatamisupposedtodo-cover.jpg",
+    images: [
+      "/images/explore/whatamisupposedtodo/lyrics-vid-1.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-2.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-3.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-4.png",
+    ],
+    coverImage: "/images/explore/whatamisupposedtodo/whatamisupposedtodo-cover.jpg",
     youtubeId: "QfFWuCQwuq8",
   },
   {
@@ -40,8 +45,13 @@ export const funItems: FunItem[] = [
     context: "Music video",
     description:
       "Official music video experimenting with visual storytelling and mood.",
-    images: [],
-    coverImage: "/images/explore/porcelainboy-cover.jpg",
+    images: [
+      "/images/explore/porcelainboy/porcelainboy-1.png",
+      "/images/explore/porcelainboy/porcelainboy-2.png",
+      "/images/explore/porcelainboy/porcelainboy-3.png",
+      "/images/explore/porcelainboy/porcelainboy-4.png",
+    ],
+    coverImage: "/images/explore/porcelainboy/porcelain boy gif.gif",
     youtubeId: "qm1NaNR09MY",
   },
   {
@@ -53,8 +63,8 @@ export const funItems: FunItem[] = [
     context: "Web design",
     description:
       "A Framer website exploring radiant, nature-led visual design and layout.",
-    images: ["/images/explore/radiant-roots-cover.jpg"],
-    coverImage: "/images/explore/radiant-roots-cover.jpg",
+    images: ["/images/explore/radiant-roots-cover.png"],
+    coverImage: "/images/explore/radiant-roots-cover.png",
     externalUrl: "https://radiantroots.framer.website/",
   },
   {
@@ -84,8 +94,22 @@ export const funItems: FunItem[] = [
     context: "Personal exploration",
     description:
       "An exploratory piece blending textile craft with mixed materials — a hands-on study in texture, color, and form.",
-    images: ["/images/explore/psa/PSA-1.jpg"],
-    coverImage: "/images/explore/psa/PSA-cover.jpg",
+    images: [
+      "/images/explore/psa/psa-1.jpg",
+      "/images/explore/psa/PSA-2.jpg",
+      "/images/explore/psa/psa_3.png",
+      "/images/explore/psa/psa-4.png",
+      "/images/explore/psa/IMG_9883.png",
+      "/images/explore/psa/IMG_9916.png",
+      "/images/explore/psa/IMG_9917.png",
+      "/images/explore/psa/IMG_9924.png",
+      "/images/explore/psa/IMG_9925.png",
+      "/images/explore/psa/IMG_9926.png",
+      "/images/explore/psa/IMG_9928.png",
+      "/images/explore/psa/IMG_9929.png",
+      "/images/explore/psa/IMG_9930.png",
+    ],
+    coverImage: "/images/explore/psa/psa-cover.png",
   },
   {
     id: "tako-inc",
@@ -99,6 +123,9 @@ export const funItems: FunItem[] = [
     images: [
       "/images/explore/tako/tako-1.png",
       "/images/explore/tako/tako-2.png",
+      "/images/explore/tako/tako-3.png",
+      "/images/explore/tako/tako-4.png",
+      "/images/explore/tako/tako-5.png",
       "/images/explore/tako/Tako logo.png",
     ],
     coverImage: "/images/explore/tako/tako-cover.png",
