@@ -4,6 +4,7 @@ export type Article = {
   url: string;
   coverImage: string;
   year: string;
+  host: string;
 };
 
 export const articles: Article[] = [
@@ -14,6 +15,7 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/feed/update/urn:li:activity:7452673580057882625/",
     coverImage: "/images/press/un-statistical-commission.jpg",
     year: "2026",
+    host: "LinkedIn",
   },
   {
     id: "uwaterloo-hackathon",
@@ -21,6 +23,7 @@ export const articles: Article[] = [
     url: "https://uwaterloo.ca/engineering/news/students-design-quality-life-solutions-habitat",
     coverImage: "/images/press/uwaterloo-hackathon.jpg",
     year: "2025",
+    host: "University of Waterloo",
   },
   {
     id: "folio-share-your-process",
@@ -28,6 +31,7 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/posts/linhvankhuong_share-your-process-share-your-process-share-7471292601237782529-kzUf/",
     coverImage: "/images/press/folio-share-your-process.jpg",
     year: "2026",
+    host: "LinkedIn",
   },
   {
     id: "suzhou-hackathon",
@@ -35,6 +39,7 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/posts/linhvankhuong_proud-to-see-the-impact-of-our-quality-ugcPost-7402425300837724160-4mmj/",
     coverImage: "/images/press/suzhou-hackathon.jpg",
     year: "2025",
+    host: "LinkedIn",
   },
   {
     id: "waterloo-hackathon",
@@ -43,6 +48,7 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/posts/linhvankhuong_qualityoflife-activity-7391182033852665857-PD5d",
     coverImage: "/images/press/waterloo-hackathon.jpg",
     year: "2025",
+    host: "LinkedIn",
   },
   {
     id: "welcome-webinar",
@@ -51,6 +57,7 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/posts/qualityoflifeinitiative_kicking-off-the-journey-together-welcome-activity-7371907065671413760-GIga/",
     coverImage: "/images/press/welcome-webinar.jpg",
     year: "2025",
+    host: "LinkedIn",
   },
   {
     id: "qoli-team",
@@ -59,5 +66,6 @@ export const articles: Article[] = [
     url: "https://www.linkedin.com/posts/linhvankhuong_qualityoflife-activity-7374092989192818689-tiOQ",
     coverImage: "/images/press/qoli-team.jpg",
     year: "2025",
+    host: "LinkedIn",
   },
 ];

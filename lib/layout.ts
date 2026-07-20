@@ -1,4 +1,4 @@
-export const sidebarWidth = "280px";
+export const sidebarWidth = "360px";
 
 export const pageContainer =
   "mx-auto w-full max-w-6xl px-5 md:px-8";
@@ -52,4 +52,4 @@ export const pillTag =
 export const labelCaps = "label-caps text-ink-soft";
 
 export const navLink =
-  "interactive-link text-base font-semibold text-accent hover:text-accent-hover";
+  "interactive-link text-base font-semibold text-ink";

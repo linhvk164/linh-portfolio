@@ -51,7 +51,7 @@ export function FolioInstagramReel() {
         type="button"
         onClick={restore}
         aria-label="Open Folio reel"
-        className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-4 z-[90] flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ink text-white shadow-[0_8px_30px_rgba(26,43,36,0.16)] transition-transform duration-200 hover:scale-105`}
+        className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-[90] flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ink text-white shadow-[0_8px_30px_rgba(26,43,36,0.16)] transition-transform duration-200 hover:scale-105 lg:bottom-4`}
         onAnimationEnd={() => setEntering(false)}
       >
         <Play size={18} fill="currentColor" strokeWidth={0} aria-hidden />
@@ -61,7 +61,7 @@ export function FolioInstagramReel() {
 
   return (
     <div
-      className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-4 z-[90] transition-[width] duration-300 ease-out ${
+      className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-[90] transition-[width] duration-300 ease-out lg:bottom-4 ${
         isLarge ? "w-[min(100vw-2rem,378px)]" : "w-[min(100vw-2rem,252px)]"
       }`}
       role="dialog"

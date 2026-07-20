@@ -1,7 +1,5 @@
 import Link from "next/link";
 import {
-  CASE_STUDY_PLACEHOLDER_IMAGE,
-  CaseStudyFeature,
   CaseStudyImagePlaceholder,
   CaseStudyList,
   CaseStudyPullQuote,
@@ -14,33 +12,6 @@ const personas = [
   "Professionals communicating under real workplace pressure.",
   "Bilingual individuals trying to express more personal or complex ideas with friends and family.",
   "Intermediate learners who consumed plenty of content but rarely practiced writing themselves.",
-];
-
-const folioFeatures = [
-  {
-    title: "Write",
-    description:
-      "Practice your writing with prompts built for your level, from A1 to C2.",
-    imageSrc: CASE_STUDY_PLACEHOLDER_IMAGE,
-  },
-  {
-    title: "Translate",
-    description:
-      "Stop opening a thousand apps. Find words you need right inside Folio.",
-    imageSrc: CASE_STUDY_PLACEHOLDER_IMAGE,
-  },
-  {
-    title: "Practice",
-    description:
-      "Folio automatically saves your new words into flashcards, so you can practice!",
-    imageSrc: CASE_STUDY_PLACEHOLDER_IMAGE,
-  },
-  {
-    title: "Track",
-    description:
-      "Watch your streak, your words, and your progress grow over time.",
-    imageSrc: CASE_STUDY_PLACEHOLDER_IMAGE,
-  },
 ];
 
 export function FolioContent() {
@@ -97,7 +68,7 @@ export function FolioContent() {
         <p>
           Before opening Figma, I conducted six user interviews using the Mom
           Test framework. The conversations focused entirely on participants&apos;
-          existing habits and frustrations rather than validating an idea.Velocity's 
+          existing habits and frustrations rather than validating an idea. Velocity&apos;s 
           Cornerstone program at the University of Waterloo provided a clear 
           guide to the interviewing process. Two questions consistently generated 
           the richest insights:
@@ -141,12 +112,12 @@ export function FolioContent() {
             </div>
           <div className="bg-surface p-10 rounded-xl space-y-3">
             <h3>Theme 2: Without real-life context, it’s hard to remember vocabulary (5 of 5 participants)</h3>
-            <p>All participants expressed that memorizing word lists doesn't translate to actual usage. Words learned in isolation are quickly forgotten. The ones who retained vocab best learned it through situations that were personally meaningful.
+            <p>All participants expressed that memorizing word lists doesn&apos;t translate to actual usage. Words learned in isolation are quickly forgotten. The ones who retained vocab best learned it through situations that were personally meaningful.
             </p>
           </div>
           <div className="bg-surface p-10 rounded-xl space-y-3">
             <h3>Theme 3: Existing apps get repetitive and stop challenging users (4 of 5 participants)</h3>
-            <p>Duolingo was mentioned by 4 of 5 users, always negatively. The pattern: they start, enjoy the early structure, then plateau. The apps don't grow with them and they eventually stop using them.</p>
+            <p>Duolingo was mentioned by 4 of 5 users, always negatively. The pattern: they start, enjoy the early structure, then plateau. The apps don&apos;t grow with them and they eventually stop using them.</p>
           </div>
           <div className="bg-surface p-10 rounded-xl space-y-3">
             <h3>Theme 4: Without using an app, it’s hard to track and share growth (3 of 5 participants)</h3>
@@ -185,7 +156,7 @@ export function FolioContent() {
         I designed a distraction-free writing space where users can translate words inline, automatically save vocabulary for later review, and keep writing without breaking their train of thought.
         </p>
         <p>
-        Every interaction was designed around one goal: protecting the learner's momentum.
+        Every interaction was designed around one goal: protecting the learner&apos;s momentum.
         </p>
       </CaseStudySection>
       <CaseStudySection eyebrow="Design Decisions"  title="Designing around flow, not features">
@@ -202,7 +173,7 @@ export function FolioContent() {
         <p>To encourage users to write, 
           I implemented daily writing prompts, tailored to CEFR proficiency levels, that help users
           overcome the blank page while encouraging consistent practice. These prompts can be made 
-          harder or easier to suit the user's needs and challenge
+          harder or easier to suit the user&apos;s needs and challenge
           them without being overwhelmingly difficult.
         </p>
         <p> New vocabulary is automatically saved as flashcards, removing the extra
@@ -265,7 +236,7 @@ export function FolioContent() {
         <p>We stayed true to the 4 features that were created to target 4 reaccurring problems 
           found in our research: write, translate, practice, and progress. And even included
           ways for users to personalize their experiences.</p>
-        <p>Our beta version supports over 160 languages and we're working on refining the accuracy 
+        <p>Our beta version supports over 160 languages and we&apos;re working on refining the accuracy 
           of the translations for the languages we support. 
         </p>
         <div className="grid grid-cols-2 gap-4">
@@ -302,7 +273,7 @@ export function FolioContent() {
           href="https://folioapp.ca"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-accent underline-offset-2 hover:underline"
+          className="text-ink underline-offset-2 hover:underline"
         >
           folioapp.ca
         </Link>
