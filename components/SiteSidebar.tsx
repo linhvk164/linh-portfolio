@@ -92,7 +92,7 @@ function SidebarCard({ onNavigate }: { onNavigate?: () => void }) {
         <Link
           href="/#contact"
           onClick={onNavigate}
-          className="absolute top-3 right-3 z-[1] inline-flex items-center rounded-full bg-white/85 px-3 py-1.5 text-xs font-semibold text-ink-muted backdrop-blur-sm transition-colors hover:bg-white hover:text-ink"
+          className="absolute top-3 right-3 z-[1] inline-flex items-center rounded-full bg-white/85 px-3 py-2 text-xs font-semibold text-ink-muted backdrop-blur-sm transition-colors hover:bg-white hover:text-ink"
         >
           Get in touch 👋
         </Link>
@@ -100,18 +100,18 @@ function SidebarCard({ onNavigate }: { onNavigate?: () => void }) {
 
       {/* Body */}
       <div className="px-5 pb-5 pt-0">
-        {/* Avatar + name row — avatar overlaps banner */}
-        <div className="relative z-[1] -mt-10 flex items-end gap-3">
+        {/* Avatar + name row — avatar overlaps banner; name sits below it */}
+        <div className="relative z-[1] -mt-8 flex gap-3">
           <Image
             src={publicPath(PROFILE_SRC)}
             alt={site.name}
-            width={96}
-            height={96}
-            className="h-24 w-24 shrink-0 rounded-full border-[3px] border-white object-cover"
+            width={80}
+            height={80}
+            className="h-20 w-20 shrink-0 rounded-full border-[3px] border-white object-cover"
             priority
           />
-          <div className="min-w-0 pb-1">
-            <p className="truncate text-2xl font-bold leading-tight tracking-tight text-ink">
+          <div className="min-w-0 mt-9 flex flex-col justify-end pb-0.5">
+            <p className="truncate text-3xl font-bold leading-none tracking-tight text-ink">
               {site.name}
             </p>
             <p className="mt-0.5 truncate text-sm leading-snug text-ink-soft">
@@ -190,7 +190,7 @@ export function SiteSidebar() {
 
       {/* Desktop — fixed left card */}
       <aside
-        className="fixed top-0 left-0 z-40 hidden h-screen w-[340px] flex-col p-5 lg:flex"
+        className="fixed top-0 left-0 z-40 hidden h-screen w-[400px] flex-col p-5 lg:flex"
         aria-label="Site navigation"
       >
         <SidebarCard />
