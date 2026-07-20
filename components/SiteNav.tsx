@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useAboutModal } from "@/components/AboutModalProvider";
 import {
   homeFeaturedProjects,
   getProjectFooterLabel,
@@ -17,8 +14,6 @@ const footerLink =
   "group inline-flex items-center gap-1.5 text-base text-white/85 transition-colors duration-200 hover:text-white";
 
 export function SiteFooter() {
-  const { openAbout } = useAboutModal();
-
   return (
     <footer
       id="contact"
@@ -81,19 +76,9 @@ export function SiteFooter() {
               <ul className="space-y-1.5">
                 {footerNavItems.map((item) => (
                   <li key={item.label}>
-                    {item.label === "About" ? (
-                      <button
-                        type="button"
-                        onClick={openAbout}
-                        className={footerLink}
-                      >
-                        {item.label}
-                      </button>
-                    ) : (
-                      <Link href={item.href} className={footerLink}>
-                        {item.label}
-                      </Link>
-                    )}
+                    <Link href={item.href} className={footerLink}>
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

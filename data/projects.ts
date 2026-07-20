@@ -54,7 +54,7 @@ export const projects: Project[] = [
     productName: "mako asya",
     title: "mako asya",
     accent: "pink",
-    coverImage: "/images/makoasya/makoasya_2025.png",
+    coverImage: "/images/explore/makoasya/mako-cover.png",
     homeCaption: "mako asya",
     tags: ["fun"],
     sections: [

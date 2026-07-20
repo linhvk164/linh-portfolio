@@ -7,6 +7,9 @@ export const site = {
   resume: "/images/general/resume.pdf",
   title: "UX/UI + Brand Designer",
   tagline: "I design tools that make\ndifficult things easy ツ",
+  exploreHeadline: "Linh Khuong",
+  exploreTagline:
+    "In addition to web design, I love exploring other mediums. Currently learning how to draw pixel art!",
   role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
   status: "Prev @ the UN",
@@ -38,15 +41,14 @@ export const site = {
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Work", href: "/#work" },
-  { label: "Fun", href: "/#fun" },
-  { label: "About", href: "/#about" },
-  { label: "Blogs", href: "#" },
+  { label: "Explore", href: "/explore" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const footerNavItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
+  { label: "Explore", href: "/explore" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/#contact" },
 ] as const;

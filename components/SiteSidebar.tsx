@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Compass, Home, User } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
-import { useAboutModal } from "@/components/AboutModalProvider";
+import { type ReactNode } from "react";
 import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
 import { TypewriterTagline } from "@/components/TypewriterTagline";
 import { publicPath } from "@/lib/assets";
@@ -18,18 +17,8 @@ type NavKey = "home" | "explore" | "about";
 
 function useActiveNav(): NavKey {
   const pathname = usePathname();
-  const { isAboutOpen } = useAboutModal();
-  const [hash, setHash] = useState("");
-
-  useEffect(() => {
-    const syncHash = () => setHash(window.location.hash);
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-    return () => window.removeEventListener("hashchange", syncHash);
-  }, [pathname]);
-
-  if (isAboutOpen) return "about";
-  if (pathname === "/" && hash === "#media") return "explore";
+  if (pathname.startsWith("/about")) return "about";
+  if (pathname.startsWith("/explore")) return "explore";
   if (pathname === "/") return "home";
   return "home";
 }
@@ -37,14 +26,12 @@ function useActiveNav(): NavKey {
 function NavButton({
   active,
   href,
-  onClick,
   icon,
   alwaysShowIcon = false,
   children,
 }: {
   active: boolean;
-  href?: string;
-  onClick?: () => void;
+  href: string;
   icon: ReactNode;
   alwaysShowIcon?: boolean;
   children: ReactNode;
@@ -55,25 +42,11 @@ function NavButton({
       : "bg-[#ececec] text-ink-muted hover:bg-[#e2e2e2] hover:text-ink"
   }`;
 
-  const content = (
-    <>
+  return (
+    <Link href={href} className={className}>
       {alwaysShowIcon || active ? icon : null}
       <span>{children}</span>
-    </>
-  );
-
-  if (href) {
-    return (
-      <Link href={href} onClick={onClick} className={className}>
-        {content}
-      </Link>
-    );
-  }
-
-  return (
-    <button type="button" onClick={onClick} className={className}>
-      {content}
-    </button>
+    </Link>
   );
 }
 
@@ -85,14 +58,12 @@ function PrimaryNav({
   alwaysShowIcon?: boolean;
 }) {
   const active = useActiveNav();
-  const { openAbout, closeAbout } = useAboutModal();
 
   return (
     <nav className={className} aria-label="Primary">
       <NavButton
         active={active === "home"}
         href="/"
-        onClick={() => closeAbout()}
         icon={<Home size={14} strokeWidth={2.25} aria-hidden />}
         alwaysShowIcon={alwaysShowIcon}
       >
@@ -100,8 +71,7 @@ function PrimaryNav({
       </NavButton>
       <NavButton
         active={active === "explore"}
-        href="/#media"
-        onClick={() => closeAbout()}
+        href="/explore"
         icon={<Compass size={14} strokeWidth={2.25} aria-hidden />}
         alwaysShowIcon={alwaysShowIcon}
       >
@@ -109,7 +79,7 @@ function PrimaryNav({
       </NavButton>
       <NavButton
         active={active === "about"}
-        onClick={() => openAbout()}
+        href="/about"
         icon={<User size={14} strokeWidth={2.25} aria-hidden />}
         alwaysShowIcon={alwaysShowIcon}
       >
@@ -120,6 +90,11 @@ function PrimaryNav({
 }
 
 function SidebarCard({ showNav = true }: { showNav?: boolean }) {
+  const pathname = usePathname();
+  const isExplore = pathname.startsWith("/explore");
+  const headline = isExplore ? site.exploreHeadline : site.name;
+  const tagline = isExplore ? site.exploreTagline : site.tagline;
+
   return (
     <div className="overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
       {/* Banner — scale past PNG border/padding so art bleeds edge-to-edge */}
@@ -153,13 +128,14 @@ function SidebarCard({ showNav = true }: { showNav?: boolean }) {
             priority
           />
           <div className="sidebar-intro-item mt-3 w-full min-w-0">
-            <p className="sidebar-name tracking-tight">{site.name}</p>
+            <p className="sidebar-name tracking-tight">{headline}</p>
             <p className="sidebar-role">{site.title}</p>
           </div>
         </div>
 
         <TypewriterTagline
-          text={site.tagline}
+          key={tagline}
+          text={tagline}
           className="sidebar-tagline sidebar-intro-item text-center"
         />
 

@@ -510,6 +510,11 @@ html:has(.opening-overlay) body {
   .folio-reel-pop-in {
     animation: none;
   }
+
+  .page-enter,
+  .explore-card-enter {
+    animation: none;
+  }
 }
 
 .scroll-reveal {
@@ -527,6 +532,37 @@ html:has(.opening-overlay) body {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+/* Page load — About / Explore */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes explore-card-enter {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.page-enter {
+  animation: page-enter 650ms var(--ease-out) both;
+}
+
+.explore-card-enter {
+  animation: explore-card-enter 560ms var(--ease-out) both;
 }
 
 /* Project titles — keep last so nothing overrides size or weight */
@@ -675,4 +711,14 @@ p.sidebar-tagline,
   .custom-cursor {
     display: none;
   }
+}
+
+/* Explore page — full-bleed line grid (behind sidebar too) */
+.explore-page {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #ededed 1px, transparent 1px),
+    linear-gradient(to bottom, #ededed 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: top left;
 }
