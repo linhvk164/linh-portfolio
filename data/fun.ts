@@ -24,9 +24,9 @@ export const funItems: FunItem[] = [
     title: "lyrics video + graphic design",
     created: "2024",
     tools: "After Effects, Premiere Pro, Illustrator",
-    context: "Music video",
+    context: "lyrics video + graphic design",
     description:
-      "Official lyrics video — visual storytelling, pacing, and mood through motion and sound.",
+      "Created an official lyrics video taking inspo from @werenotreallystrangers. Took pictures of downtown Kitchener, Waterloo and edited my lyrics onto it.",
     images: [
       "/images/explore/whatamisupposedtodo/lyrics-vid-1.png",
       "/images/explore/whatamisupposedtodo/lyrics-vid-2.png",
@@ -44,7 +44,7 @@ export const funItems: FunItem[] = [
     tools: "Premiere Pro, After Effects",
     context: "Music video",
     description:
-      "Official music video experimenting with visual storytelling and mood.",
+      "Filmed a music video with my friends for a song I wrote and recorded!",
     images: [
       "/images/explore/porcelainboy/porcelainboy-1.png",
       "/images/explore/porcelainboy/porcelainboy-2.png",
@@ -58,11 +58,11 @@ export const funItems: FunItem[] = [
     id: "radiant-roots",
     name: "Radiant Roots",
     title: "website design",
-    created: "2025",
+    created: "2026",
     tools: "Framer, Figma",
     context: "Web design",
     description:
-      "A Framer website exploring radiant, nature-led visual design and layout.",
+      "A freelance website for Radiant Roots, a local medspa in Ontario",
     images: ["/images/explore/radiant-roots-cover.png"],
     coverImage: "/images/explore/radiant-roots-cover.png",
     externalUrl: "https://radiantroots.framer.website/",
@@ -72,10 +72,10 @@ export const funItems: FunItem[] = [
     name: "mako asya",
     title: "brand design",
     created: "2024",
-    tools: "Illustrator, Photoshop",
-    context: "Brand identity",
+    tools: "Illustrator, Photoshop, Figma",
+    context: "Brand design",
     description:
-      "Brand identity and visual design for mako asya — exploring playful character-led branding across touchpoints.",
+      "Brand identity and visual design for mako.asya, a witchy nail press-on brand.",
     images: [
       "/images/explore/makoasya/makoasya_1.svg",
       "/images/explore/makoasya/makoasya_2.svg",
@@ -91,9 +91,9 @@ export const funItems: FunItem[] = [
     title: "textiles + mixed materials",
     created: "2023",
     tools: "Textile, mixed materials",
-    context: "Personal exploration",
+    context: "University Project",
     description:
-      "An exploratory piece blending textile craft with mixed materials — a hands-on study in texture, color, and form.",
+      "The materials for this project were given to me from my friends and family, truly conveying the message of this piece: collaboration weaves creativity. Aka community and connections are incredibly important and essential for my creative process!",
     images: [
       "/images/explore/psa/psa-1.jpg",
       "/images/explore/psa/PSA-2.jpg",
@@ -117,9 +117,9 @@ export const funItems: FunItem[] = [
     title: "brand + mascot design",
     created: "2024",
     tools: "Illustrator, Photoshop",
-    context: "Brand identity",
+    context: "Brand & mascot design",
     description:
-      "Visual branding and mascot design for Tako Inc. — identity, illustration, and product touchpoints for a playful consumer brand.",
+      "Visual branding and mascot design for Tako Inc., a B2B export/import company.",
     images: [
       "/images/explore/tako/tako-1.png",
       "/images/explore/tako/tako-2.png",
