@@ -1,3 +1,4 @@
+import { ClickSound } from "@/components/ClickSound";
 import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
@@ -11,6 +12,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <OpeningAnimation />
       <ScrollToTop />
+      <ClickSound />
       <SiteFrame>
         <SiteSidebar />
         <div className="lg:pl-[360px]">

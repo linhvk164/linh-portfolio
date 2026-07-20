@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { CardHoverOverlay } from "@/components/CardHoverOverlay";
 import { FunModal } from "@/components/FunModal";
 import { FUN_PLACEHOLDER_IMAGE, funItems, type FunItem } from "@/data/fun";
 import { publicPath } from "@/lib/assets";
@@ -23,18 +24,20 @@ function ExploreCard({
       onClick={() => onSelect(item)}
       className="explore-card-enter group w-full text-center"
       style={{ animationDelay: `${80 + index * 70}ms` }}
-      aria-label={item.title}
+      aria-label={`View project: ${item.name}`}
     >
-      <div className="overflow-hidden rounded-2xl">
-        <Image
-          src={publicPath(thumb)}
-          alt={item.title}
-          width={800}
-          height={800}
-          className="h-auto w-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
-        />
-      </div>
+      <CardHoverOverlay type="project" className="rounded-2xl">
+        <div className="overflow-hidden rounded-2xl">
+          <Image
+            src={publicPath(thumb)}
+            alt={item.title}
+            width={800}
+            height={800}
+            className="h-auto w-full rounded-2xl transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+          />
+        </div>
+      </CardHoverOverlay>
       <p className="mt-3 text-sm font-medium tracking-tight text-ink md:text-base">
         {item.title}
       </p>
