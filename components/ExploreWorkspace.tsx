@@ -49,7 +49,7 @@ export function ExploreWorkspace() {
     <>
       <section
         aria-label="Explore projects"
-        className="grid grid-cols-2 gap-x-4 gap-y-8 pb-10 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-10 md:gap-x-6 md:gap-y-12 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-y-8 pb-10 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12"
       >
         {funItems.map((item, index) => (
           <ExploreCard
