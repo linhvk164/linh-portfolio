@@ -13,6 +13,7 @@ import { AboutModal } from "@/components/AboutModal";
 type AboutModalContextValue = {
   openAbout: () => void;
   closeAbout: () => void;
+  isAboutOpen: boolean;
 };
 
 const AboutModalContext = createContext<AboutModalContextValue | null>(null);
@@ -24,8 +25,8 @@ export function AboutModalProvider({ children }: { children: ReactNode }) {
   const closeAbout = useCallback(() => setOpen(false), []);
 
   const value = useMemo(
-    () => ({ openAbout, closeAbout }),
-    [openAbout, closeAbout],
+    () => ({ openAbout, closeAbout, isAboutOpen: open }),
+    [openAbout, closeAbout, open],
   );
 
   return (

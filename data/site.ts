@@ -5,9 +5,13 @@ export const site = {
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
   youtube: "https://www.youtube.com/@linhvk_",
   resume: "/images/general/resume.pdf",
+  title: "UX/UI + Brand Designer",
+  tagline: "I design tools that make difficult things easy ツ",
   role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
   status: "Prev @ the UN",
+  previously: "@ the UN",
+  experience: "4+ Years",
   intro: {
     line1: "Hey! I'm Linh Khuong",
     line2: "a UX/UI Designer, a Brand Designer",

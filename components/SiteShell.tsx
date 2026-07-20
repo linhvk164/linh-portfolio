@@ -12,7 +12,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <ScrollToTop />
       <div className="min-h-screen bg-bg">
         <SiteSidebar />
-        <div className="lg:pl-[280px]">
+        <div className="lg:pl-[340px]">
           <div className={mainArea}>{children}</div>
         </div>
       </div>

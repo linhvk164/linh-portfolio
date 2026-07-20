@@ -2,138 +2,180 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Compass, Home, User } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useAboutModal } from "@/components/AboutModalProvider";
 import { publicPath } from "@/lib/assets";
 import { site } from "@/data/site";
-import { navLink } from "@/lib/layout";
-import type { ReactNode } from "react";
 
-const LOGO_SRC = "/images/general/logo/linhvk logo black.png";
+const BANNER_SRC = "/images/general/lofu-background.png";
 const PROFILE_SRC = "/images/general/profile-cropped.jpg";
 
-function SiteLogo({ onNavigate }: { onNavigate?: () => void }) {
-  return (
-    <Link
-      href="/"
-      onClick={onNavigate}
-      className="sidebar-intro-item inline-block transition-transform duration-300 ease-out hover:scale-105"
-      aria-label="Home"
-    >
-      <Image
-        src={publicPath(LOGO_SRC)}
-        alt="linhvk"
-        width={56}
-        height={15}
-        className="h-3.5 w-auto"
-        priority
-      />
-    </Link>
-  );
+type NavKey = "home" | "explore" | "about";
+
+function useActiveNav(): NavKey {
+  const pathname = usePathname();
+  const { isAboutOpen } = useAboutModal();
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
+
+  if (isAboutOpen) return "about";
+  if (pathname === "/" && hash === "#media") return "explore";
+  if (pathname === "/") return "home";
+  return "home";
 }
 
-function ProfilePhoto() {
-  return (
-    <div className="sidebar-intro-item">
-      <Image
-        src={publicPath(PROFILE_SRC)}
-        alt={site.name}
-        width={55}
-        height={55}
-        className="h-16 w-16 rounded-full object-cover"
-      />
-    </div>
-  );
-}
+function NavButton({
+  active,
+  href,
+  onClick,
+  icon,
+  children,
+}: {
+  active: boolean;
+  href?: string;
+  onClick?: () => void;
+  icon: ReactNode;
+  children: ReactNode;
+}) {
+  const className = `inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2.5 py-2.5 text-sm font-semibold transition-colors duration-200 ${
+    active
+      ? "bg-accent text-white"
+      : "bg-[#ececec] text-ink-muted hover:bg-[#e2e2e2] hover:text-ink"
+  }`;
 
-function IntroBlock({ onNavigate }: { onNavigate?: () => void }) {
-  return (
-    <div className="sidebar-intro">
-      <div className="sidebar-intro-stack mb-11 flex flex-col items-start gap-4">
-        <div className="flex items-center gap-3">
-          <ProfilePhoto />
-          <div className="flex min-w-0 flex-col items-start gap-1.5">
-            <SiteLogo onNavigate={onNavigate} />
-            <p className="sidebar-detail sidebar-intro-item !mt-0">{site.status}</p>
-          </div>
-        </div>
-        <p className="sidebar-tagline sidebar-intro-item">{site.role}</p>
-      </div>
-    </div>
-  );
-}
-
-const navItemClass = `sidebar-nav-item group inline-flex items-center gap-2 ${navLink}`;
-
-function NavItemLabel({ children }: { children: ReactNode }) {
-  return (
+  const content = (
     <>
+      {active ? icon : null}
       <span>{children}</span>
-      <ArrowRight
-        size={16}
-        strokeWidth={2.25}
-        aria-hidden
-        className="shrink-0 -translate-x-1 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100"
-      />
     </>
   );
-}
 
-function NavLinks({
-  className = "",
-  onNavigate,
-}: {
-  className?: string;
-  onNavigate?: () => void;
-}) {
-  const { openAbout } = useAboutModal();
+  if (href) {
+    return (
+      <Link href={href} onClick={onClick} className={className}>
+        {content}
+      </Link>
+    );
+  }
 
   return (
-    <nav className={`sidebar-nav-links flex flex-col items-start gap-2.5 ${className}`}>
-      <Link href="/" onClick={onNavigate} className={navItemClass}>
-        <NavItemLabel>Home</NavItemLabel>
-      </Link>
-      <button
-        type="button"
-        onClick={() => {
-          openAbout();
-          onNavigate?.();
-        }}
-        className={`${navItemClass} text-left`}
-      >
-        <NavItemLabel>About</NavItemLabel>
-      </button>
-      <Link href="/#contact" onClick={onNavigate} className={navItemClass}>
-        <NavItemLabel>Contact</NavItemLabel>
-      </Link>
-    </nav>
+    <button type="button" onClick={onClick} className={className}>
+      {content}
+    </button>
   );
 }
 
-function CvButton({ className = "" }: { className?: string }) {
-  return (
-    <a
-      href={publicPath(site.resume)}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="View CV"
-      className={`sidebar-nav-item inline-flex w-fit items-center justify-center rounded-full bg-accent px-7 py-3 text-base font-bold text-white transition-all duration-200 hover:scale-[1.02] hover:bg-accent-hover ${className}`}
-    >
-      CV
-    </a>
-  );
-}
+function SidebarCard({ onNavigate }: { onNavigate?: () => void }) {
+  const active = useActiveNav();
+  const { openAbout, closeAbout } = useAboutModal();
 
-function SidebarActions({
-  className = "",
-  cvClassName = "",
-}: {
-  className?: string;
-  cvClassName?: string;
-}) {
   return (
-    <div className={`flex flex-col items-start ${className}`}>
-      <CvButton className={cvClassName} />
+    <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+      {/* Banner — scale past PNG border/padding so art bleeds edge-to-edge */}
+      <div className="relative aspect-[687/372] overflow-hidden">
+        <Image
+          src={publicPath(BANNER_SRC)}
+          alt=""
+          fill
+          priority
+          className="scale-[1.12] object-cover object-center"
+          sizes="(max-width: 1024px) 100vw, 320px"
+        />
+        <Link
+          href="/#contact"
+          onClick={onNavigate}
+          className="absolute top-3 right-3 z-[1] inline-flex items-center rounded-full bg-white/85 px-3 py-1.5 text-xs font-semibold text-ink-muted backdrop-blur-sm transition-colors hover:bg-white hover:text-ink"
+        >
+          Get in touch 👋
+        </Link>
+      </div>
+
+      {/* Body */}
+      <div className="px-5 pb-5 pt-0">
+        {/* Avatar + name row — avatar overlaps banner */}
+        <div className="relative z-[1] -mt-10 flex items-end gap-3">
+          <Image
+            src={publicPath(PROFILE_SRC)}
+            alt={site.name}
+            width={96}
+            height={96}
+            className="h-24 w-24 shrink-0 rounded-full border-[3px] border-white object-cover"
+            priority
+          />
+          <div className="min-w-0 pb-1">
+            <p className="truncate text-2xl font-bold leading-tight tracking-tight text-ink">
+              {site.name}
+            </p>
+            <p className="mt-0.5 truncate text-sm leading-snug text-ink-soft">
+              {site.title}
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-[0.95rem] leading-snug font-medium text-ink-muted">
+          {site.tagline}
+        </p>
+
+        {/* Stats */}
+        <div className="mt-5 flex items-center">
+          <div className="min-w-0 flex-1 pr-4">
+            <p className="text-[0.7rem] font-medium text-ink-soft">Previously</p>
+            <p className="mt-0.5 text-sm font-bold text-ink">{site.previously}</p>
+          </div>
+          <div className="h-7 w-px shrink-0 bg-[#e8e8e8]" aria-hidden />
+          <div className="min-w-0 flex-1 pl-4">
+            <p className="text-[0.7rem] font-medium text-ink-soft">Experience</p>
+            <p className="mt-0.5 text-sm font-bold text-ink">{site.experience}</p>
+          </div>
+        </div>
+
+        {/* Nav */}
+        <nav
+          className="mt-5 flex items-stretch gap-2"
+          aria-label="Primary"
+        >
+          <NavButton
+            active={active === "home"}
+            href="/"
+            onClick={() => {
+              closeAbout();
+              onNavigate?.();
+            }}
+            icon={<Home size={14} strokeWidth={2.25} aria-hidden />}
+          >
+            Home
+          </NavButton>
+          <NavButton
+            active={active === "explore"}
+            href="/#media"
+            onClick={() => {
+              closeAbout();
+              onNavigate?.();
+            }}
+            icon={<Compass size={14} strokeWidth={2.25} aria-hidden />}
+          >
+            Explore
+          </NavButton>
+          <NavButton
+            active={active === "about"}
+            onClick={() => {
+              openAbout();
+              onNavigate?.();
+            }}
+            icon={<User size={14} strokeWidth={2.25} aria-hidden />}
+          >
+            About
+          </NavButton>
+        </nav>
+      </div>
     </div>
   );
 }
@@ -141,34 +183,17 @@ function SidebarActions({
 export function SiteSidebar() {
   return (
     <>
-      {/* Mobile — full intro inline, no hamburger */}
-      <header
-        className="border-b border-border px-4 py-8 md:hidden"
-        aria-label="Site introduction"
-      >
-        <IntroBlock />
-        <NavLinks className="mt-6" />
-        <SidebarActions className="mt-6" />
+      {/* Mobile / tablet — card in page flow */}
+      <header className="px-4 py-5 md:px-6 md:py-6 lg:hidden" aria-label="Site introduction">
+        <SidebarCard />
       </header>
 
-      {/* Tablet */}
-      <header
-        className="hidden border-b border-border px-6 py-8 md:block lg:hidden"
-        aria-label="Site introduction"
-      >
-        <IntroBlock />
-        <NavLinks className="mt-6" />
-        <SidebarActions className="mt-6" />
-      </header>
-
-      {/* Desktop — fixed left sidebar */}
+      {/* Desktop — fixed left card */}
       <aside
-        className="fixed top-0 left-0 z-40 hidden h-screen w-[280px] flex-col bg-bg px-8 py-10 lg:flex"
+        className="fixed top-0 left-0 z-40 hidden h-screen w-[340px] flex-col p-5 lg:flex"
         aria-label="Site navigation"
       >
-        <IntroBlock />
-        <NavLinks className="mt-6" />
-        <SidebarActions className="mt-auto" />
+        <SidebarCard />
       </aside>
     </>
   );
