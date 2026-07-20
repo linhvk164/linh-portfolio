@@ -1,4 +1,4 @@
-export const sidebarWidth = "400px";
+export const sidebarWidth = "360px";
 
 export const pageContainer =
   "mx-auto w-full max-w-6xl px-5 md:px-8";

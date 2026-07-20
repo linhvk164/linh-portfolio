@@ -6,7 +6,7 @@ export const site = {
   youtube: "https://www.youtube.com/@linhvk_",
   resume: "/images/general/resume.pdf",
   title: "UX/UI + Brand Designer",
-  tagline: "I design tools that make difficult things easy ツ",
+  tagline: "I design tools that make\ndifficult things easy ツ",
   role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
   status: "Prev @ the UN",

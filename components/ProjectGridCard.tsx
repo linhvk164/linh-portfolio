@@ -21,7 +21,7 @@ export function ProjectGridCard({ project }: ProjectGridCardProps) {
     <>
       <CardHoverOverlay
         type={project.hoverType}
-        className="overflow-hidden border border-[#d0d0d0] bg-bg"
+        className="overflow-hidden border border-border bg-bg"
       >
         {hasCover ? (
           <CoverMedia

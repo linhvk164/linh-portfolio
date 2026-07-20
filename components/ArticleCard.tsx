@@ -46,7 +46,7 @@ export function ArticleCard({
       rel="noopener noreferrer"
       className="group flex min-w-0 flex-col"
     >
-      <div className="relative aspect-[16/10] overflow-hidden border border-[#d0d0d0] bg-[#f3f3f3]">
+      <div className="relative aspect-[16/10] overflow-hidden border border-border bg-[#f3f3f3]">
         <CoverMedia
           alt={title}
           coverImage={coverImage}

@@ -18,7 +18,7 @@
   --accent-blue: #2e3ae0;
   --accent-pink: #e85d9c;
   --accent-green: #586e5e;
-  --border: #e8e2d8;
+  --border: #dcdcdc;
   --rail: #586e5e;
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
 
@@ -51,15 +51,12 @@
   --case-study-title-size: 2.5rem;
 
   /* Sidebar intro sizes */
-  --sidebar-name-size: 1.125rem;
+  --sidebar-name-size: 1.625rem;
   --sidebar-detail-size: 0.875rem;
+  --sidebar-role-size: 0.875rem;
 
   /* Custom cursor */
   --cursor-dot-size: 14px;
-
-  /* Paper grain — subtle organic noise on cream background */
-  --noise-opacity: 0.455;
-  --noise-size: 150px;
 }
 
 @theme inline {
@@ -100,19 +97,6 @@ body {
   line-height: var(--leading-normal);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: var(--noise-opacity);
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: var(--noise-size) var(--noise-size);
-}
-
 h1 {
   font-size: var(--text-h1);
   font-weight: 700;
@@ -135,7 +119,7 @@ h2 {
     --text-h2: 1.625rem;
     --project-card-title-size: 1.125rem;
     --case-study-title-size: 3rem;
-    --sidebar-name-size: 1.25rem;
+    --sidebar-name-size: 1.75rem;
   }
 }
 
@@ -594,11 +578,21 @@ h1.case-study-header-title,
 /* Sidebar intro — keep last so p {} never overrides size */
 p.sidebar-name,
 .sidebar-intro p.sidebar-name {
+  margin: 0;
   font-size: var(--sidebar-name-size) !important;
   font-weight: 500 !important;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1 !important;
   color: var(--ink);
+}
+
+p.sidebar-role {
+  margin-top: 0.4rem !important;
+  margin-bottom: 0;
+  font-size: var(--sidebar-role-size) !important;
+  font-weight: 400 !important;
+  line-height: 1.25 !important;
+  color: var(--ink-soft);
 }
 
 p.sidebar-detail,
@@ -612,12 +606,40 @@ p.sidebar-detail,
 
 p.sidebar-tagline,
 .sidebar-intro p.sidebar-tagline {
-  margin-top: 0;
+  margin-top: 0.875rem;
   margin-bottom: 0 !important;
-  font-size: var(--sidebar-detail-size) !important;
-  font-weight: 400 !important;
-  line-height: 1.45;
+  min-height: 2.7em;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
   color: var(--ink-muted);
+}
+
+.typewriter-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.95em;
+  margin-left: 2px;
+  vertical-align: -0.1em;
+  background: currentColor;
+  animation: typewriter-blink 0.9s step-end infinite;
+}
+
+.typewriter-caret--done {
+  animation: typewriter-blink 0.9s step-end 4;
+  opacity: 0;
+}
+
+@keyframes typewriter-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret {
+    display: none;
+  }
 }
 
 .sidebar-intro > .sidebar-detail:first-of-type {

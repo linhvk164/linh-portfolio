@@ -8,6 +8,7 @@ import {
   getProjectFooterLabel,
 } from "@/data/featuredProjects";
 import { footerNavItems, site } from "@/data/site";
+import { publicPath } from "@/lib/assets";
 import { labelCaps } from "@/lib/layout";
 
 const footerPad = "w-full min-w-0 px-8 py-8 md:px-10 md:py-10";
@@ -58,6 +59,20 @@ export function SiteFooter() {
               </a>
               <a href={`mailto:${site.email}`} className={footerLink}>
                 Email
+              </a>
+              <a
+                href={publicPath(site.resume)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={footerLink}
+              >
+                Resume
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={2.25}
+                  aria-hidden
+                  className="shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
+                />
               </a>
             </div>
 
