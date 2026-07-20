@@ -72,6 +72,115 @@ export function FunModal({ item, onClose }: FunModalProps) {
     { label: "Tools", value: item.tools },
     { label: "Context", value: item.context },
   ];
+  const showThumbs = gallery.length > 1 || Boolean(item.youtubeId);
+
+  const galleryPanel = (
+    <div className="order-1 flex min-h-0 flex-[1.2] flex-col bg-white px-4 py-4 sm:px-5 sm:py-5 md:order-2 md:h-full md:flex-none md:px-6 md:py-6 lg:px-8 lg:py-7">
+      <div className="relative min-h-[200px] w-full flex-1 overflow-hidden sm:min-h-[240px]">
+        {showVideo && item.youtubeId ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}`}
+            title={item.name}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        ) : (
+          <Image
+            src={publicPath(activeSrc)}
+            alt={`${item.name} — image ${activeIndex + 1}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 90vw, 60vw"
+            priority
+          />
+        )}
+      </div>
+
+      <div
+        className={`mt-3 flex shrink-0 gap-2 overflow-x-auto sm:mt-4 ${
+          showThumbs ? "h-14 sm:h-16" : "h-0"
+        }`}
+      >
+        {showThumbs
+          ? gallery.map((src, index) => {
+              const isActive = index === activeIndex;
+              const isVideoThumb = Boolean(item.youtubeId) && index === 0;
+              return (
+                <button
+                  key={`${item.id}-thumb-${index}`}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={
+                    isVideoThumb ? `Show video` : `Show image ${index + 1}`
+                  }
+                  aria-pressed={isActive}
+                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition-colors sm:h-16 sm:w-16 ${
+                    isActive
+                      ? "border-ink"
+                      : "border-transparent opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <Image
+                    src={publicPath(src)}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
+                  {isVideoThumb ? (
+                    <span className="absolute inset-0 flex items-center justify-center bg-ink/35 text-[10px] font-semibold tracking-wide text-white uppercase">
+                      Play
+                    </span>
+                  ) : null}
+                </button>
+              );
+            })
+          : null}
+      </div>
+    </div>
+  );
+
+  const infoPanel = (
+    <div className="order-2 min-h-0 flex-1 overflow-y-auto overscroll-contain border-t border-border px-5 py-6 sm:px-6 sm:py-7 md:order-1 md:h-full md:flex-none md:border-t-0 md:border-r md:px-7 md:py-9">
+      <h2 className="pr-10 text-xl font-semibold tracking-tight text-ink md:text-2xl">
+        {item.name}
+      </h2>
+
+      <dl className="mt-5 border-t border-border sm:mt-6">
+        {metaRows.map((row) => (
+          <div
+            key={row.label}
+            className="flex items-baseline justify-between gap-3 border-b border-border py-3"
+          >
+            <dt className="shrink-0 text-sm text-ink-soft">{row.label}</dt>
+            <dd className="text-right text-sm font-medium text-ink">
+              {row.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="mt-5 sm:mt-6">
+        <p className="text-sm text-ink-soft">Description</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+          {item.description}
+        </p>
+      </div>
+
+      {item.externalUrl ? (
+        <a
+          href={item.externalUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+        >
+          Visit website
+          <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
+        </a>
+      ) : null}
+    </div>
+  );
 
   return (
     <div
@@ -87,120 +196,19 @@ export function FunModal({ item, onClose }: FunModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative z-10 flex h-[min(90vh,760px)] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)] modal-panel-in">
+      <div className="relative z-10 flex h-[min(92vh,760px)] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)] modal-panel-in">
         <button
           type="button"
           aria-label="Close"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#f3f3f3] text-ink transition-colors duration-200 hover:bg-[#e8e8e8] md:top-5 md:right-5"
+          className="absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#f3f3f3] text-ink transition-colors duration-200 hover:bg-[#e8e8e8] sm:top-4 sm:right-4 md:top-5 md:right-5"
         >
           <X size={18} strokeWidth={2} />
         </button>
 
-        <div className="grid h-full min-h-0 grid-rows-[minmax(0,38%)_minmax(0,1fr)] overflow-hidden md:grid-cols-[280px_minmax(0,1fr)] md:grid-rows-none lg:grid-cols-[300px_minmax(0,1fr)]">
-          {/* Info — left */}
-          <div className="flex min-h-0 flex-col overflow-y-auto border-b border-border px-6 py-8 md:border-r md:border-b-0 md:px-7 md:py-9">
-            <h2 className="pr-10 text-xl font-semibold tracking-tight text-ink md:text-2xl">
-              {item.name}
-            </h2>
-
-            <dl className="mt-6 border-t border-border">
-              {metaRows.map((row) => (
-                <div
-                  key={row.label}
-                  className="flex items-baseline justify-between gap-3 border-b border-border py-3"
-                >
-                  <dt className="shrink-0 text-sm text-ink-soft">{row.label}</dt>
-                  <dd className="text-right text-sm font-medium text-ink">
-                    {row.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-
-            <div className="mt-6">
-              <p className="text-sm text-ink-soft">Description</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                {item.description}
-              </p>
-            </div>
-
-            {item.externalUrl ? (
-              <a
-                href={item.externalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
-              >
-                Visit website
-                <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
-              </a>
-            ) : null}
-          </div>
-
-          {/* Gallery — right (fixed stage; image never resizes the modal) */}
-          <div className="flex h-full min-h-0 flex-col bg-white px-5 py-5 md:px-6 md:py-6 lg:px-8 lg:py-7">
-            <div className="relative min-h-0 w-full flex-1 overflow-hidden">
-              {showVideo && item.youtubeId ? (
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}`}
-                  title={item.name}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full border-0"
-                />
-              ) : (
-                <Image
-                  src={publicPath(activeSrc)}
-                  alt={`${item.name} — image ${activeIndex + 1}`}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 90vw, 60vw"
-                  priority
-                />
-              )}
-            </div>
-
-            <div className="mt-4 flex h-16 shrink-0 gap-2.5 overflow-x-auto">
-              {gallery.length > 1 || item.youtubeId
-                ? gallery.map((src, index) => {
-                    const isActive = index === activeIndex;
-                    const isVideoThumb = Boolean(item.youtubeId) && index === 0;
-                    return (
-                      <button
-                        key={`${item.id}-thumb-${index}`}
-                        type="button"
-                        onClick={() => setActiveIndex(index)}
-                        aria-label={
-                          isVideoThumb
-                            ? `Show video`
-                            : `Show image ${index + 1}`
-                        }
-                        aria-pressed={isActive}
-                        className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 transition-colors ${
-                          isActive
-                            ? "border-ink"
-                            : "border-transparent opacity-70 hover:opacity-100"
-                        }`}
-                      >
-                        <Image
-                          src={publicPath(src)}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          sizes="64px"
-                        />
-                        {isVideoThumb ? (
-                          <span className="absolute inset-0 flex items-center justify-center bg-ink/35 text-[10px] font-semibold tracking-wide text-white uppercase">
-                            Play
-                          </span>
-                        ) : null}
-                      </button>
-                    );
-                  })
-                : null}
-            </div>
-          </div>
+        <div className="flex h-full min-h-0 flex-col overflow-hidden md:grid md:grid-cols-[280px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
+          {galleryPanel}
+          {infoPanel}
         </div>
       </div>
     </div>
