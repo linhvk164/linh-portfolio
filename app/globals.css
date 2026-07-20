@@ -240,6 +240,24 @@ p {
   will-change: transform;
 }
 
+@keyframes about-photo-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.about-photo-track {
+  animation: about-photo-scroll 55s linear infinite;
+  will-change: transform;
+}
+
+.about-photo-track:hover {
+  animation-play-state: paused;
+}
+
 @keyframes intro-scroll-hint {
   0%,
   100% {
@@ -274,6 +292,10 @@ p {
   }
 
   .toolstack-track {
+    animation: none;
+  }
+
+  .about-photo-track {
     animation: none;
   }
 

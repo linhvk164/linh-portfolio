@@ -26,16 +26,6 @@ export const site = {
     quote: "Design is art that is useful and practical",
     label: "my design philosophy",
   },
-  about: {
-    paragraphs: [
-      "Hey there, I'm Linh — a UX/UI designer from Vietnam, based in Canada.",
-      "I love all things design aka art that is useful and practical. I enjoy creating digital products that simplify complexity and make information easier to understand and use.",
-      "Most recently, I worked as a UX/UI Designer at UN-Habitat’s Quality of Life Initiative! We created a platform to showcase over 100 cities’ quality of life and it was an incredibly rewarding and informative journey.",
-      "From contributing to a global urban data platform to exploring AI-powered creative tools, my work sits at the intersection of design, technology, and human behavior. I’m especially interested in using design to support real communities and create meaningful, human-centered experiences.",
-      "My goal when it comes to design is to understand people, to have empathy towards the challenges they are presented with, and to help them find solutions through intuitive and insightful interactions.",
-      "If you'd like to learn more about my work or want to chat, don't hesitate to reach out over email or LinkedIn. 🎉",
-    ],
-  },
   copyright: "© 2026. Made with love & Hozier ♫. Last updated July 2026.",
 } as const;
 
