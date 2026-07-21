@@ -235,6 +235,22 @@ p {
   transform-origin: bottom right;
 }
 
+@keyframes cv-button-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cv-button-enter {
+  animation: cv-button-enter 600ms var(--ease-out) 420ms both;
+  transform-origin: bottom left;
+}
+
 .toolstack-track {
   animation: toolstack-scroll 35s linear infinite;
   will-change: transform;
@@ -530,6 +546,10 @@ html:has(.opening-overlay) body {
   }
 
   .folio-reel-pop-in {
+    animation: none;
+  }
+
+  .cv-button-enter {
     animation: none;
   }
 

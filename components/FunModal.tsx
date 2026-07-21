@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowUpRight, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FUN_PLACEHOLDER_IMAGE, type FunItem } from "@/data/fun";
 import { publicPath } from "@/lib/assets";
 
@@ -23,6 +23,8 @@ function gallerySources(item: FunItem): string[] {
 
 export function FunModal({ item, onClose }: FunModalProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const thumbsRef = useRef<HTMLDivElement>(null);
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const gallery = useMemo(
     () => (item ? gallerySources(item) : []),
     [item],
@@ -31,6 +33,27 @@ export function FunModal({ item, onClose }: FunModalProps) {
   useEffect(() => {
     setActiveIndex(0);
   }, [item?.id]);
+
+  useEffect(() => {
+    const strip = thumbsRef.current;
+    const thumb = thumbRefs.current[activeIndex];
+    if (!strip || !thumb) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const stripRect = strip.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const nextLeft =
+      strip.scrollLeft +
+      (thumbRect.left - stripRect.left) -
+      (stripRect.width - thumbRect.width) / 2;
+
+    strip.scrollTo({
+      left: Math.max(0, nextLeft),
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [activeIndex, item?.id]);
 
   useEffect(() => {
     if (!item) return;
@@ -98,7 +121,8 @@ export function FunModal({ item, onClose }: FunModalProps) {
       </div>
 
       <div
-        className={`mt-3 flex shrink-0 gap-2 overflow-x-auto sm:mt-4 ${
+        ref={thumbsRef}
+        className={`mt-3 flex shrink-0 gap-2 overflow-x-auto scroll-smooth sm:mt-4 ${
           showThumbs ? "h-14 sm:h-16" : "h-0"
         }`}
       >
@@ -109,6 +133,9 @@ export function FunModal({ item, onClose }: FunModalProps) {
               return (
                 <button
                   key={`${item.id}-thumb-${index}`}
+                  ref={(node) => {
+                    thumbRefs.current[index] = node;
+                  }}
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   aria-label={
@@ -176,6 +203,18 @@ export function FunModal({ item, onClose }: FunModalProps) {
           className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
         >
           Visit website
+          <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
+        </a>
+      ) : null}
+
+      {item.youtubeId ? (
+        <a
+          href={`https://youtu.be/${item.youtubeId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+        >
+          Watch on YouTube
           <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
         </a>
       ) : null}

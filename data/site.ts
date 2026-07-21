@@ -9,7 +9,7 @@ export const site = {
   tagline: "I design tools that make\ndifficult things easy ツ",
   exploreHeadline: "Linh Khuong",
   exploreTagline:
-    "In addition to web design, I love exploring other mediums. Currently learning how to draw pixel art!",
+    "In addition to web design, I love exploring other mediums. Currently learning pixel art!",
   role: "designing tools that make difficult things easy ツ",
   location: "Based in Ontario, Canada",
   status: "Prev @ the UN",

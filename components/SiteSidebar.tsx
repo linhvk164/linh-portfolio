@@ -89,23 +89,42 @@ function PrimaryNav({
   );
 }
 
-function SidebarCard({ showNav = true }: { showNav?: boolean }) {
+function SidebarCard({
+  showNav = true,
+  wide = false,
+}: {
+  showNav?: boolean;
+  /** Full-width mobile/tablet header — banner beside content from md up */
+  wide?: boolean;
+}) {
   const pathname = usePathname();
   const isExplore = pathname.startsWith("/explore");
   const headline = isExplore ? site.exploreHeadline : site.name;
   const tagline = isExplore ? site.exploreTagline : site.tagline;
 
   return (
-    <div className="overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-      {/* Banner — scale past PNG border/padding so art bleeds edge-to-edge */}
-      <div className="relative aspect-[687/372] overflow-hidden">
+    <div
+      className={`overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
+        wide
+          ? "md:grid md:grid-cols-[minmax(0,0.75fr)_minmax(16rem,1.25fr)] md:items-stretch"
+          : ""
+      }`}
+    >
+      {/* Banner — top on phone; right column on tablet+ when wide */}
+      <div
+        className={`relative overflow-hidden ${
+          wide
+            ? "aspect-[687/372] md:order-2 md:aspect-auto md:min-h-[17rem]"
+            : "aspect-[687/372]"
+        }`}
+      >
         <Image
           src={publicPath(BANNER_SRC)}
           alt=""
           fill
           priority
           className="scale-[1.12] object-cover object-center"
-          sizes="(max-width: 1024px) 100vw, 320px"
+          sizes="(max-width: 1024px) 60vw, 320px"
         />
         <Link
           href="/#contact"
@@ -116,39 +135,68 @@ function SidebarCard({ showNav = true }: { showNav?: boolean }) {
       </div>
 
       {/* Body */}
-      <div className="px-5 pb-5 pt-0">
-        {/* Avatar overlaps banner; name + role stacked underneath */}
-        <div className="relative z-[1] -mt-10 flex flex-col items-center text-center">
-          <Image
-            src={publicPath(PROFILE_SRC)}
-            alt={site.name}
-            width={88}
-            height={88}
-            className="sidebar-intro-item h-[5.5rem] w-[5.5rem] rounded-full border-[3px] border-white object-cover shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
-            priority
-          />
-          <div className="sidebar-intro-item mt-3 w-full min-w-0">
-            <p className="sidebar-name tracking-tight">{headline}</p>
-            <p className="sidebar-role">{site.title}</p>
+      <div
+        className={`px-5 pb-5 ${
+          wide
+            ? "pt-0 md:order-1 md:flex md:flex-col md:justify-center md:px-6 md:py-6"
+            : "pt-0"
+        }`}
+      >
+        <div
+          className={`relative z-[1] flex flex-col gap-5 ${
+            wide
+              ? "-mt-10 items-center md:mt-0 md:items-start"
+              : "-mt-10 items-center"
+          }`}
+        >
+          <div
+            className={`flex min-w-0 flex-col ${
+              wide
+                ? "items-center text-center md:items-start md:text-left"
+                : "items-center text-center"
+            }`}
+          >
+            <Image
+              src={publicPath(PROFILE_SRC)}
+              alt={site.name}
+              width={88}
+              height={88}
+              className="sidebar-intro-item h-[5.5rem] w-[5.5rem] rounded-full border-[3px] border-white object-cover shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              priority
+            />
+            <div className="sidebar-intro-item mt-3 w-full min-w-0">
+              <p className="sidebar-name tracking-tight">{headline}</p>
+              <p className="sidebar-role">{site.title}</p>
+            </div>
+            <TypewriterTagline
+              key={tagline}
+              text={tagline}
+              className={`sidebar-tagline sidebar-intro-item ${
+                wide ? "text-center md:text-left" : "text-center"
+              }`}
+            />
           </div>
-        </div>
 
-        <TypewriterTagline
-          key={tagline}
-          text={tagline}
-          className="sidebar-tagline sidebar-intro-item text-center"
-        />
-
-        {/* Stats */}
-        <div className="sidebar-intro-item mt-5 flex items-center text-center">
-          <div className="min-w-0 flex-1 pr-4">
-            <p className="text-[0.7rem] font-medium text-ink-soft">Previously</p>
-            <p className="mt-0.5 text-sm font-bold text-ink">{site.previously}</p>
-          </div>
-          <div className="h-7 w-px shrink-0 bg-border" aria-hidden />
-          <div className="min-w-0 flex-1 pl-4">
-            <p className="text-[0.7rem] font-medium text-ink-soft">Experience</p>
-            <p className="mt-0.5 text-sm font-bold text-ink">{site.experience}</p>
+          <div
+            className={`sidebar-intro-item flex w-full items-center ${
+              wide
+                ? "justify-center text-center md:w-auto md:justify-start md:text-left"
+                : "justify-center text-center"
+            }`}
+          >
+            <div
+              className={`min-w-0 flex-1 pr-4 ${wide ? "md:flex-none md:pr-5" : ""}`}
+            >
+              <p className="text-[0.7rem] font-medium text-ink-soft">Previously</p>
+              <p className="mt-0.5 text-sm font-bold text-ink">{site.previously}</p>
+            </div>
+            <div className="h-7 w-px shrink-0 bg-border" aria-hidden />
+            <div
+              className={`min-w-0 flex-1 pl-4 ${wide ? "md:flex-none md:pl-5" : ""}`}
+            >
+              <p className="text-[0.7rem] font-medium text-ink-soft">Experience</p>
+              <p className="mt-0.5 text-sm font-bold text-ink">{site.experience}</p>
+            </div>
           </div>
         </div>
 
@@ -168,7 +216,7 @@ export function SiteSidebar() {
         className="px-4 py-5 md:px-6 md:py-6 lg:hidden"
         aria-label="Site introduction"
       >
-        <SidebarCard showNav={false} />
+        <SidebarCard showNav={false} wide />
       </header>
 
       {/* Desktop — fixed left card with inline nav */}
@@ -194,7 +242,7 @@ export function SiteSidebar() {
         href={publicPath(site.resume)}
         target="_blank"
         rel="noopener noreferrer"
-        className="group fixed left-4 bottom-5 z-50 hidden items-center rounded-full bg-accent px-6 py-3.5 text-lg font-semibold text-white transition-colors duration-200 hover:bg-accent-hover lg:inline-flex"
+        className="cv-button-enter group fixed left-4 bottom-5 z-50 hidden items-center rounded-full bg-accent px-6 py-3.5 text-lg font-semibold text-white transition-colors duration-200 hover:bg-accent-hover lg:inline-flex"
       >
         CV
         <span className="inline-flex max-w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100">

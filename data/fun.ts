@@ -19,55 +19,6 @@ export type FunItem = {
 
 export const funItems: FunItem[] = [
   {
-    id: "what-am-i-supposed-to-do",
-    name: "what am i supposed to do?",
-    title: "lyrics video + graphic design",
-    created: "2024",
-    tools: "After Effects, Premiere Pro, Illustrator",
-    context: "lyrics video + graphic design",
-    description:
-      "Created an official lyrics video taking inspo from @werenotreallystrangers. Took pictures of downtown Kitchener, Waterloo and edited my lyrics onto it.",
-    images: [
-      "/images/explore/whatamisupposedtodo/lyrics-vid-1.png",
-      "/images/explore/whatamisupposedtodo/lyrics-vid-2.png",
-      "/images/explore/whatamisupposedtodo/lyrics-vid-3.png",
-      "/images/explore/whatamisupposedtodo/lyrics-vid-4.png",
-    ],
-    coverImage: "/images/explore/whatamisupposedtodo/whatamisupposedtodo-cover.jpg",
-    youtubeId: "QfFWuCQwuq8",
-  },
-  {
-    id: "porcelain-boy",
-    name: "porcelain boy",
-    title: "songwriting + video editing",
-    created: "2024",
-    tools: "Premiere Pro, After Effects",
-    context: "Music video",
-    description:
-      "Filmed a music video with my friends for a song I wrote and recorded!",
-    images: [
-      "/images/explore/porcelainboy/porcelainboy-1.png",
-      "/images/explore/porcelainboy/porcelainboy-2.png",
-      "/images/explore/porcelainboy/porcelainboy-3.png",
-      "/images/explore/porcelainboy/porcelainboy-4.png",
-    ],
-    coverImage: "/images/explore/porcelainboy/porcelain boy gif.gif",
-    youtubeId: "qm1NaNR09MY",
-  },
-  {
-    id: "radiant-roots",
-    name: "Radiant Roots",
-    title: "website design",
-    created: "2026",
-    tools: "Framer, Figma",
-    context: "Web design",
-    description:
-      "A freelance website for Radiant Roots, a local medspa in Ontario",
-    images: ["/images/explore/radiant-roots-cover.png"],
-    coverImage: "/images/explore/radiant-roots-cover.png",
-    externalUrl: "https://radiantroots.framer.website/",
-  },
-  {
     id: "mako-asya",
     name: "mako asya",
     title: "brand design",
@@ -129,5 +80,55 @@ export const funItems: FunItem[] = [
       "/images/explore/tako/Tako logo.png",
     ],
     coverImage: "/images/explore/tako/tako-cover.png",
+    externalUrl: "https://www.velocityincubator.com/company/tako-inc",
+  },
+  {
+    id: "radiant-roots",
+    name: "Radiant Roots",
+    title: "website design",
+    created: "2026",
+    tools: "Framer, Figma",
+    context: "Web design",
+    description:
+      "A freelance website for Radiant Roots, a local medspa in Ontario",
+    images: ["/images/explore/radiant-roots-cover.png"],
+    coverImage: "/images/explore/radiant-roots-cover.png",
+    externalUrl: "https://radiantroots.framer.website/",
+  },
+  {
+    id: "porcelain-boy",
+    name: "porcelain boy",
+    title: "songwriting + video editing",
+    created: "2024",
+    tools: "Premiere Pro, After Effects",
+    context: "Music video",
+    description:
+      "Filmed a music video with my friends for a song I wrote and recorded!",
+    images: [
+      "/images/explore/porcelainboy/porcelainboy-1.png",
+      "/images/explore/porcelainboy/porcelainboy-2.png",
+      "/images/explore/porcelainboy/porcelainboy-3.png",
+      "/images/explore/porcelainboy/porcelainboy-4.png",
+    ],
+    coverImage: "/images/explore/porcelainboy/porcelain boy gif.gif",
+    youtubeId: "qm1NaNR09MY",
+  },
+  {
+    id: "what-am-i-supposed-to-do",
+    name: "what am i supposed to do?",
+    title: "lyrics video + graphic design",
+    created: "2024",
+    tools: "After Effects, Premiere Pro, Illustrator",
+    context: "lyrics video + graphic design",
+    description:
+      "Created an official lyrics video taking inspo from @werenotreallystrangers. Took pictures of downtown Kitchener, Waterloo and edited my lyrics onto it.",
+    images: [
+      "/images/explore/whatamisupposedtodo/lyrics-vid-1.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-2.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-3.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-4.png",
+    ],
+    coverImage: "/images/explore/whatamisupposedtodo/whatamisupposedtodo-cover.jpg",
+    youtubeId: "QfFWuCQwuq8",
   },
 ];

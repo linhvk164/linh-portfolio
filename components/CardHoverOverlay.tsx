@@ -5,7 +5,7 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-  type MouseEvent,
+  type PointerEvent,
   type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
@@ -35,12 +35,23 @@ export function CardHoverOverlay({
 }: CardHoverOverlayProps) {
   const labelRef = useRef<HTMLDivElement>(null);
   const position = useRef({ x: 0, y: 0 });
+  const hoverCapable = useRef(false);
   const [isHovering, setIsHovering] = useState(false);
   const [mounted, setMounted] = useState(false);
   const isWebsite = type === "website" || type === "article";
 
   useEffect(() => {
     setMounted(true);
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    hoverCapable.current = media.matches;
+
+    function onChange() {
+      hoverCapable.current = media.matches;
+      if (!media.matches) setIsHovering(false);
+    }
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
   }, []);
 
   useLayoutEffect(() => {
@@ -49,7 +60,10 @@ export function CardHoverOverlay({
     labelRef.current.style.transform = `translate(${x}px, ${y}px) translate(0, -50%)`;
   }, [isHovering]);
 
-  function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
+  function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
+    // Touch synthesizes mouse events; only real mouse pointers should hover.
+    if (event.pointerType !== "mouse" || !hoverCapable.current) return;
+
     position.current = { x: event.clientX, y: event.clientY };
 
     if (labelRef.current) {
@@ -59,7 +73,7 @@ export function CardHoverOverlay({
     if (!isHovering) setIsHovering(true);
   }
 
-  function handleMouseLeave() {
+  function handlePointerLeave() {
     setIsHovering(false);
   }
 
@@ -91,8 +105,9 @@ export function CardHoverOverlay({
   return (
     <div
       className={`relative overflow-visible ${isHovering ? "cursor-none" : ""} ${className}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
     >
       <div className="relative w-full overflow-hidden">{children}</div>
       {isHovering && (
