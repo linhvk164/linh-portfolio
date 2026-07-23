@@ -1,269 +1,493 @@
 import Link from "next/link";
+import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
 import {
   CaseStudyImagePlaceholder,
   CaseStudyList,
-  CaseStudyPullQuote,
+  CaseStudyMeta,
   CaseStudySection,
   CaseStudySections,
 } from "@/components/case-studies/CaseStudySection";
+import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
 
 const personas = [
-  "International students writing assignments and emails in a second language.",
-  "Professionals communicating under real workplace pressure.",
-  "Bilingual individuals trying to express more personal or complex ideas with friends and family.",
-  "Intermediate learners who consumed plenty of content but rarely practiced writing themselves.",
+  "International students writing assignments and emails in a second language",
+  "Professionals communicating under real workplace pressure",
+  "Bilingual individuals trying to express more personal or complex ideas with friends and family",
+  "Intermediate learners who consume plenty of content but rarely practice writing themselves",
 ];
 
-export function FolioContent() {
+const researchThemes = [
+  {
+    title:
+      "Relying on multiple tools disrupts learning flow (5 of 5 participants)",
+    body: "Everyone used multiple apps in a single practice session, and switching mid-task broke their concentration, often ending the session entirely.",
+  },
+  {
+    title:
+      "Without real-life context, it's hard to remember vocabulary (5 of 5 participants)",
+    body: "Word lists don't stick. The vocabulary that stuck best was learned through situations that were personally meaningful.",
+  },
+  {
+    title:
+      "Existing apps get repetitive and stop challenging users (4 of 5 participants)",
+    body: "Duolingo came up constantly, always negatively. Users start strong, enjoy the early structure, then plateau because the app doesn't grow with them.",
+  },
+  {
+    title:
+      "Without using an app, it's hard to track and share growth (3 of 5 participants)",
+    body: "Self-learners felt isolated. The ones with a tutor or language partner were far more consistent, and the ones without wished for accountability and community.",
+  },
+] as const;
+
+function InlineLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
-    <CaseStudySections>
-      <CaseStudySection eyebrow="Overview" title="Helping language learners stay in the flow">
-        <p>
-          Learning a new language should feel rewarding, but writing often
-          becomes an exercise in frustration. A single sentence can send learners
-          bouncing between Google Translate, dictionaries, conjugation websites,
-          and Reddit threads just to find the right word. By the time they return
-          to what they were writing, the original thought is often gone.
-        </p>
-        <p>
-          I experienced this firsthand while learning French and started wondering
-          if there was a better way.
-        </p>
-        <p>
-          Folio began with a simple question. 
-        </p>
-        <CaseStudyPullQuote>What if language learners could
-          stay focused on expressing their thoughts instead of managing a
-          collection of disconnected tools?
-        </CaseStudyPullQuote>
-        <p>
-          As the co-founder and founding UX/UI designer, I led the product from
-          discovery research and interaction design to branding, prototyping, and
-          beta testing alongside my co-founder.
-        </p>
-      </CaseStudySection>
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-baseline gap-0.5 text-accent underline underline-offset-[3px] transition-colors hover:text-accent-hover"
+    >
+      {children}
+      <ArrowUpRightIcon size={12} className="translate-y-[1px] shrink-0" />
+    </Link>
+  );
+}
 
-      <CaseStudySection eyebrow="Problem" title="Writing shouldn't require five different apps">
-        <p>
-          The challenge wasn&apos;t teaching people a language. Plenty of apps
-          already do that well.
-        </p>
-        <CaseStudyPullQuote>
-          The real challenge was helping learners use the language they already knew.
-        </CaseStudyPullQuote>
-        <p>
-          Most existing platforms focus on consuming content through flashcards,
-          lessons, or quizzes. Very few support the messy process of actually
-          producing language, where learners hesitate, search for vocabulary,
-          second guess themselves, and often give up before finishing a
-          paragraph.
-        </p>
-        <p>
-          I wanted to understand what was really causing that friction before
-          designing a solution.
-        </p>
-      </CaseStudySection>
+export function FolioContent() {
+  const metaItems = getCaseStudyMetaItems("folio");
 
-      <CaseStudySection eyebrow="Research" title="Understanding what breaks a learner's momentum">
-        <p>
-          Before opening Figma, I conducted six user interviews using the Mom
-          Test framework. The conversations focused entirely on participants&apos;
-          existing habits and frustrations rather than validating an idea. Velocity&apos;s 
-          Cornerstone program at the University of Waterloo provided a clear 
-          guide to the interviewing process. Two questions consistently generated 
-          the richest insights:
-        </p>
-        <ul className="list-disc space-y-2 pl-5">
-          <li>
-            &ldquo;What&apos;s one thing you wish someone had already solved
-            about language learning?&rdquo;
-          </li>
-          <li>
-            &ldquo;If you could describe your ideal language learning tool to a
-            friend, what would it have?&rdquo;
-          </li>
-        </ul>
-        <p>
-          I spoke with independent language learners ranging from complete
-          beginners to B2 level studying French, Spanish, Arabic, Mandarin, and
-          Japanese. I also interviewed a university French professor with over
-          twenty years of teaching experience to better understand challenges
-          from an educator&apos;s perspective. Although every learner had a different 
-          routine, the same frustrations
-          surfaced again and again. The strongest insight wasn&apos;t about 
-          vocabulary or grammar. It was actually about trying to keep up their momentum.
-        </p>
-        <p>
-          Every participant described losing their train of thought after
-          switching between multiple apps while writing. Two participants had
-          already tried keeping journals in their target language but eventually
-          stopped, not because they disliked journaling, but because the process
-          required too much effort.
-        </p>
-        <p>That was the moment everything clicked. The writing habit already existed. 
-        </p>
-        <p>
-          The problem: friction was the biggest demotivator.</p>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-surface p-10 rounded-xl space-y-3">
-            <h3>Theme 1: Relying on multiple tools disrupts learning flow (5 of 5 participants)</h3>
-            <p>Every participant uses multiple apps simultaneously during a single practice session. Switching between tools mid-task breaks concentration and often causes them to abandon the session entirely.
-            </p>
-            </div>
-          <div className="bg-surface p-10 rounded-xl space-y-3">
-            <h3>Theme 2: Without real-life context, it’s hard to remember vocabulary (5 of 5 participants)</h3>
-            <p>All participants expressed that memorizing word lists doesn&apos;t translate to actual usage. Words learned in isolation are quickly forgotten. The ones who retained vocab best learned it through situations that were personally meaningful.
-            </p>
-          </div>
-          <div className="bg-surface p-10 rounded-xl space-y-3">
-            <h3>Theme 3: Existing apps get repetitive and stop challenging users (4 of 5 participants)</h3>
-            <p>Duolingo was mentioned by 4 of 5 users, always negatively. The pattern: they start, enjoy the early structure, then plateau. The apps don&apos;t grow with them and they eventually stop using them.</p>
-          </div>
-          <div className="bg-surface p-10 rounded-xl space-y-3">
-            <h3>Theme 4: Without using an app, it’s hard to track and share growth (3 of 5 participants)</h3>
-            <p>Self-learners described feeling isolated. Participants who had a tutor, family member, or language partner to practice with were significantly more consistent. Those without one actively wished for accountability and community.
-            </p>
-          </div>   
-        </div>
-      </CaseStudySection>
+  const summaryRows = [
+    {
+      label: "Summary",
+      body: (
+        <>
+          As <strong>Co-founder and Founding UX/UI Designer</strong>, I owned
+          Folio end to end, a distraction-free writing space for language
+          learners. Here&apos;s how I{" "}
+          <strong>led the research, design, and launch</strong> of a working
+          beta.
+        </>
+      ),
+    },
+    {
+      label: "Problem",
+      body: (
+        <>
+          The challenge wasn't teaching people a language. 
+          Plenty of apps already do that well. The real challenge was helping learners use the language they already knew.
+          Most existing platforms focus on consuming content through flashcards, lessons, or quizzes. Very few support the <strong>messy process </strong> of actually producing language, where learners hesitate, search for vocabulary, second guess themselves, and often give up before finishing a paragraph.
+        </>
+      ),
+    },
+    {
+      label: "Solution",
+      body: (
+        <>
+          Translate mid-sentence with a built-in command. Learn words in the
+          context of learners&apos; own life, not a textbook&apos;s. Track
+          streak, vocabulary, and progress as you go. Save new words straight to
+          flashcards for practice.
+        </>
+      ),
+    },
+  ] as const;
 
-      <CaseStudySection eyebrow="Defining the User"  title="Redefining who we were designing for">
-        <p>The interviews also changed who we were designing for.</p>
-        <p>
-          Initially, we assumed Folio was for anyone learning a language.
-          Research quickly proved otherwise.
-        </p>
-        <CaseStudyPullQuote>
-          Our real audience was learners who had already built a foundation and
-          wanted to actively produce language instead of passively consuming it.
-        </CaseStudyPullQuote>
-        <p>Four clear personas emerged throughout the interviews:</p>
-        <ul className="list-disc space-y-2 pl-5">
-          {personas.map((persona) => (
-            <li key={persona}>{persona}</li>
-          ))}
-        </ul>
-        <p>
-          These insights became the foundation for every product decision that
-          followed.
-        </p>
-      </CaseStudySection>
-      <CaseStudySection eyebrow="Solution" title="Creating a writing space that keeps you in the flow">
-        <p>
-        Rather than replacing every language learning tool, Folio focuses on the moment learners struggle most: writing.
-        </p>
-        <p>
-        I designed a distraction-free writing space where users can translate words inline, automatically save vocabulary for later review, and keep writing without breaking their train of thought.
-        </p>
-        <p>
-        Every interaction was designed around one goal: protecting the learner&apos;s momentum.
-        </p>
-      </CaseStudySection>
-      <CaseStudySection eyebrow="Design Decisions"  title="Designing around flow, not features">
-        <p>
-          Every feature in Folio exists because it solved a problem uncovered
-          during research.
-        </p>
-        <p>
-          Instead of forcing users to leave the page whenever they got stuck, I
-          designed an inline translation shortcut that allows learners to
-          translate words without interrupting their writing. They easily type in our command //
-          in order to translate right in the middle of their writing!
+  return (
+    <CaseStudySections slug="folio">
+      <section id="overview" className="scroll-mt-8 space-y-5">
+        <div className="space-y-1">
+          <p className="text-[7px] font-semibold uppercase tracking-[0.01em] text-case-study-body/70">
+            Overview
           </p>
-        <p>To encourage users to write, 
-          I implemented daily writing prompts, tailored to CEFR proficiency levels, that help users
-          overcome the blank page while encouraging consistent practice. These prompts can be made 
-          harder or easier to suit the user&apos;s needs and challenge
-          them without being overwhelmingly difficult.
-        </p>
-        <p> New vocabulary is automatically saved as flashcards, removing the extra
-        work of creating study material after each session. Users can then review these flashcards at any time,
-        making vocabulary retention easier and more effective.
-        </p>
-        <p> In order to help users track their progress, I implemented a progress bar 
-          that shows users how much they have written, how many words they have learned, how often
-          they have written, and how much translation have they used.
-          
-        </p>
-        <p>Throughout the process, I continually asked one question.</p>
-        <CaseStudyPullQuote>&ldquo;Does this help people stay in the flow?&rdquo;</CaseStudyPullQuote>
-        <p>If the answer was no, it didn&apos;t make the product.</p>
+          <h2 className="case-study-section-title max-w-3xl text-[3xl] leading-tight tracking-tight md:text-4xl">
+            Folio
+          </h2>
+        </div>
 
-      </CaseStudySection>
+        <div className="space-y-5 text-base leading-8 text-case-study-body sm:space-y-6">
+          {summaryRows.map((row) => (
+            <div
+              key={row.label}
+              className="grid grid-cols-1 gap-2 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-8"
+            >
+              <p className="text-sm font-semibold tracking-tight text-ink">
+                {row.label}
+              </p>
+              <p className="text-base leading-8 text-case-study-body">
+                {row.body}
+              </p>
+            </div>
+          ))}
+        </div>
 
-      <CaseStudySection eyebrow="Testing & Iteration"  title="Testing our Proof of Concept">        <p> 
-          Once we built a working prototype, I invited two of the original
-          interview participants back to test the experience, followed by
-          additional beta testing sessions. Watching someone use the product 
-          revealed problems we never noticed
-          while designing it. The inline translation shortcut wasn&apos;t discoverable without
-          explanation, so I redesigned onboarding to introduce it immediately. Some key improvements made included:
-        </p>
-        <CaseStudyList
-          items={[
-            "Created instructions for the inline translation",
-            "The entry area is front and center as soon as users log in",
-            "Added more personality to Folio's branding",
-            "To reduce distractions, saved entries are stored below",
-            "Removed the side panel layout to highlight the our 3 features: write, practice, progress",
-          ]}
+        <CaseStudyImagePlaceholder
+          label="Folio product overview"
+          src="/images/folio/folio-cover-video.mov"
         />
-        <p>
-          The proof of concept was not a success as many users were unable to quickly understand how to use the product.
-          They thought starting a new writing session required too many mouse clicks. Even though they were amazed
-          by how you can translate words inline, the overall experience was not intuitive, 
-          and not fun to use.
-        </p>
-        <div className="grid grid-cols-2 gap-4">
-            <CaseStudyImagePlaceholder label="Add testing iteration image" src="/images/folio/proof-of-concept.png" />
-            <CaseStudyImagePlaceholder label="Add testing iteration image" src="/images/folio/process-figma.png" />
-            <CaseStudyImagePlaceholder label="Add testing iteration image" src="/images/folio/test-flora.JPG" />
-            <CaseStudyImagePlaceholder label="Add testing iteration image" src="/images/folio/socratica-demo.webp" />
-        </div>
-        <p>
-          As testing continued, the interface became progressively simpler. We
-          removed unnecessary visual elements, reduced distractions, and
-          introduced editable journal entries after users expressed wanting to
-          revisit unfinished thoughts instead of constantly starting over.
-        </p>
-        
-      </CaseStudySection>
-      <CaseStudySection eyebrow="The current product" title="Folio as of July 2026">
-        <p>
-          After countless reiterations, github PR requests, constant feedback prioritization,
-          debugging and refinement, we are proud to announce that our beta version is now live and available for anyone to try!
-        </p>
-        <p>We stayed true to the 4 features that were created to target 4 reaccurring problems 
-          found in our research: write, translate, practice, and progress. And even included
-          ways for users to personalize their experiences.</p>
-        <p>Our beta version supports over 160 languages and we&apos;re working on refining the accuracy 
-          of the translations for the languages we support. 
-        </p>
-        <div className="grid grid-cols-2 gap-4">
-        <CaseStudyImagePlaceholder label="Write feature image" src="/images/folio/write.mov"/>
-        <CaseStudyImagePlaceholder label="Translate feature image" src="/images/folio/translate.mov"/>
-        <CaseStudyImagePlaceholder label="Practice feature image" src="/images/folio/practice.mov"/>
-        <CaseStudyImagePlaceholder label="Progress feature image" src="/images/folio/progress.mov"/>
-        </div>
-        <CaseStudyImagePlaceholder label="Progress feature image" src="/images/folio/theme-showcase.mov"/>
 
-      </CaseStudySection>
-      <CaseStudySection eyebrow="Reflection" title="Reflection">
+        {metaItems.length > 0 ? <CaseStudyMeta items={metaItems} /> : null}
+
+        <p className="text-base leading-8 text-case-study-body">
+          I partnered with{" "}
+          <InlineLink href="https://www.linkedin.com/in/mark-b17/">
+            Mark Baula
+          </InlineLink>
+          , a software engineer, to bring the idea to life, and joined
+          Velocity&apos;s{" "}
+          <InlineLink href="https://www.velocityincubator.com/programs-events/cornerstone">
+            Cornerstone Program
+          </InlineLink>{" "}
+          to build out a network of mentors and founders along the way.
+        </p>
+      </section>
+
+      <div id="how-did-i-design-it" className="space-y-16 md:space-y-20">
+        <h2 className="case-study-section-title max-w-3xl text-[3xl] leading-tight tracking-tight md:text-4xl">
+          How did I design it?
+        </h2>
+
+        <CaseStudySection
+          id="all-good-design-starts-with-a-task-or-in-this-case-an-inspiration"
+          eyebrow="Inspiration"
+          title="All Good Design Starts With A Task, Or In This Case, An Inspiration"
+        >
+          <p>
+              As an <strong>ex-Duolingo learner who ditched their 600-day-streak</strong>, I know
+                firsthand that streaks don&apos;t equal fluency. Figuring out how to find a
+                project worth building as a beginner founder is often about <strong>looking at your own frustrations first</strong>.
+          </p>
+          <p>
+              I kept losing my train of
+                thought while writing in because I kept switching
+                between Google Translate, dictionaries, and conjugation sites. That
+                frustration became the whole reason Folio exists, and the
+                starting point for the problem I set out to solve.
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CaseStudyImagePlaceholder
+              label="ex-duolingo learner"
+              src="/images/folio/ex-duolingo.jpg"
+              caption="Me and my 342 day streak - Shanghai, 2025."
+            />
+          </div>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="interview-your-target-audience"
+          eyebrow="User Research"
+          title="Interview Your Target Audience"
+        >
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+            <div className="w-full shrink-0 sm:w-1/2">
+              <CaseStudyImagePlaceholder
+                label="Meme of someone drinking from a cat-shaped cup while the cat ears poke them in the eye"
+                src="/images/folio/ux-is-important.webp"
+                fit={false}
+                caption={
+                  <InlineLink href="https://uxplanet.org/going-all-buzzfeed-a-ux-list-of-memes-738ce7d8250c">
+                    why UX is important
+                  </InlineLink>
+                }
+              />
+            </div>
+            <p className="min-w-0 flex-1">
+              If your target market is everybody, you appeal to nobody. So
+              before I opened Figma, I{" "}
+              <strong>conducted 6 user interviews</strong> using the{" "}
+              <strong>Mom Test framework</strong>, a structured research method
+              that keeps interviews grounded in real behavior instead of
+              opinion.
+            </p>
+          </div>
+          <p>
+            A few principles that <strong>shaped my research approach</strong>:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              These interviews are not about asking &ldquo;would you use my
+              app.&rdquo; They&apos;re about asking &ldquo;what apps are you
+              currently using.&rdquo;
+            </li>
+            <li>
+              You&apos;re trying to understand your users&apos; preferences,
+              existing workflows, frustrations, and wishes, not validate an idea
+              you already like.
+            </li>
+            <li>
+              <strong>Listen closely</strong>
+              {" "}
+              and ask follow up questions. Put yourself in your users&apos;
+              shoes.
+            </li>
+            <li>
+              Find out what tools they&apos;ve already tried, what worked, and
+              what didn&apos;t.
+            </li>
+          </ul>
+          <p>
+            I <strong>recruited and interviewed</strong>
+            {" "}
+            independent learners ranging from complete beginners to B2 level,
+            studying French, Spanish, Arabic, Mandarin, and Japanese. I also
+            interviewed a university French professor with over twenty years of
+            teaching experience to bring in an educator&apos;s perspective. Two
+            questions gave me the richest answers every time:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              &ldquo;What&apos;s one thing you wish someone had already solved
+              about language learning?&rdquo;
+            </li>
+            <li>
+              &ldquo;If you could describe your ideal language learning tool to
+              a friend, what would it have?&rdquo;
+            </li>
+          </ul>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="compile-your-findings"
+          eyebrow="UX Analysis & Synthesis"
+          title="Compile Your Findings"
+        >
+          <p>
+            Scattered information doesn&apos;t reveal patterns. Good UX comes
+            from <strong>synthesizing</strong> the common themes across your
+            interviews and spotting where the opportunity actually is. After
+            going through all 6 conversations, I <strong>distilled</strong> four
+            core themes:
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {researchThemes.map((theme) => (
+              <div
+                key={theme.title}
+                className="space-y-3 rounded-xl bg-surface p-8 md:p-10"
+              >
+                <h3 className="text-base font-semibold leading-snug text-ink">
+                  {theme.title}
+                </h3>
+                <p className="text-base leading-relaxed text-case-study-body">
+                  {theme.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="if-you-dont-know-your-niche-youre-bound-to-fail"
+          eyebrow="Product Positioning"
+          title="If You Don't Know Your Niche, You're Bound To Fail"
+        >
+          <p>
+            Before the interviews, I assumed Folio was for anyone learning a
+            language. The research <strong>challenged that assumption</strong>.
+            I <strong>repositioned</strong> the product around intermediate
+            learners who&apos;ve already built a foundation and want to produce
+            language, not just consume it. That&apos;s what makes your product
+            stand out: knowing exactly who it&apos;s for instead of trying to
+            serve everyone.
+          </p>
+          <p>
+            I <strong>defined four target personas</strong>:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            {personas.map((persona) => (
+              <li key={persona}>{persona}</li>
+            ))}
+          </ul>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="how-do-you-determine-what-to-build"
+          eyebrow="Feature Prioritization"
+        >
+          <p>
+            To determine what to build, you assess your common themes and{" "}
+            <strong>translate them into feature priorities</strong>. Your
+            must-haves are the features your app has to solve for. I{" "}
+            <strong>mapped </strong> my four research themes directly onto four
+            core features: write, translate, practice, and progress. Every
+            feature had to justify itself against the same question: does this
+            remove friction, or add it? If the answer was no, it didn&apos;t
+            make the product.
+          </p>
+          <p>
+            That&apos;s how I defined and designed:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              An <strong>inline translation shortcut</strong>, typing{" "}
+              <code className="rounded bg-surface-muted px-1.5 py-0.5 text-sm">
+                //
+              </code>{" "}
+              mid-sentence to translate without leaving the page
+            </li>
+            <li>
+              <strong>Daily writing prompts</strong> tailored to CEFR
+              proficiency levels, adjustable in difficulty
+            </li>
+            <li>
+              <strong>Auto-saved vocabulary</strong> that turns into flashcards
+              without extra effort
+            </li>
+            <li>
+              A <strong>progress tracker</strong> showing words written,
+              vocabulary learned, writing frequency, and translation use
+            </li>
+          </ul>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="make-it-real"
+          eyebrow="Prototyping"
+          title="Building the Prototype"
+        >
+          <p>
+            Once the direction was clear, it was time to <strong>build</strong>.
+            I <strong>led the design</strong> of the initial proof of concept while Mark
+            made sure the core functionality worked before worrying about
+            polish. This is the stage where the idea stops being a plan and
+            becomes something people can actually click through.
+          </p>
+          <CaseStudyImagePlaceholder
+            label="Initial proof of concept"
+            src="/images/folio/proof-of-concept.png"
+          />
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="test-test-test"
+          eyebrow="Conduct User Tests"
+          title="User Testing"
+        >
+          <p>
+            Run user testing early, and rapidly modify features based on what
+            you see. I <strong>recruited</strong> two of the original interview
+            participants back to test the working prototype, then{" "}
+            <strong>ran additional beta testing sessions</strong>. Watching
+            someone actually use the product surfaces problems you&apos;d never
+            catch while designing it in isolation. I was specifically{" "}
+            <strong>evaluating</strong>:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>The number of clicks it took to do anything</li>
+            <li>
+              Whether the instructions were clear enough to use without
+              explanation
+            </li>
+          </ul>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CaseStudyImagePlaceholder
+              label="User testing session"
+              src="/images/folio/test-flora.JPG"
+            />
+            <CaseStudyImagePlaceholder
+              label="Socratica demo"
+              src="/images/folio/socratica-demo.webp"
+            />
+          </div>
+        </CaseStudySection>
+
+        <CaseStudySection
+          id="identify-and-improve"
+          eyebrow="Problem Identification & Iteration"
+          title="Iteration"
+        >
+          <p>
+            Where did your users get stuck? What concerns did they express? Show
+            the problems, don&apos;t hide them, because that&apos;s where the
+            real redesign work comes from. <strong>Testing revealed</strong>:
+          </p>
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              The inline translation shortcut wasn&apos;t discoverable without
+              someone explaining it first
+            </li>
+            <li>Starting a new writing session required too many clicks</li>
+            <li>
+              Even though users were impressed by the inline translation itself,
+              the overall experience wasn&apos;t intuitive and wasn&apos;t fun to
+              use
+            </li>
+          </ul>
+          <p>
+            From there, I <strong>rapidly iterated</strong>, making the
+            interface progressively simpler with every round:
+          </p>
+          <CaseStudyList
+            items={[
+              "Redesigned onboarding to introduce the inline translation immediately",
+              "Moved the entry area front and center as soon as users log in",
+              "Strengthened Folio's branding with more personality",
+              "Moved saved entries below the writing space to reduce distraction",
+              "Removed the side panel layout entirely to spotlight the three core features: write, practice, progress",
+              "Added editable journal entries after users said they wanted to revisit unfinished thoughts instead of starting over every time",
+            ]}
+          />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CaseStudyImagePlaceholder
+              label="Figma iteration process"
+              src="/images/folio/process-figma.png"
+            />
+            <CaseStudyImagePlaceholder
+              label="Folio branding and theme showcase"
+              src="/images/folio/theme-showcase.mov"
+            />
+          </div>
+        </CaseStudySection>
+
+        <CaseStudySection id="results" eyebrow="Results">
+          <p>
+            After those rounds of iteration, the four core features came
+            together into a single writing flow: write, translate, practice, and
+            progress.
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <CaseStudyImagePlaceholder
+              label="Write feature"
+              src="/images/folio/write.mov"
+            />
+            <CaseStudyImagePlaceholder
+              label="Translate feature"
+              src="/images/folio/translate.mov"
+            />
+            <CaseStudyImagePlaceholder
+              label="Practice feature"
+              src="/images/folio/practice.mov"
+            />
+            <CaseStudyImagePlaceholder
+              label="Progress feature"
+              src="/images/folio/progress.mov"
+            />
+          </div>
+        </CaseStudySection>
+      </div>
+
+      <CaseStudySection
+        id="reflection"
+        eyebrow="Reflection"
+        title="Where Folio Is Now"
+      >
         <p>
-          Building Folio reinforced something I now carry into every project. Good UX isn&apos;t about 
-          adding features. It&apos;s about removing the
-          friction that prevents people from achieving what they already want to
-          do.
+          After multiple rounds of iteration, GitHub PRs, and feedback
+          prioritization, I <strong>shipped the beta</strong>, now live at{" "}
+          <InlineLink href="https://folioapp.ca">folioapp.ca</InlineLink>,
+          supporting <strong>160+ languages</strong>, with translation accuracy
+          still being refined for the languages we support.
         </p>
         <p>
-          Learning how to design a better interface, one that is more visually appealing is one thing.
-          But after building Folio, I realized that the biggest lesson was learning how much clarity comes from listening before building.
-        </p>
-        <p>
-          By grounding every design decision in real conversations, we avoided
-          months of building features people didn&apos;t actually need and instead
-          focused on creating a product that supports the natural rhythm of
-          language learning.
+          <strong>Leading Folio from research to launch</strong> taught me that
+          good UX isn&apos;t about adding features. It&apos;s about removing the
+          friction that stops people from doing what they already want to do.
+          And the clarity for what to remove only comes from listening before
+          you build.
         </p>
       </CaseStudySection>
 
@@ -273,9 +497,10 @@ export function FolioContent() {
           href="https://folioapp.ca"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-ink underline-offset-2 hover:underline"
+          className="inline-flex items-baseline gap-0.5 text-accent underline underline-offset-[3px] transition-colors hover:text-accent-hover"
         >
           folioapp.ca
+          <ArrowUpRightIcon size={13} className="translate-y-[1px] shrink-0" />
         </Link>
       </p>
     </CaseStudySections>

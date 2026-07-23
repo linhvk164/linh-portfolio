@@ -1,4 +1,7 @@
-import { CaseStudyMeta } from "@/components/case-studies/CaseStudySection";
+import {
+  CaseStudyImagePlaceholder,
+  CaseStudyMeta,
+} from "@/components/case-studies/CaseStudySection";
 import { CaseStudyTldr } from "@/components/case-studies/CaseStudyTldr";
 import { ViewWebsiteButton } from "@/components/ViewWebsiteButton";
 import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
@@ -10,19 +13,29 @@ type CaseStudyShellProps = {
   slug: string;
   header: ReactNode;
   children: ReactNode;
+  /** Optional media shown above the main case study header */
+  hero?: ReactNode;
 };
 
-export function CaseStudyShell({ slug, header, children }: CaseStudyShellProps) {
+export function CaseStudyShell({
+  slug,
+  header,
+  children,
+  hero,
+}: CaseStudyShellProps) {
   const tldr = getCaseStudyTldr(slug);
   const metaItems = getCaseStudyMetaItems(slug);
   const externalUrl = getProjectExternalUrl(slug);
   const meta =
     metaItems.length > 0 ? <CaseStudyMeta items={metaItems} /> : null;
-  const hasOverview = Boolean(tldr) || Boolean(meta);
+  // Folio folds TL;DR into the Overview section; other studies keep the TL;DR block.
+  const showTldrBlock = slug !== "folio" && Boolean(tldr);
 
   return (
     <>
-      <header className="case-study-header mt-8 pb-4">
+      {hero ? <div className="mt-8">{hero}</div> : null}
+
+      <header className={`case-study-header pb-4 ${hero ? "mt-6" : "mt-8"}`}>
         {header}
         {externalUrl && (
           <div className="mt-6">
@@ -31,11 +44,11 @@ export function CaseStudyShell({ slug, header, children }: CaseStudyShellProps) 
         )}
       </header>
 
-      {hasOverview && (
+      {showTldrBlock ? (
         <section className="mt-6">
-          {tldr ? <CaseStudyTldr content={tldr} meta={meta} /> : meta}
+          <CaseStudyTldr content={tldr!} meta={meta} />
         </section>
-      )}
+      ) : null}
 
       <div className="mt-10">{children}</div>
     </>

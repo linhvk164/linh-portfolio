@@ -9,7 +9,7 @@ import {
 
 export function UnHabitatAdminContent() {
   return (
-    <CaseStudySections>
+    <CaseStudySections slug="un-habitat-admin">
       <CaseStudySection
         eyebrow="Overview"
         title="Making stressed city administrators a little less stressed :)"

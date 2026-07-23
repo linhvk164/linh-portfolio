@@ -40,8 +40,10 @@ function ToolRow({ ariaHidden = false }: { ariaHidden?: boolean }) {
 
 export function ToolStackMarquee() {
   return (
-    <div className="mt-12">
-      <p className="mb-5 text-base font-bold text-ink">My Tool Stack</p>
+    <div>
+      <h2 className="mb-5 text-xl font-semibold tracking-tight text-ink md:text-2xl">
+        My Tool Stack
+      </h2>
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-bg to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-bg to-transparent" />

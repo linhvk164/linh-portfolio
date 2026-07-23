@@ -2,14 +2,25 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { navLink } from "@/lib/layout";
 
-export function BackLink() {
+type BackLinkProps = {
+  label?: string;
+  href?: string;
+  transitionTypes?: string[];
+};
+
+export function BackLink({
+  label = "Back to work",
+  href = "/#work",
+  transitionTypes,
+}: BackLinkProps) {
   return (
     <Link
-      href="/#work"
+      href={href}
+      transitionTypes={transitionTypes}
       className={`${navLink} inline-flex items-center gap-2 text-base text-ink-muted`}
     >
       <ArrowLeft size={16} strokeWidth={2} aria-hidden="true" />
-      Back to work
+      {label}
     </Link>
   );
 }

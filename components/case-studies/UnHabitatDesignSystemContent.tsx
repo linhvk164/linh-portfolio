@@ -7,7 +7,7 @@ import {
 
 export function UnHabitatDesignSystemContent() {
   return (
-    <CaseStudySections>
+    <CaseStudySections slug="un-habitat-design-system">
       <CaseStudySection
         eyebrow="Overview"
         title="Quality of Life Initiative Design System"

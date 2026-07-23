@@ -10,6 +10,7 @@ export function CaseStudyProjectCard({ project }: { project: FeaturedProject }) 
   return (
     <Link
       href={`/projects/${project.slug}`}
+      transitionTypes={["nav-forward"]}
       className="group min-w-0 text-left"
     >
       <div className={gridCardShell}>

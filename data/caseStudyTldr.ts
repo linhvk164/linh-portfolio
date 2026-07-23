@@ -17,7 +17,7 @@ export const caseStudyTldrBySlug: Record<string, CaseStudyTldr> = {
   },
   folio: {
     summary:
-      "Founded and designed Folio, a distraction-free writing space that keeps language learners in flow instead of bouncing between Translate, dictionaries, and flashcard apps. Shipped write, translate, practice, and track—inline translation, CEFR-level prompts, auto-saved vocabulary, and visible progress—grounded in six user interviews. Live in open beta at folioapp.ca with support for 160+ languages.",
+      "In 2 months, I led Folio from research to a live beta — a distraction-free writing space for language learners, now live at folioapp.ca with 160+ languages.",
   },
   chordio: {
     summary:

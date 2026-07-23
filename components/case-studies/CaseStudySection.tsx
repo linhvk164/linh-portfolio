@@ -1,6 +1,7 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { Children, isValidElement, type ReactNode } from "react";
 import { CaseStudyLazyVideo } from "@/components/case-studies/CaseStudyLazyVideo";
+import { CaseStudyMobileToc } from "@/components/case-studies/CaseStudyMobileToc";
 import { publicPath } from "@/lib/assets";
 
 /**
@@ -15,32 +16,82 @@ function isVideoSrc(src: string) {
   return /\.(mov|mp4|webm)$/i.test(src);
 }
 
-export function CaseStudySections({ children }: { children: React.ReactNode }) {
-  return <div className="space-y-16 md:space-y-20">{children}</div>;
+export function slugifyCaseStudyHeading(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function isOverviewSection(child: ReactNode) {
+  if (!isValidElement(child)) return false;
+  const props = child.props as { id?: string; eyebrow?: string };
+  return props.id === "overview" || props.eyebrow === "Overview";
+}
+
+export function CaseStudySections({
+  children,
+  slug,
+}: {
+  children: React.ReactNode;
+  /** When set, shows an in-page TOC after Overview on screens without the side panel */
+  slug?: string;
+}) {
+  const items = Children.toArray(children);
+  const overviewIndex = items.findIndex(isOverviewSection);
+  const mobileToc =
+    slug && overviewIndex >= 0 ? (
+      <CaseStudyMobileToc key="mobile-toc" slug={slug} />
+    ) : null;
+
+  return (
+    <div className="space-y-16 md:space-y-20">
+      {items.flatMap((child, index) =>
+        index === overviewIndex && mobileToc ? [child, mobileToc] : [child],
+      )}
+    </div>
+  );
 }
 
 export function CaseStudySection({
   eyebrow,
   title,
+  id,
   children,
 }: {
   eyebrow?: string;
-  title: string;
+  title?: string;
+  id?: string;
   children: React.ReactNode;
 }) {
-  return (
-    <section className="space-y-5">
-      <div className="space-y-1">
-        {eyebrow && (
-          <p className="text-[7px] font-semibold uppercase tracking-[0.01em] text-case-study-body/70">
-            {eyebrow}
-          </p>
-        )}
+  const sectionId = id ?? (eyebrow ? slugifyCaseStudyHeading(eyebrow) : undefined);
 
-        <h2 className="case-study-section-title max-w-3xl text-[3xl] leading-tight tracking-tight md:text-4xl">
-          {title}
-        </h2>
-      </div>
+  return (
+    <section
+      className={`space-y-5${sectionId ? " scroll-mt-8" : ""}`}
+      id={sectionId}
+    >
+      {(eyebrow || title) && (
+        <div className="space-y-1">
+          {title ? (
+            <>
+              {eyebrow && (
+                <p className="text-[7px] font-semibold uppercase tracking-[0.01em] text-case-study-body/70">
+                  {eyebrow}
+                </p>
+              )}
+              <h2 className="case-study-section-title max-w-3xl text-[3xl] leading-tight tracking-tight md:text-4xl">
+                {title}
+              </h2>
+            </>
+          ) : eyebrow ? (
+            <h2 className="case-study-section-title max-w-3xl text-[3xl] leading-tight tracking-tight md:text-4xl">
+              {eyebrow}
+            </h2>
+          ) : null}
+        </div>
+      )}
 
       <div className="space-y-5 text-base leading-8 text-case-study-body">
         {children}
@@ -103,27 +154,29 @@ export function CaseStudyImage({
   alt,
   bare = false,
   fit = true,
+  caption,
 }: {
   src: string;
   alt: string;
   bare?: boolean;
   fit?: boolean;
+  caption?: ReactNode;
 }) {
   const resolvedSrc = publicPath(src);
   const wrapperClass = `overflow-hidden rounded-[var(--radius-card)] border border-border ${
     fit ? "w-fit max-w-full leading-none" : "w-full"
   } ${bare ? "" : "bg-surface"}`;
 
+  let media: ReactNode;
+
   if (isVideoSrc(src)) {
-    return (
+    media = (
       <div className={wrapperClass}>
         <CaseStudyLazyVideo src={src} alt={alt} fit={fit} />
       </div>
     );
-  }
-
-  if (fit) {
-    return (
+  } else if (fit) {
+    media = (
       <div className={wrapperClass}>
         {/* Native img so the container hugs the image's true aspect ratio */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,19 +189,30 @@ export function CaseStudyImage({
         />
       </div>
     );
+  } else {
+    media = (
+      <div className={wrapperClass}>
+        <Image
+          src={resolvedSrc}
+          alt={alt}
+          width={1200}
+          height={800}
+          className="h-auto w-full"
+          sizes="(max-width: 768px) 100vw, 672px"
+        />
+      </div>
+    );
   }
 
+  if (!caption) return media;
+
   return (
-    <div className={wrapperClass}>
-      <Image
-        src={resolvedSrc}
-        alt={alt}
-        width={1200}
-        height={800}
-        className="h-auto w-full"
-        sizes="(max-width: 768px) 100vw, 672px"
-      />
-    </div>
+    <figure className={fit ? "w-fit max-w-full space-y-2" : "w-full space-y-2"}>
+      {media}
+      <figcaption className="text-center text-sm leading-snug text-ink-muted">
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -157,13 +221,23 @@ export function CaseStudyImagePlaceholder({
   src = CASE_STUDY_PLACEHOLDER_IMAGE,
   bare = false,
   fit = true,
+  caption,
 }: {
   label: string;
   src?: string;
   bare?: boolean;
   fit?: boolean;
+  caption?: ReactNode;
 }) {
-  return <CaseStudyImage src={src} alt={label} bare={bare} fit={fit} />;
+  return (
+    <CaseStudyImage
+      src={src}
+      alt={label}
+      bare={bare}
+      fit={fit}
+      caption={caption}
+    />
+  );
 }
 
 export function CaseStudyImageRow({

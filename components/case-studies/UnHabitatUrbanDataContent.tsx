@@ -10,7 +10,7 @@ import { CaseStudyYouTube } from "@/components/case-studies/CaseStudyYouTube";
 
 export function UnHabitatUrbanDataContent() {
   return (
-    <CaseStudySections>
+    <CaseStudySections slug="un-habitat-urban-data">
       <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life main image.png" />
 
       <CaseStudySection

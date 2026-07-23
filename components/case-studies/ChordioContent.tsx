@@ -12,7 +12,7 @@ import { CaseStudyImageSlideshow } from "@/components/case-studies/CaseStudyImag
 
 export function ChordioContent() {
   return (
-    <CaseStudySections>
+    <CaseStudySections slug="chordio">
       <CaseStudySection
         eyebrow="Overview"
         title="Rethinking how musicians save and organize ideas"

@@ -554,7 +554,10 @@ html:has(.opening-overlay) body {
   }
 
   .page-enter,
-  .explore-card-enter {
+  .explore-card-enter,
+  .case-study-nav-collapse,
+  .case-study-toc-enter,
+  .case-study-content-enter {
     animation: none;
   }
 }
@@ -605,6 +608,177 @@ html:has(.opening-overlay) body {
 
 .explore-card-enter {
   animation: explore-card-enter 560ms var(--ease-out) both;
+}
+
+/* Case study route enter — nav collapses, TOC from left, content from right */
+@keyframes case-study-nav-collapse {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    transform-origin: top center;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes case-study-toc-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes case-study-content-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.case-study-nav-collapse {
+  animation: case-study-nav-collapse 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.case-study-toc-enter {
+  animation: case-study-toc-from-left 780ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+.case-study-content-enter {
+  animation: case-study-content-from-right 820ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
+}
+
+/* View Transitions — directional case study navigation */
+::view-transition-group(.sidebar-collapse) {
+  animation-duration: 720ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(.sidebar-collapse),
+::view-transition-new(.sidebar-collapse) {
+  animation-duration: 720ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  mix-blend-mode: normal;
+  overflow: clip;
+  border-radius: 1.75rem;
+}
+
+::view-transition-image-pair(.sidebar-collapse) {
+  animation: case-study-sidebar-pair 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes case-study-sidebar-pair {
+  0% {
+    filter: blur(0);
+  }
+  35% {
+    filter: blur(2px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+
+::view-transition-old(.toc-from-left),
+::view-transition-old(.toc-exit-left) {
+  animation:
+    220ms cubic-bezier(0.4, 0, 0.2, 1) both case-study-fade-out,
+    520ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-left-out;
+}
+
+::view-transition-new(.toc-from-left) {
+  animation:
+    360ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both case-study-fade-in,
+    680ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-left-in;
+}
+
+::view-transition-old(.content-from-right),
+::view-transition-old(.content-exit-left) {
+  animation:
+    220ms cubic-bezier(0.4, 0, 0.2, 1) both case-study-fade-out,
+    520ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-left-out;
+}
+
+::view-transition-new(.content-from-right) {
+  animation:
+    380ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both case-study-fade-in,
+    720ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-right-in;
+}
+
+::view-transition-old(.content-from-left),
+::view-transition-old(.content-exit-right) {
+  animation:
+    220ms cubic-bezier(0.4, 0, 0.2, 1) both case-study-fade-out,
+    520ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-right-out;
+}
+
+::view-transition-new(.content-from-left) {
+  animation:
+    380ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both case-study-fade-in,
+    720ms cubic-bezier(0.22, 1, 0.36, 1) both case-study-slide-left-in;
+}
+
+@keyframes case-study-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes case-study-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes case-study-slide-left-in {
+  from {
+    transform: translateX(-18px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes case-study-slide-left-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes case-study-slide-right-in {
+  from {
+    transform: translateX(24px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes case-study-slide-right-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(24px);
+  }
 }
 
 /* Project titles — keep last so nothing overrides size or weight */

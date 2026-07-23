@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, Home, User } from "lucide-react";
-import { type ReactNode } from "react";
+import { ViewTransition } from "react";
 import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
+import { CaseStudySidebarNav } from "@/components/case-studies/CaseStudySidebarNav";
+import { PrimaryNav } from "@/components/PrimaryNav";
 import { TypewriterTagline } from "@/components/TypewriterTagline";
 import { publicPath } from "@/lib/assets";
 import { site } from "@/data/site";
@@ -13,80 +14,10 @@ import { site } from "@/data/site";
 const BANNER_SRC = "/images/general/lofu-background.png";
 const PROFILE_SRC = "/images/general/profile-cropped.jpg";
 
-type NavKey = "home" | "explore" | "about";
-
-function useActiveNav(): NavKey {
+function useCaseStudySlug(): string | null {
   const pathname = usePathname();
-  if (pathname.startsWith("/about")) return "about";
-  if (pathname.startsWith("/explore")) return "explore";
-  if (pathname === "/") return "home";
-  return "home";
-}
-
-function NavButton({
-  active,
-  href,
-  icon,
-  alwaysShowIcon = false,
-  children,
-}: {
-  active: boolean;
-  href: string;
-  icon: ReactNode;
-  alwaysShowIcon?: boolean;
-  children: ReactNode;
-}) {
-  const className = `inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2.5 py-2.5 text-sm font-semibold transition-colors duration-200 ${
-    active
-      ? "bg-accent text-white"
-      : "bg-[#ececec] text-ink-muted hover:bg-[#e2e2e2] hover:text-ink"
-  }`;
-
-  return (
-    <Link href={href} className={className}>
-      {alwaysShowIcon || active ? icon : null}
-      <span>{children}</span>
-    </Link>
-  );
-}
-
-function PrimaryNav({
-  className,
-  alwaysShowIcon = false,
-}: {
-  className?: string;
-  alwaysShowIcon?: boolean;
-}) {
-  const active = useActiveNav();
-
-  return (
-    <nav className={className} aria-label="Primary">
-      <NavButton
-        active={active === "home"}
-        href="/"
-        icon={<Home size={14} strokeWidth={2.25} aria-hidden />}
-        alwaysShowIcon={alwaysShowIcon}
-      >
-        Home
-      </NavButton>
-      <NavButton
-        active={active === "explore"}
-        href="/explore"
-        icon={<Compass size={14} strokeWidth={2.25} aria-hidden />}
-        alwaysShowIcon={alwaysShowIcon}
-      >
-        Explore
-      </NavButton>
-      <NavButton
-        active={active === "about"}
-        href="/about"
-        icon={<User size={14} strokeWidth={2.25} aria-hidden />}
-        alwaysShowIcon={alwaysShowIcon}
-      >
-        About
-      </NavButton>
-    </nav>
-  );
+  const match = pathname.match(/^\/projects\/([^/]+)\/?$/);
+  return match?.[1] ?? null;
 }
 
 function SidebarCard({
@@ -201,7 +132,12 @@ function SidebarCard({
         </div>
 
         {showNav ? (
-          <PrimaryNav className="sidebar-intro-item mt-5 flex items-stretch gap-2" />
+          <div className="sidebar-intro-item mt-5 rounded-2xl border border-border bg-white/95 p-1.5 backdrop-blur-md">
+            <PrimaryNav
+              className="flex items-stretch gap-1.5"
+              alwaysShowIcon
+            />
+          </div>
         ) : null}
       </div>
     </div>
@@ -209,22 +145,38 @@ function SidebarCard({
 }
 
 export function SiteSidebar() {
+  const caseStudySlug = useCaseStudySlug();
+
   return (
     <>
-      {/* Mobile / tablet — profile card in page flow (nav lives in bottom bar) */}
-      <header
-        className="px-4 py-5 md:px-6 md:py-6 lg:hidden"
-        aria-label="Site introduction"
-      >
-        <SidebarCard showNav={false} wide />
-      </header>
+      {/* Mobile / tablet — profile card in page flow (hidden on case studies) */}
+      {!caseStudySlug ? (
+        <header
+          className="px-4 py-5 md:px-6 md:py-6 lg:hidden"
+          aria-label="Site introduction"
+        >
+          <SidebarCard showNav={false} wide />
+        </header>
+      ) : null}
 
-      {/* Desktop — fixed left card with inline nav */}
+      {/* Desktop — fixed left panel */}
       <aside
         className="fixed top-0 left-0 z-40 hidden h-screen w-[360px] flex-col p-5 lg:flex"
-        aria-label="Site navigation"
+        aria-label={caseStudySlug ? "Case study navigation" : "Site navigation"}
       >
-        <SidebarCard showNav />
+        {caseStudySlug ? (
+          <ViewTransition name="site-side-panel" share="sidebar-collapse">
+            <div className="h-full min-h-0">
+              <CaseStudySidebarNav slug={caseStudySlug} />
+            </div>
+          </ViewTransition>
+        ) : (
+          <ViewTransition name="site-side-panel" share="sidebar-collapse">
+            <div>
+              <SidebarCard showNav />
+            </div>
+          </ViewTransition>
+        )}
       </aside>
 
       {/* Mobile / tablet — floating bottom nav */}

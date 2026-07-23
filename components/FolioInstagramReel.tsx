@@ -13,6 +13,10 @@ import { publicPath } from "@/lib/assets";
 
 const FOLIO_REEL_VIDEO = "/images/folio/folio-reel.mp4";
 
+/** Clearance above the fixed Back to top button (h-12 + gap). */
+const aboveBackToTop =
+  "bottom-[calc(4.75rem+env(safe-area-inset-bottom)+3.75rem)] lg:bottom-[4.75rem]";
+
 const controlButtonClass =
   "flex h-7 w-7 items-center justify-center rounded-full bg-ink/70 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink";
 
@@ -51,7 +55,7 @@ export function FolioInstagramReel() {
         type="button"
         onClick={restore}
         aria-label="Open Folio reel"
-        className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-[90] flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ink text-white shadow-[0_8px_30px_rgba(26,43,36,0.16)] transition-transform duration-200 hover:scale-105 lg:bottom-4`}
+        className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 z-[90] flex h-12 w-12 items-center justify-center rounded-full border border-border bg-ink text-white shadow-[0_8px_30px_rgba(26,43,36,0.16)] transition-transform duration-200 hover:scale-105 ${aboveBackToTop}`}
         onAnimationEnd={() => setEntering(false)}
       >
         <Play size={18} fill="currentColor" strokeWidth={0} aria-hidden />
@@ -61,7 +65,7 @@ export function FolioInstagramReel() {
 
   return (
     <div
-      className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-[90] transition-[width] duration-300 ease-out lg:bottom-4 ${
+      className={`${entering ? "folio-reel-pop-in" : ""} fixed right-4 z-[90] transition-[width] duration-300 ease-out ${aboveBackToTop} ${
         isLarge ? "w-[min(100vw-2rem,378px)]" : "w-[min(100vw-2rem,252px)]"
       }`}
       role="dialog"

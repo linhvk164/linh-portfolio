@@ -7,7 +7,7 @@ import {
 
 export function LofuContent() {
   return (
-    <CaseStudySections>
+    <CaseStudySections slug="lofu">
       <CaseStudySection
         eyebrow="Overview"
         title="How might we make emotional wellness less intimidating?"

@@ -54,7 +54,7 @@ export function ProjectGridCard({ project }: ProjectGridCardProps) {
           {media}
         </a>
       ) : (
-        <Link href={href} className={linkClassName}>
+        <Link href={href} transitionTypes={["nav-forward"]} className={linkClassName}>
           {media}
         </Link>
       )}
@@ -70,7 +70,7 @@ export function ProjectGridCard({ project }: ProjectGridCardProps) {
             <ProjectTitleRow {...project} />
           </a>
         ) : (
-          <Link href={href} className="block">
+          <Link href={href} transitionTypes={["nav-forward"]} className="block">
             <ProjectTitleRow {...project} />
           </Link>
         )}
