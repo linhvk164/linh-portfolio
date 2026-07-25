@@ -15,7 +15,7 @@ const FOLIO_REEL_VIDEO = "/images/folio/folio-reel.mp4";
 
 /** Clearance above the fixed Back to top button (h-12 + gap). */
 const aboveBackToTop =
-  "bottom-[calc(4.75rem+env(safe-area-inset-bottom)+3.75rem)] lg:bottom-[4.75rem]";
+  "bottom-[calc(var(--scroll-top-bottom,1rem)+3.75rem)]";
 
 const controlButtonClass =
   "flex h-7 w-7 items-center justify-center rounded-full bg-ink/70 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink";

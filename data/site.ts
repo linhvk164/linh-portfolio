@@ -6,7 +6,7 @@ export const site = {
   youtube: "https://www.youtube.com/@linhvk_",
   resume: "/images/general/resume.pdf",
   title: "UX/UI + Brand Designer",
-  tagline: "I design tools that make\ndifficult things easy ツ",
+  tagline: "Building the tools behind civic, education, 0→1 products.",
   exploreHeadline: "Linh Khuong",
   exploreTagline:
     "In addition to web design, I love exploring other mediums. Currently learning pixel art!",

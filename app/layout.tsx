@@ -14,6 +14,13 @@ export const metadata: Metadata = {
   title: "linhvk — UX/UI Designer",
   description:
     "UX/UI designer based in Canada. Branding, illustrations, and no-code development.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+  },
 };
 
 export default function RootLayout({
