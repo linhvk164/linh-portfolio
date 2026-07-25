@@ -24,7 +24,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "folio",
     year: "2026",
     productName: "Folio",
-    title: "From Research to a Working Beta in 2 Months",
+    title: "From Discovery & User Research to a Working Beta in 2 Months",
     overview:
       "Led research, design, and launch of Folio—a distraction-free writing space for language learners—shipping a live beta in 2 months.",
     tagList: ["Product Design", "User Research", "EdTech Founder"],
@@ -38,7 +38,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "un-habitat-urban-data",
     year: "2025",
     productName: "UN Quality Of Life Initiative",
-    title: "Data Visualizations For a Global Platform Live Across 100+ Cities",
+    title: "A Global Data Platform for 82+ Cities in 5 months",
     footerLabel: "Quality of Life — Data Visualization",
     overview:
       "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
@@ -55,7 +55,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "un-habitat-admin",
     year: "2025",
     productName: "UN Quality Of Life Initiative",
-    title: "Administrative Workflows For City Officials Across 100+ Cities",
+    title: "Admin Workflows That Helped Cities Implement Data Faster",
     footerLabel: "Quality of Life — Admin Dashboard",
     overview:
       "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
@@ -68,7 +68,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "un-habitat-design-system",
     year: "2024",
     productName: "UN Quality Of Life Initiative",
-    title: "200+ Design System, Sped Up Design And Dev By 50%",
+    title: "Creating a Scalable Icon System for Quality of Life Domains",
     footerLabel: "Quality of Life — Design System",
     overview:
       "Built a 200+ component design system that accelerated design and dev velocity by 50% across a global platform.",
@@ -81,7 +81,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "qol-hackathon",
     year: "2025",
     productName: "Quality Of Life Hackathon Program",
-    title: "Interactive Experience For 300+ Students To Explore Civic Data",
+    title: "Interactive Civic Data Platform For 300+ Students",
     footerLabel: "Quality of Life — Hackathon",
     overview:
       "Created an interactive way for 300+ students to explore Quality of Life domains, making civic data feel playful and hands-on.",

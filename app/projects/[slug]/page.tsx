@@ -101,7 +101,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   productName={project.productName}
                   title={
                     slug === "folio"
-                      ? "From Research to a Working Beta in 2 Months"
+                      ? "From Discovery & User Research to a Working Beta in 2 Months"
                       : "About the project"
                   }
                 />
