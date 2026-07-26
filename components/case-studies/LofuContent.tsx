@@ -26,7 +26,7 @@ export function LofuContent() {
           resilient. As a result, many people avoid asking for help until
           they&apos;re already struggling.
         </p>
-        <CaseStudyImagePlaceholder label="Lofu app screens" src="/images/lofu/overview.jpg" />
+        <CaseStudyImagePlaceholder label="Lofu app screens" src="/images/lofu/overview.webp" />
         <p>Lofu began with a simple question.</p>
         <CaseStudyPullQuote>
           How might we make emotional wellness feel less intimidating to engage
@@ -129,7 +129,7 @@ export function LofuContent() {
           illustrations, and soft interface elements designed to reduce feelings
           of intimidation.
         </p>
-        <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/visual-influences.jpg" />
+        <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/visual-influences.webp" />
         <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/colors.jpg" />
         <CaseStudyImagePlaceholder label="Lofu visual identity" src="/images/lofu/introducing-lofu.png" />
 
@@ -156,12 +156,12 @@ export function LofuContent() {
           moments of crisis.
         </p>
         <div className="gap-0">
-        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/onboarding.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/onboarding.webp"/>
         <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/homepage.jpg"/>
-        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/progress.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/progress.webp"/>
         <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/self-care.jpg"/>
         <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/chat.jpg"/>
-        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/settings.jpg"/>
+        <CaseStudyImagePlaceholder label="Testing and iteration"src="/images/lofu/settings.webp"/>
         </div>
       </CaseStudySection>
 

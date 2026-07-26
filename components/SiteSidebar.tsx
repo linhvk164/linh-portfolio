@@ -3,21 +3,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ViewTransition } from "react";
 import { ArrowUpRightIcon } from "@/components/icons/ArrowUpRightIcon";
 import { CaseStudySidebarNav } from "@/components/case-studies/CaseStudySidebarNav";
 import { PrimaryNav } from "@/components/PrimaryNav";
 import { TypewriterTagline } from "@/components/TypewriterTagline";
 import { publicPath } from "@/lib/assets";
+import { HOME_COVERS_SETTLED_EVENT, peekHomeCoversSettled } from "@/lib/homeFlight";
 import { site } from "@/data/site";
 
 const BANNER_SRC = "/images/general/lofu-background.png";
-const PROFILE_SRC = "/images/general/profile-cropped.jpg";
+const PROFILE_SRC = "/images/general/profile-cropped.webp";
 
 function useCaseStudySlug(): string | null {
   const pathname = usePathname();
   const match = pathname.match(/^\/projects\/([^/]+)\/?$/);
   return match?.[1] ?? null;
+}
+
+/** On home, show the desktop panel once case-study covers have settled in place. */
+function useHomeCoversSettled(isHome: boolean) {
+  const [settled, setSettled] = useState(!isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      setSettled(true);
+      return;
+    }
+
+    setSettled(false);
+    const onSettled = () => setSettled(true);
+    window.addEventListener(HOME_COVERS_SETTLED_EVENT, onSettled);
+    // Effects may notify before this listener attaches — catch up after both run.
+    queueMicrotask(() => {
+      if (peekHomeCoversSettled()) setSettled(true);
+    });
+    return () => {
+      window.removeEventListener(HOME_COVERS_SETTLED_EVENT, onSettled);
+    };
+  }, [isHome]);
+
+  return settled;
 }
 
 function SidebarCard({
@@ -35,7 +62,7 @@ function SidebarCard({
 
   return (
     <div
-      className={`overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
+      className={`sidebar-card-enter overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
         wide
           ? "md:grid md:grid-cols-[minmax(0,0.75fr)_minmax(16rem,1.25fr)] md:items-stretch"
           : ""
@@ -43,9 +70,9 @@ function SidebarCard({
     >
       {/* Banner — top on phone; right column on tablet+ when wide */}
       <div
-        className={`relative overflow-hidden ${
+        className={`sidebar-banner-enter relative overflow-hidden ${
           wide
-            ? "aspect-[687/372] md:order-2 md:aspect-auto md:min-h-[17rem]"
+            ? "aspect-[4/3] md:order-2 md:aspect-auto md:min-h-[17rem]"
             : "aspect-[687/372]"
         }`}
       >
@@ -54,7 +81,7 @@ function SidebarCard({
           alt=""
           fill
           priority
-          className="scale-[1.12] object-cover object-center"
+          className="sidebar-banner-image scale-[1.12] object-cover object-center"
           sizes="(max-width: 1024px) 60vw, 320px"
         />
         <Link
@@ -133,10 +160,7 @@ function SidebarCard({
 
         {showNav ? (
           <div className="sidebar-intro-item mt-5 rounded-2xl border border-border bg-white/95 p-1.5 backdrop-blur-md">
-            <PrimaryNav
-              className="flex items-stretch gap-1.5"
-              alwaysShowIcon
-            />
+            <PrimaryNav className="flex items-stretch gap-1.5" />
           </div>
         ) : null}
       </div>
@@ -145,7 +169,11 @@ function SidebarCard({
 }
 
 export function SiteSidebar() {
+  const pathname = usePathname();
   const caseStudySlug = useCaseStudySlug();
+  const isHome = pathname === "/";
+  const coversSettled = useHomeCoversSettled(isHome);
+  const showDesktopChrome = !isHome || coversSettled;
 
   return (
     <>
@@ -159,10 +187,13 @@ export function SiteSidebar() {
         </header>
       ) : null}
 
-      {/* Desktop — fixed left panel */}
+      {/* Desktop — fixed left panel (home: only after scrolling past the hero) */}
       <aside
-        className="fixed top-0 left-0 z-40 hidden h-screen w-[360px] flex-col p-5 lg:flex"
+        className={`fixed top-0 left-0 z-40 hidden h-screen w-[320px] flex-col p-4 lg:flex ${
+          showDesktopChrome ? "pointer-events-auto" : "pointer-events-none"
+        }`}
         aria-label={caseStudySlug ? "Case study navigation" : "Site navigation"}
+        aria-hidden={isHome && !coversSettled ? true : undefined}
       >
         {caseStudySlug ? (
           <ViewTransition name="site-side-panel" share="sidebar-collapse">
@@ -170,37 +201,37 @@ export function SiteSidebar() {
               <CaseStudySidebarNav slug={caseStudySlug} />
             </div>
           </ViewTransition>
-        ) : (
+        ) : showDesktopChrome ? (
           <ViewTransition name="site-side-panel" share="sidebar-collapse">
             <div>
               <SidebarCard showNav />
             </div>
           </ViewTransition>
-        )}
+        ) : null}
       </aside>
 
       {/* Mobile / tablet — floating bottom nav */}
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
         <div className="pointer-events-auto w-full max-w-[22rem] rounded-2xl border border-border bg-white/95 p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.1)] backdrop-blur-md">
-          <PrimaryNav
-            className="flex items-stretch gap-1.5"
-            alwaysShowIcon
-          />
+          <PrimaryNav className="flex items-stretch gap-1.5" />
         </div>
       </div>
 
-      {/* Floating resume — bottom left */}
-      <a
-        href={publicPath(site.resume)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="cv-button-enter group fixed left-4 bottom-5 z-50 hidden items-center rounded-full bg-accent px-6 py-3.5 text-lg font-semibold text-white transition-colors duration-200 hover:bg-accent-hover lg:inline-flex"
-      >
-        CV
-        <span className="inline-flex max-w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:ml-2 group-hover:max-w-5 group-hover:opacity-100">
-          <ArrowUpRightIcon size={18} className="shrink-0" />
-        </span>
-      </a>
+      {/* Floating resume — bottom left (home: with the side panel) */}
+      {showDesktopChrome ? (
+        <a
+          href={publicPath(site.resume)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cv-button-enter group fixed left-4 bottom-5 z-50 hidden items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-lg font-semibold text-white transition-[background-color,transform] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover lg:inline-flex"
+        >
+          CV
+          <ArrowUpRightIcon
+            size={18}
+            className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
+        </a>
+      ) : null}
     </>
   );
 }

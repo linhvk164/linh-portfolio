@@ -11,7 +11,7 @@ import { CaseStudyYouTube } from "@/components/case-studies/CaseStudyYouTube";
 export function UnHabitatUrbanDataContent() {
   return (
     <CaseStudySections slug="un-habitat-urban-data">
-      <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life main image.png" />
+      <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life main image.webp" />
 
       <CaseStudySection
         eyebrow="Overview"
@@ -35,7 +35,7 @@ export function UnHabitatUrbanDataContent() {
         My role was to design an experience that transformed dense datasets
         into something people could actually explore with confidence.
         </p>
-        <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life-solution.png" />
+        <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/quality of life-solution.webp" />
       </CaseStudySection>
 
       <CaseStudySection eyebrow="Problem" title="The challenge">
@@ -85,7 +85,7 @@ export function UnHabitatUrbanDataContent() {
         <CaseStudyImageRow
           images={[
             {
-              src: "/images/un-habitat/qoli-process.png",
+              src: "/images/un-habitat/qoli-process.webp",
               alt: "Workflow mapping for city data administration",
             },
             {
@@ -121,7 +121,7 @@ export function UnHabitatUrbanDataContent() {
             "Tags to show relationships between domains, indicators, and SDGs",
           ]}
         />
-        <CaseStudyImagePlaceholder label="Design decisions image" src="/images/un-habitat/quality of life-solution 2.png" />
+        <CaseStudyImagePlaceholder label="Design decisions image" src="/images/un-habitat/quality of life-solution 2.webp" />
 
       </CaseStudySection>
 

@@ -5,7 +5,7 @@ export const site = {
   linkedIn: "https://www.linkedin.com/in/linhvankhuong/",
   youtube: "https://www.youtube.com/@linhvk_",
   resume: "/images/general/resume.pdf",
-  title: "UX/UI + Brand Designer",
+  title: "UX/UI + Product Designer",
   tagline: "Building the tools behind civic, education, 0→1 products.",
   exploreHeadline: "Linh Khuong",
   exploreTagline:
@@ -26,7 +26,8 @@ export const site = {
     quote: "Design is art that is useful and practical",
     label: "my design philosophy",
   },
-  copyright: "© 2026. Made with love & Hozier ♫. Last updated July 2026.",
+  spotifyPlaylist:
+    "https://open.spotify.com/playlist/6ddb7uDuPbzCNh11PiCvG3?si=cb5139ce4c7244b2",
 } as const;
 
 export const navItems = [

@@ -17,7 +17,7 @@ export function CaseStudySidebarNav({ slug }: CaseStudySidebarNavProps) {
     <div className="flex h-full flex-col gap-10 overflow-y-auto py-2 pr-2">
       <div className="case-study-nav-collapse space-y-6">
         <div className="rounded-2xl border border-border bg-white/95 p-1.5 backdrop-blur-md">
-          <PrimaryNav className="flex items-stretch gap-1.5" alwaysShowIcon />
+          <PrimaryNav className="flex items-stretch gap-1.5" />
         </div>
         <BackLink label="Back to home" href="/" transitionTypes={["nav-back"]} />
       </div>

@@ -77,7 +77,7 @@ export function AboutContent() {
         <AboutCarousel slides={aboutCarousel} />
       </PageEnter>
 
-      <div className="mt-10 space-y-10 pl-8 md:mt-12 md:space-y-12 md:pl-8 lg:pl-12">
+      <div className="mt-10 space-y-10 md:mt-12 md:space-y-12">
         {aboutSections.map((section, sectionIndex) => (
           <PageEnter
             key={section.heading}
@@ -112,7 +112,7 @@ export function AboutContent() {
           <ToolStackMarquee />
         </PageEnter>
 
-        <PageEnter delay={340} className="max-w-4xl">
+        <PageEnter delay={340} className="max-w-4xl pb-28 md:pb-24 lg:pb-20">
           <h2 className={sectionHeadingClassName}>Experience</h2>
           <div className="mt-4 space-y-6 md:mt-5 md:space-y-8">
             {aboutExperience.map((job) => (

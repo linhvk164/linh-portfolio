@@ -86,7 +86,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 slug === "folio" ? (
                   <CaseStudyImagePlaceholder
                     label="Folio cover video"
-                    src="/images/folio/folio-cover-casestudy.mov"
+                    src="/images/folio/folio-cover-casestudy.mp4"
                   />
                 ) : undefined
               }

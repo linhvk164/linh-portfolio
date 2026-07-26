@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 const SHOW_AFTER_PX = 320;
 const FOOTER_GAP_PX = 16;
-/** Mobile clearance above bottom nav: 4.75rem ≈ 76px */
-const MOBILE_BASE_BOTTOM_PX = 76;
+/** Mobile clearance above bottom nav (~nav height + gap) */
+const MOBILE_BASE_BOTTOM_PX = 108;
 const DESKTOP_BASE_BOTTOM_PX = 16;
 
 function getBaseBottom() {

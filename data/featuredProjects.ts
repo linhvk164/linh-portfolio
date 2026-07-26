@@ -28,8 +28,8 @@ export const featuredProjects: FeaturedProject[] = [
     overview:
       "Led research, design, and launch of Folio—a distraction-free writing space for language learners—shipping a live beta in 2 months.",
     tagList: ["Product Design", "User Research", "EdTech Founder"],
-    coverImage: "",
-    coverVideo: "/images/folio/folio-cover-casestudy.mov",
+    coverImage: "/images/folio/folio-static-cover.webp",
+    coverVideo: "/images/folio/folio-cover-casestudy.mp4",
     externalUrl: "https://folioapp.ca",
     accent: "blue",
     hoverType: "case-study",
@@ -43,8 +43,8 @@ export const featuredProjects: FeaturedProject[] = [
     overview:
       "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
     tagList: ["Data Visualization", "Accessibility", "Civic Tech"],
-    coverImage: "/images/un-habitat/quality of life main image.png",
-    coverVideo: "/images/un-habitat/qoli-cover-video.mov",
+    coverImage: "/images/un-habitat/quality of life main image.webp",
+    coverVideo: "/images/un-habitat/qoli-cover-video.mp4",
     externalUrl: "https://www.qolimpact.com",
     accent: "yellow",
     hoverType: "case-study",
@@ -60,7 +60,7 @@ export const featuredProjects: FeaturedProject[] = [
     overview:
       "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
     tagList: ["Admin Dashboard", "Workflow Design", "UX/UI"],
-    coverImage: "/images/un-habitat/cityexplorer-main-image.png",
+    coverImage: "/images/un-habitat/cityexplorer-main-image.webp",
     accent: "yellow",
     hoverType: "case-study",
   },
@@ -73,7 +73,7 @@ export const featuredProjects: FeaturedProject[] = [
     overview:
       "Built a 200+ component design system that accelerated design and dev velocity by 50% across a global platform.",
     tagList: ["Design Systems", "Accessibility", "Design Ops"],
-    coverImage: "/images/un-habitat/qoli-icons.png",
+    coverImage: "/images/un-habitat/qoli-icons.webp",
     accent: "yellow",
     hoverType: "case-study",
   },
@@ -87,7 +87,7 @@ export const featuredProjects: FeaturedProject[] = [
       "Created an interactive way for 300+ students to explore Quality of Life domains, making civic data feel playful and hands-on.",
     tagList: ["Interactive Design", "EdTech", "Gamification"],
     coverImage: "/images/un-habitat/qolihackathon.png",
-    coverVideo: "/images/un-habitat/qolihackathon.mov",
+    coverVideo: "/images/un-habitat/qolihackathon.mp4",
     accent: "yellow",
     externalUrl: "https://www.qolihackathon.com/gh",
     hoverType: "website",
@@ -112,7 +112,7 @@ export const featuredProjects: FeaturedProject[] = [
     overview:
       "Crafted a mobile wellness experience blending gentle gamification with culturally relevant mental health resources.",
     tagList: ["Mobile UX", "Branding", "Mental Health"],
-    coverImage: "/images/lofu/lofu main image.png",
+    coverImage: "/images/lofu/lofu main image.webp",
     accent: "green",
     hoverType: "case-study",
   },

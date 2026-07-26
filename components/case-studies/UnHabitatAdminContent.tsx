@@ -25,7 +25,7 @@ export function UnHabitatAdminContent() {
           my job was to create workflows for city administrators to manage their data. 
           My goal was to make those workflows feel clear instead of stressful.
         </p>
-        <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/cityexplorer-main-image.png" />
+        <CaseStudyImagePlaceholder label="Overview image" src="/images/un-habitat/cityexplorer-main-image.webp" />
       </CaseStudySection>
 
       <CaseStudySection eyebrow="Problem" title="An Existing Confusing Workflow">
@@ -40,7 +40,7 @@ export function UnHabitatAdminContent() {
         <p>Before designing anything, I wanted to understand how people actually completed their work.</p>
         <div className="grid grid-cols-2 gap-4">
         <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/implementation-flow.png"/>
-        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/problem.png"/>
+        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/problem.webp"/>
         </div>
 
         </CaseStudySection>
@@ -61,10 +61,10 @@ export function UnHabitatAdminContent() {
            decisions or switching context too often.
         </p>
         <div className="grid grid-cols-2 gap-4">
-        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/brainstorm-2.png"/>
-        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/brainstorm.png"/>
+        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/brainstorm-2.webp"/>
+        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/brainstorm.webp"/>
         </div>
-        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/process.png"/>
+        <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/process.webp"/>
         
       </CaseStudySection>
 
@@ -104,7 +104,7 @@ export function UnHabitatAdminContent() {
           and defined the design goals, let's look at how we implemented the solution.
         </p>
         <div className="grid grid-cols-[7fr_3fr] gap-4">
-          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/joining.mov"/>
+          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/joining.mp4"/>
           <div className="flex flex-col justify-center gap-4">
           <h3>Joining</h3>
           <CaseStudyList
@@ -118,7 +118,7 @@ export function UnHabitatAdminContent() {
           </div>
         </div> 
         <div className="grid grid-cols-[7fr_3fr] gap-4">
-          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/onboarding.mov"/>
+          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/onboarding.mp4"/>
           <div className="flex flex-col justify-center gap-4">
           <h3>Onboarding</h3>
           <CaseStudyList
@@ -131,7 +131,7 @@ export function UnHabitatAdminContent() {
           </div>
         </div> 
         <div className="grid grid-cols-[7fr_3fr] gap-4">
-          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/Implementing.mov"/>
+          <CaseStudyImagePlaceholder label="Challenge image" src="/images/un-habitat/Implementing.mp4"/>
           <div className="flex flex-col justify-center gap-4">
           <h3>Implementing</h3>
           <CaseStudyList

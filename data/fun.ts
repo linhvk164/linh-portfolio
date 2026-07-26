@@ -91,8 +91,8 @@ export const funItems: FunItem[] = [
     context: "Web design",
     description:
       "A freelance website for Radiant Roots, a local medspa in Ontario",
-    images: ["/images/explore/radiant-roots-cover.png"],
-    coverImage: "/images/explore/radiant-roots-cover.png",
+    images: ["/images/explore/radiant-roots-cover.webp"],
+    coverImage: "/images/explore/radiant-roots-cover.webp",
     externalUrl: "https://radiantroots.framer.website/",
   },
   {
@@ -110,7 +110,7 @@ export const funItems: FunItem[] = [
       "/images/explore/porcelainboy/porcelainboy-3.png",
       "/images/explore/porcelainboy/porcelainboy-4.png",
     ],
-    coverImage: "/images/explore/porcelainboy/porcelain boy gif.gif",
+    coverImage: "/images/explore/porcelainboy/porcelain-boy-cover.webp",
     youtubeId: "qm1NaNR09MY",
   },
   {
@@ -124,7 +124,7 @@ export const funItems: FunItem[] = [
       "Created an official lyrics video taking inspo from @werenotreallystrangers. Took pictures of downtown Kitchener, Waterloo and edited my lyrics onto it.",
     images: [
       "/images/explore/whatamisupposedtodo/lyrics-vid-1.png",
-      "/images/explore/whatamisupposedtodo/lyrics-vid-2.png",
+      "/images/explore/whatamisupposedtodo/lyrics-vid-2.webp",
       "/images/explore/whatamisupposedtodo/lyrics-vid-3.png",
       "/images/explore/whatamisupposedtodo/lyrics-vid-4.png",
     ],

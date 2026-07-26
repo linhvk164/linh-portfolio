@@ -134,7 +134,18 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="w-full min-w-0 border-t border-white/10 px-8 py-5 md:px-10">
-        <p className="text-right text-base text-white/50">{site.copyright}</p>
+        <p className="text-right text-base text-white/50">
+          © 2026. Made with love &{" "}
+          <a
+            href={site.spotifyPlaylist}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 transition-colors hover:text-white"
+          >
+            Hozier ♫
+          </a>
+          . Last updated July 2026.
+        </p>
       </div>
     </footer>
   );

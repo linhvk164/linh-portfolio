@@ -28,31 +28,31 @@ export const aboutCarousel: AboutCarouselSlide[] = [
   // Example — replace / add your photos in public/images/about/
   // { src: "/images/about/photo-1.jpg", alt: "Linh at work" },
   {
-    src: "/images/general/Profile pic.JPG",
+    src: "/images/general/Profile pic.webp",
     alt: "Linh Khuong",
   },
   {
-    src: "/images/about/China outdoor.JPG",
+    src: "/images/about/China outdoor.webp",
     alt: "in China",
   },
   {
-    src: "/images/about/China.JPG",
+    src: "/images/about/China.webp",
     alt: "in China",
   },
   {
-    src: "/images/about/DSCF4503.JPG",
+    src: "/images/about/DSCF4503.webp",
     alt: "in Canada",
   },
   {
-    src: "/images/about/IMG_6030.JPG",
+    src: "/images/about/IMG_6030.webp",
     alt: "Performing at a festival",
   },
   {
-    src: "/images/about/IMG_6496.JPG",
+    src: "/images/about/IMG_6496.webp",
     alt: "in China with friends",
   },
   {
-    src: "/images/about/Work trip picture.JPG",
+    src: "/images/about/Work trip picture.webp",
     alt: "UN-Habitat work trip",
   },
 ];

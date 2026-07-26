@@ -15,7 +15,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <ClickSound />
       <SiteFrame>
         <SiteSidebar />
-        <div className="lg:pl-[360px]">
+        <div className="lg:pl-[320px]">
           <div className={mainArea}>{children}</div>
         </div>
       </SiteFrame>

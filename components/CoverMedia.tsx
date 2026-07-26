@@ -9,6 +9,12 @@ type CoverMediaProps = {
   sizes?: string;
   /** When true, image/video height follows intrinsic aspect (no crop). */
   natural?: boolean;
+  /** Prefer a still even when a cover video exists. */
+  stillOnly?: boolean;
+  priority?: boolean;
+  loading?: "eager" | "lazy";
+  /** Video preload hint. Defaults to metadata. */
+  videoPreload?: "none" | "metadata" | "auto";
 };
 
 export function CoverMedia({
@@ -18,8 +24,12 @@ export function CoverMedia({
   className = "object-cover object-center",
   sizes = "100vw",
   natural = false,
+  stillOnly = false,
+  priority = false,
+  loading,
+  videoPreload = "metadata",
 }: CoverMediaProps) {
-  if (coverVideo) {
+  if (coverVideo && !stillOnly) {
     return (
       <video
         src={publicPath(coverVideo)}
@@ -27,7 +37,7 @@ export function CoverMedia({
         muted
         loop
         playsInline
-        preload="metadata"
+        preload={videoPreload}
         poster={coverImage ? publicPath(coverImage) : undefined}
         aria-label={alt}
         className={
@@ -40,31 +50,34 @@ export function CoverMedia({
     );
   }
 
-  if (coverImage) {
-    if (natural) {
-      return (
-        <Image
-          src={publicPath(coverImage)}
-          alt={alt}
-          width={1600}
-          height={1200}
-          className={className || "h-auto w-full"}
-          sizes={sizes}
-          style={{ width: "100%", height: "auto" }}
-        />
-      );
-    }
+  const imageSrc = coverImage;
+  if (!imageSrc) return null;
 
+  if (natural) {
     return (
       <Image
-        src={publicPath(coverImage)}
+        src={publicPath(imageSrc)}
         alt={alt}
-        fill
-        className={className}
+        width={1600}
+        height={1200}
+        className={className || "h-auto w-full"}
         sizes={sizes}
+        priority={priority}
+        loading={priority ? "eager" : loading}
+        style={{ width: "100%", height: "auto" }}
       />
     );
   }
 
-  return null;
+  return (
+    <Image
+      src={publicPath(imageSrc)}
+      alt={alt}
+      fill
+      className={className}
+      sizes={sizes}
+      priority={priority}
+      loading={priority ? "eager" : loading}
+    />
+  );
 }

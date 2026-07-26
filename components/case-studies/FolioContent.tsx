@@ -128,7 +128,7 @@ export function FolioContent() {
 
         <CaseStudyImagePlaceholder
           label="Folio product overview"
-          src="/images/folio/folio-cover-video.mov"
+          src="/images/folio/folio-cover-video.mp4"
         />
 
         {metaItems.length > 0 ? <CaseStudyMeta items={metaItems} /> : null}
@@ -438,7 +438,7 @@ export function FolioContent() {
             />
             <CaseStudyImagePlaceholder
               label="Folio branding and theme showcase"
-              src="/images/folio/theme-showcase.mov"
+              src="/images/folio/theme-showcase.mp4"
             />
           </div>
         </CaseStudySection>
@@ -452,19 +452,19 @@ export function FolioContent() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <CaseStudyImagePlaceholder
               label="Write feature"
-              src="/images/folio/write.mov"
+              src="/images/folio/write.mp4"
             />
             <CaseStudyImagePlaceholder
               label="Translate feature"
-              src="/images/folio/translate.mov"
+              src="/images/folio/translate.mp4"
             />
             <CaseStudyImagePlaceholder
               label="Practice feature"
-              src="/images/folio/practice.mov"
+              src="/images/folio/practice.mp4"
             />
             <CaseStudyImagePlaceholder
               label="Progress feature"
-              src="/images/folio/progress.mov"
+              src="/images/folio/progress.mp4"
             />
           </div>
         </CaseStudySection>

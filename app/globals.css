@@ -136,6 +136,77 @@ p {
   line-height: var(--leading-normal);
 }
 
+.home-intro-lead {
+  max-width: 40rem;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.home-intro-hero {
+  padding-top: 3rem;
+  transition: padding-top 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: padding-top;
+}
+
+.home-intro-hero.is-compact {
+  padding-top: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .home-intro-hero {
+    padding-top: 5rem;
+  }
+
+  .home-intro-hero.is-compact {
+    padding-top: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-intro-hero {
+    padding-top: 6rem;
+  }
+
+  .home-intro-hero.is-compact {
+    padding-top: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-intro-hero {
+    transition: none;
+  }
+}
+
+.home-intro-support {
+  max-width: 30rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .home-intro-lead {
+    max-width: 44rem;
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .home-intro-support {
+    max-width: 34rem;
+    font-size: 1.0625rem;
+  }
+}
+
+.home-intro-lead strong,
+.home-intro-support strong {
+  font-weight: 600;
+}
+
 .text-body-lg {
   font-size: var(--text-body-lg);
   line-height: var(--leading-normal);
@@ -247,7 +318,7 @@ p {
 }
 
 .cv-button-enter {
-  animation: cv-button-enter 600ms var(--ease-out) 420ms both;
+  animation: cv-button-enter 420ms var(--ease-out) 80ms both;
   transform-origin: bottom left;
 }
 
@@ -281,17 +352,30 @@ p {
 @keyframes intro-scroll-hint {
   0%,
   100% {
-    transform: translateY(0);
     opacity: 0.55;
   }
   50% {
-    transform: translateY(4px);
     opacity: 1;
+  }
+}
+
+@keyframes intro-scroll-hint-glyph {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
   }
 }
 
 .intro-scroll-hint {
   animation: intro-scroll-hint 1.6s ease-in-out infinite;
+}
+
+.intro-scroll-hint-glyph {
+  display: inline-block;
+  animation: intro-scroll-hint-glyph 1.6s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -322,6 +406,10 @@ p {
   .intro-scroll-hint {
     animation: none;
     opacity: 0.75;
+  }
+
+  .intro-scroll-hint-glyph {
+    animation: none;
   }
 }
 
@@ -482,6 +570,49 @@ html:has(.opening-overlay) body {
   }
 }
 
+@keyframes sidebar-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sidebar-banner-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sidebar-banner-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+.sidebar-card-enter {
+  animation: sidebar-card-in 480ms var(--ease-out) both;
+}
+
+.sidebar-banner-enter {
+  animation: sidebar-banner-in 420ms var(--ease-out) 40ms both;
+}
+
+.sidebar-banner-image {
+  animation: sidebar-banner-image-in 700ms var(--ease-out) 60ms both;
+}
+
 .sidebar-intro-item {
   animation: sidebar-intro-in 700ms var(--ease-out) both;
 }
@@ -538,7 +669,10 @@ html:has(.opening-overlay) body {
 
   .sidebar-intro-item,
   .sidebar-footer-item,
-  .sidebar-nav-item {
+  .sidebar-nav-item,
+  .sidebar-card-enter,
+  .sidebar-banner-enter,
+  .sidebar-banner-image {
     animation: none;
   }
 
@@ -558,6 +692,9 @@ html:has(.opening-overlay) body {
   }
 
   .page-enter,
+  .home-intro-enter-lead,
+  .home-intro-enter-support,
+  .home-intro-enter-hint,
   .explore-card-enter,
   .case-study-nav-collapse,
   .case-study-toc-enter,
@@ -592,6 +729,68 @@ html:has(.opening-overlay) body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Home intro — lead rises softly with a touch of scale */
+@keyframes home-intro-lead-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Home intro — support drifts in from the left (desktop) */
+@keyframes home-intro-support-in {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes home-intro-hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-intro-enter-lead {
+  animation: home-intro-lead-in 900ms var(--ease-out) 80ms both;
+}
+
+.home-intro-enter-support {
+  animation: home-intro-support-in 820ms var(--ease-out) 280ms both;
+}
+
+.home-intro-enter-hint {
+  animation: home-intro-hint-in 640ms var(--ease-out) 720ms both;
+}
+
+@media (max-width: 1023px) {
+  @keyframes home-intro-support-in {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 

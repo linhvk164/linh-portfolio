@@ -98,7 +98,7 @@ export function UnHabitatDesignSystemContent() {
         <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/results-1.jpeg"/>
         <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/results-2.jpeg"/>
         </div>
-        <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/results-3.mov"/>
+        <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/results-3.mp4"/>
 
       </CaseStudySection>
     </CaseStudySections>
