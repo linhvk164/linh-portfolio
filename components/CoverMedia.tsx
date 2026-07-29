@@ -44,7 +44,7 @@ export function CoverMedia({
           className ||
           (natural
             ? "block h-auto w-full"
-            : "block h-full w-full object-cover object-center")
+            : "absolute inset-0 block h-full w-full object-cover object-center")
         }
       />
     );

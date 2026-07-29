@@ -11,60 +11,82 @@ type CaseStudyTocListProps = {
   className?: string;
 };
 
+/** Reading line as a fraction of the viewport height from the top. */
+const ACTIVE_LINE = 0.28;
+
+function getActiveHref(items: CaseStudyTocItem[]): string | null {
+  if (items.length === 0) return null;
+
+  const marker = window.innerHeight * ACTIVE_LINE;
+  let active: string | null = null;
+
+  for (const item of items) {
+    const el = document.getElementById(item.href.replace(/^#/, ""));
+    if (!el) continue;
+
+    // Last section whose top has crossed the reading line wins
+    // (document order), so nested subsections beat their parent.
+    if (el.getBoundingClientRect().top <= marker) {
+      active = item.href;
+    }
+  }
+
+  // Above the first section (e.g. hero): keep the first TOC item active.
+  return active ?? items[0]?.href ?? null;
+}
+
 export function CaseStudyTocList({ slug, className }: CaseStudyTocListProps) {
   const items = getCaseStudyToc(slug);
   const [activeHref, setActiveHref] = useState<string | null>(null);
 
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
     let rafId = 0;
+    let retryId = 0;
     let attempts = 0;
     let cancelled = false;
+    let ticking = false;
+
+    function update() {
+      if (cancelled) return;
+      setActiveHref(getActiveHref(getCaseStudyToc(slug)));
+      ticking = false;
+    }
+
+    function onScrollOrResize() {
+      if (ticking) return;
+      ticking = true;
+      rafId = window.requestAnimationFrame(update);
+    }
 
     function setup() {
       if (cancelled) return;
 
       const tocItems = getCaseStudyToc(slug);
-      const sections = tocItems
-        .map((item) => document.getElementById(item.href.replace(/^#/, "")))
-        .filter((el): el is HTMLElement => Boolean(el));
+      const ready = tocItems.some((item) =>
+        document.getElementById(item.href.replace(/^#/, "")),
+      );
 
-      if (sections.length === 0 && attempts < 40) {
+      if (!ready && attempts < 40) {
         attempts += 1;
-        rafId = window.setTimeout(setup, 50);
+        retryId = window.setTimeout(setup, 50);
         return;
       }
 
-      if (sections.length === 0) return;
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort(
-              (a, b) =>
-                a.boundingClientRect.top - b.boundingClientRect.top,
-            );
-
-          if (visible[0]?.target.id) {
-            setActiveHref(`#${visible[0].target.id}`);
-          }
-        },
-        {
-          rootMargin: "-20% 0px -65% 0px",
-          threshold: [0, 0.25, 0.5],
-        },
-      );
-
-      for (const section of sections) observer.observe(section);
+      update();
+      window.addEventListener("scroll", onScrollOrResize, { passive: true });
+      window.addEventListener("resize", onScrollOrResize);
+      window.addEventListener("hashchange", update);
     }
 
     setup();
 
     return () => {
       cancelled = true;
-      window.clearTimeout(rafId);
-      observer?.disconnect();
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(retryId);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.removeEventListener("hashchange", update);
     };
   }, [slug]);
 
@@ -93,7 +115,7 @@ function TocLink({
   active: boolean;
 }) {
   return (
-    <li>
+    <li className={item.nested ? "pl-3" : undefined}>
       <a
         href={item.href}
         className={`block rounded-[var(--radius-sm)] px-2.5 py-1 text-sm leading-snug transition-colors ${

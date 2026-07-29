@@ -3,11 +3,10 @@ import type { ReactNode } from "react";
 
 type CaseStudyTldrProps = {
   content: CaseStudyTldrContent;
-  meta?: ReactNode;
   media?: ReactNode;
 };
 
-export function CaseStudyTldr({ content, meta, media }: CaseStudyTldrProps) {
+export function CaseStudyTldr({ content, media }: CaseStudyTldrProps) {
   return (
     <div className="space-y-3">
       <p className="text-[7px] font-semibold uppercase tracking-[0.01em] text-case-study-body/70">
@@ -17,7 +16,6 @@ export function CaseStudyTldr({ content, meta, media }: CaseStudyTldrProps) {
         {content.summary}
       </p>
       {media ? <div className="pt-3">{media}</div> : null}
-      {meta}
     </div>
   );
 }

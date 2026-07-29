@@ -10,7 +10,7 @@ export type CaseStudyMetaData = {
 export const caseStudyMetaBySlug: Record<string, CaseStudyMetaData> = {
   folio: {
     role: "Co-founder, Founding UX/UI Designer",
-    timeline: "May 2026 — present",
+    timeline: "May 2026 to present",
     team: "1 designer + 1 engineer",
     skills: ["Product Design", "User Research", "EdTech Founder"],
   },
@@ -28,8 +28,8 @@ export const caseStudyMetaBySlug: Record<string, CaseStudyMetaData> = {
   },
   "un-habitat-urban-data": {
     role: "UX/UI Designer",
-    timeline: "2025 · Contract",
-    team: "Team of 20: engineers, PM, designers, and researchers",
+    timeline: "2025, Contract",
+    team: "Team of 20, engineers, PM, designers, and researchers",
     skills: ["Data Visualization", "Accessibility", "Civic Tech"],
   },
   "un-habitat-admin": {

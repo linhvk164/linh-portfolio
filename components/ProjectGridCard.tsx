@@ -17,6 +17,8 @@ type ProjectGridCardProps = {
    * so we do not download every cover video twice on first paint.
    */
   deferHeavyMedia?: boolean;
+  /** Crop covers to a shared aspect so a row of cards lines up. */
+  uniformCover?: boolean;
 };
 
 export function ProjectGridCard({
@@ -24,6 +26,7 @@ export function ProjectGridCard({
   coverRef,
   coverHidden = false,
   deferHeavyMedia = false,
+  uniformCover = false,
 }: ProjectGridCardProps) {
   const isExternal =
     project.hoverType === "website" && Boolean(project.externalUrl);
@@ -32,6 +35,10 @@ export function ProjectGridCard({
   const linkClassName = "group relative block w-full min-w-0";
   const showLightweightStill = deferHeavyMedia && Boolean(project.coverImage);
   const showDeferredPlaceholder = deferHeavyMedia && !project.coverImage && hasCover;
+  const coverAspect = "aspect-[3/2]";
+  const mediaClassName = uniformCover
+    ? "object-cover object-center transition-transform duration-200 group-hover:scale-[1.05]"
+    : "h-auto w-full bg-bg transition-transform duration-200 group-hover:scale-[1.03]";
 
   const media = (
     <>
@@ -42,31 +49,63 @@ export function ProjectGridCard({
       >
         <CardHoverOverlay
           type={project.hoverType}
-          className="overflow-hidden border border-border bg-bg"
+          className={`overflow-hidden border border-border bg-bg ${
+            uniformCover ? `${coverAspect} w-full` : ""
+          }`}
         >
           {showLightweightStill ? (
-            <CoverMedia
-              alt={project.title}
-              coverImage={project.coverImage}
-              natural
-              stillOnly
-              loading="lazy"
-              className="h-auto w-full bg-bg transition-transform duration-200 group-hover:scale-[1.03]"
-              sizes="(max-width: 768px) 100vw, 40vw"
-            />
+            uniformCover ? (
+              <div className="absolute inset-0 overflow-hidden bg-bg">
+                <CoverMedia
+                  alt={project.title}
+                  coverImage={project.coverImage}
+                  natural={false}
+                  stillOnly
+                  loading="lazy"
+                  className={`absolute inset-0 h-full w-full ${mediaClassName} scale-110`}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+            ) : (
+              <CoverMedia
+                alt={project.title}
+                coverImage={project.coverImage}
+                natural
+                stillOnly
+                loading="lazy"
+                className={mediaClassName}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            )
           ) : showDeferredPlaceholder ? (
-            <div className="aspect-[16/10] w-full bg-surface-muted" aria-hidden />
+            <div className="h-full w-full bg-surface-muted" aria-hidden />
           ) : hasCover ? (
-            <CoverMedia
-              alt={project.title}
-              coverImage={project.coverImage}
-              coverVideo={project.coverVideo}
-              natural
-              loading="lazy"
-              videoPreload="metadata"
-              className="h-auto w-full bg-bg transition-transform duration-200 group-hover:scale-[1.03]"
-              sizes="(max-width: 768px) 100vw, 40vw"
-            />
+            uniformCover ? (
+              <div className="absolute inset-0 overflow-hidden bg-bg">
+                <CoverMedia
+                  alt={project.title}
+                  coverImage={project.coverImage}
+                  coverVideo={project.coverVideo}
+                  natural={false}
+                  stillOnly={!project.coverVideo}
+                  loading="lazy"
+                  videoPreload="metadata"
+                  className={`absolute inset-0 h-full w-full ${mediaClassName} scale-110`}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+            ) : (
+              <CoverMedia
+                alt={project.title}
+                coverImage={project.coverImage}
+                coverVideo={project.coverVideo}
+                natural
+                loading="lazy"
+                videoPreload="metadata"
+                className={mediaClassName}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            )
           ) : (
             <PlaceholderCover accent={project.accent} bordered={false} />
           )}

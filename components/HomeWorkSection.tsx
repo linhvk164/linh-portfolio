@@ -6,33 +6,26 @@ import { PageEnter } from "@/components/PageEnter";
 import { ProjectGridCard } from "@/components/ProjectGridCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import {
-  homeFeaturedProjects,
+  homeOtherProjects,
+  homeSelectedProjects,
   type FeaturedProject,
 } from "@/data/featuredProjects";
 import { publicPath } from "@/lib/assets";
 import { notifyHomeCoversSettled, resetHomeCoversSettled } from "@/lib/homeFlight";
 
-const leftColumnSlugs = [
+const leftColumnSlugs = ["folio", "un-habitat-admin"] as const;
+
+const rightColumnSlugs = ["un-habitat-urban-data", "lofu"] as const;
+
+const mobileSelectedOrderSlugs = [
   "folio",
+  "un-habitat-urban-data",
   "un-habitat-admin",
   "lofu",
 ] as const;
 
-const rightColumnSlugs = [
-  "un-habitat-urban-data",
-  "qol-hackathon",
-  "un-habitat-design-system",
-] as const;
-
-const mobileOrderSlugs = [
-  "folio",
-  "un-habitat-urban-data",
-  "un-habitat-admin",
-  "qol-hackathon",
-  "un-habitat-design-system",
-  "lofu",
-  "chordio",
-] as const;
+const sectionHeadingClassName =
+  "text-xl font-semibold tracking-tight text-ink md:text-2xl";
 
 /** Lightweight stills for the flying stack — never load cover videos here. */
 const STACK_STILL_FALLBACK: Record<string, string> = {
@@ -68,9 +61,12 @@ const STACK_HOLD_MS = 210;
 const FLIGHT_DURATION_MS = 980;
 const FLIGHT_STAGGER_MS = 75;
 
-function projectsBySlugs(slugs: readonly string[]): FeaturedProject[] {
+function projectsBySlugs(
+  slugs: readonly string[],
+  source: FeaturedProject[] = homeSelectedProjects,
+): FeaturedProject[] {
   return slugs
-    .map((slug) => homeFeaturedProjects.find((project) => project.slug === slug))
+    .map((slug) => source.find((project) => project.slug === slug))
     .filter((project): project is FeaturedProject => Boolean(project));
 }
 
@@ -142,9 +138,13 @@ export function HomeWorkSection() {
   const rightProjects = useMemo(() => projectsBySlugs(rightColumnSlugs), []);
   const overflowProjects = useMemo(() => {
     const placed = new Set<string>([...leftColumnSlugs, ...rightColumnSlugs]);
-    return homeFeaturedProjects.filter((project) => !placed.has(project.slug));
+    return homeSelectedProjects.filter((project) => !placed.has(project.slug));
   }, []);
-  const mobileProjects = useMemo(() => projectsBySlugs(mobileOrderSlugs), []);
+  const mobileSelectedProjects = useMemo(
+    () => projectsBySlugs(mobileSelectedOrderSlugs),
+    [],
+  );
+  const otherProjects = useMemo(() => homeOtherProjects, []);
 
   const flightProjects = useMemo(() => {
     return [...leftProjects, ...rightProjects, ...overflowProjects].filter(
@@ -360,15 +360,17 @@ export function HomeWorkSection() {
   const renderCard = (
     project: FeaturedProject,
     delay = 0,
-    options: { trackCover?: boolean } = {},
+    options: { trackCover?: boolean; uniformCover?: boolean } = {},
   ) => {
     const trackCover = options.trackCover ?? false;
+    const uniformCover = options.uniformCover ?? false;
     const card = (
       <ProjectGridCard
         project={project}
         coverRef={trackCover ? setCoverRef(project.slug) : undefined}
         coverHidden={trackCover && flightActive && coversHidden}
         deferHeavyMedia={trackCover && deferHeavyMedia}
+        uniformCover={uniformCover}
       />
     );
 
@@ -431,27 +433,42 @@ export function HomeWorkSection() {
           </PageEnter>
         </section>
 
-        <section id="work" ref={workRef} className="w-full">
-          {!isDesktop ? (
-            <div className="flex min-w-0 flex-col gap-5">
-              {mobileProjects.map((project, index) =>
-                renderCard(project, index * 80, { trackCover: false }),
+        <section id="work" ref={workRef} className="flex w-full flex-col gap-14 md:gap-16">
+          <div className="flex w-full flex-col gap-6 md:gap-8">
+            <h2 className={sectionHeadingClassName}>Selected work</h2>
+            {!isDesktop ? (
+              <div className="flex min-w-0 flex-col gap-5">
+                {mobileSelectedProjects.map((project, index) =>
+                  renderCard(project, index * 80, { trackCover: false }),
+                )}
+              </div>
+            ) : (
+              <div className="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 sm:gap-x-5 md:gap-x-6">
+                <div className="flex min-w-0 flex-col gap-5 sm:gap-6 md:gap-8">
+                  {[...leftProjects, ...overflowProjects].map((project, index) =>
+                    renderCard(project, index * 80, { trackCover: true }),
+                  )}
+                </div>
+                <div className="flex min-w-0 flex-col gap-5 sm:gap-6 md:gap-8">
+                  {rightProjects.map((project, index) =>
+                    renderCard(project, 40 + index * 80, { trackCover: true }),
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex w-full flex-col gap-6 md:gap-8">
+            <h2 className={sectionHeadingClassName}>Discover more</h2>
+            <div className="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-6">
+              {otherProjects.map((project, index) =>
+                renderCard(project, index * 80, {
+                  trackCover: false,
+                  uniformCover: true,
+                }),
               )}
             </div>
-          ) : (
-            <div className="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 sm:gap-x-5 md:gap-x-6">
-              <div className="flex min-w-0 flex-col gap-5 sm:gap-6 md:gap-8">
-                {[...leftProjects, ...overflowProjects].map((project, index) =>
-                  renderCard(project, index * 80, { trackCover: true }),
-                )}
-              </div>
-              <div className="flex min-w-0 flex-col gap-5 sm:gap-6 md:gap-8">
-                {rightProjects.map((project, index) =>
-                  renderCard(project, 40 + index * 80, { trackCover: true }),
-                )}
-              </div>
-            </div>
-          )}
+          </div>
         </section>
       </div>
 

@@ -1,7 +1,4 @@
-import {
-  CaseStudyImagePlaceholder,
-  CaseStudyMeta,
-} from "@/components/case-studies/CaseStudySection";
+import { CaseStudyMeta } from "@/components/case-studies/CaseStudySection";
 import { CaseStudyTldr } from "@/components/case-studies/CaseStudyTldr";
 import { ViewWebsiteButton } from "@/components/ViewWebsiteButton";
 import { getCaseStudyMetaItems } from "@/data/caseStudyMeta";
@@ -26,8 +23,6 @@ export function CaseStudyShell({
   const tldr = getCaseStudyTldr(slug);
   const metaItems = getCaseStudyMetaItems(slug);
   const externalUrl = getProjectExternalUrl(slug);
-  const meta =
-    metaItems.length > 0 ? <CaseStudyMeta items={metaItems} /> : null;
   // Folio folds TL;DR into the Overview section; other studies keep the TL;DR block.
   const showTldrBlock = slug !== "folio" && Boolean(tldr);
 
@@ -44,9 +39,15 @@ export function CaseStudyShell({
         )}
       </header>
 
+      {metaItems.length > 0 ? (
+        <div className="mt-8">
+          <CaseStudyMeta items={metaItems} />
+        </div>
+      ) : null}
+
       {showTldrBlock ? (
-        <section className="mt-6">
-          <CaseStudyTldr content={tldr!} meta={meta} />
+        <section className="mt-8">
+          <CaseStudyTldr content={tldr!} />
         </section>
       ) : null}
 

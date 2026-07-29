@@ -93,7 +93,7 @@ export function CaseStudySection({
         </div>
       )}
 
-      <div className="space-y-5 text-base leading-8 text-case-study-body">
+      <div className="space-y-5 text-base leading-7 text-case-study-body">
         {children}
       </div>
     </section>
@@ -242,9 +242,34 @@ export function CaseStudyImagePlaceholder({
 
 export function CaseStudyImageRow({
   images,
+  equalHeight = false,
 }: {
   images: { src: string; alt: string }[];
+  /** Crop images to a shared aspect so row items match in height */
+  equalHeight?: boolean;
 }) {
+  if (equalHeight) {
+    return (
+      <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-3">
+        {images.map((image) => (
+          <div
+            key={image.src}
+            className="overflow-hidden rounded-[var(--radius-card)] border border-border bg-surface"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={publicPath(image.src)}
+              alt={image.alt}
+              className="aspect-[4/3] h-auto w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="grid min-w-0 grid-cols-1 items-start gap-4 sm:grid-cols-3">
       {images.map((image) => (
@@ -295,11 +320,11 @@ export function CaseStudyList({
           {label}
         </p>
       )}
-      <ul className="space-y-2.5">
+      <ul className="space-y-1">
         {items.map((item) => (
           <li
             key={item}
-            className="flex gap-2.5 text-sm leading-[1.35] text-ink"
+            className="flex gap-2.5 text-sm leading-snug text-ink"
           >
             <span
               className="mt-[0.5em] h-1 w-1 shrink-0 rounded-full bg-ink"

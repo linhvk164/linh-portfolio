@@ -38,7 +38,7 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "un-habitat-urban-data",
     year: "2025",
     productName: "UN Quality Of Life Initiative",
-    title: "A Global Data Platform for 82+ Cities in 5 months",
+    title: "A Global Data Platform for 82+ Cities in 5 Months",
     footerLabel: "Quality of Life — Data Visualization",
     overview:
       "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
@@ -118,19 +118,33 @@ export const featuredProjects: FeaturedProject[] = [
   },
 ];
 
-const homeOrder = [
+const homeSelectedOrder = [
   "folio",
   "un-habitat-urban-data",
   "un-habitat-admin",
+  "lofu",
+] as const;
+
+const homeOtherOrder = [
   "qol-hackathon",
   "un-habitat-design-system",
-  "lofu",
   "chordio",
 ] as const;
 
-export const homeFeaturedProjects: FeaturedProject[] = homeOrder
-  .map((slug) => featuredProjects.find((project) => project.slug === slug))
-  .filter((project): project is FeaturedProject => Boolean(project));
+const homeOrder = [...homeSelectedOrder, ...homeOtherOrder] as const;
+
+function projectsFromOrder(
+  order: readonly string[],
+): FeaturedProject[] {
+  return order
+    .map((slug) => featuredProjects.find((project) => project.slug === slug))
+    .filter((project): project is FeaturedProject => Boolean(project));
+}
+
+export const homeSelectedProjects = projectsFromOrder(homeSelectedOrder);
+export const homeOtherProjects = projectsFromOrder(homeOtherOrder);
+
+export const homeFeaturedProjects: FeaturedProject[] = projectsFromOrder(homeOrder);
 
 export const caseStudyProjects = featuredProjects.filter(
   (project) => project.hoverType === "case-study",

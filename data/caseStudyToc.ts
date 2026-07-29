@@ -2,36 +2,41 @@ export type CaseStudyTocItem = {
   /** Eyebrow label shown in the sidebar TOC */
   label: string;
   href: string;
+  /** Indent as a nested subsection under a parent TOC item */
+  nested?: boolean;
 };
 
 /**
- * Sidebar TOC for case studies — labels use section eyebrows, not titles.
+ * Sidebar TOC for case studies — labels match on-page section headers.
  */
 export const caseStudyTocBySlug: Record<string, CaseStudyTocItem[]> = {
   folio: [
     { label: "Overview", href: "#overview" },
+    { label: "The team and my role", href: "#the-team-and-my-role" },
+    { label: "Research", href: "#research" },
+    { label: "User interviews", href: "#user-interviews", nested: true },
     {
-      label: "Inspiration",
-      href: "#all-good-design-starts-with-a-task-or-in-this-case-an-inspiration",
-    },
-    { label: "User Research", href: "#interview-your-target-audience" },
-    { label: "UX Analysis & Synthesis", href: "#compile-your-findings" },
-    {
-      label: "Product Positioning",
-      href: "#if-you-dont-know-your-niche-youre-bound-to-fail",
+      label: "Understanding the findings",
+      href: "#understanding-the-findings",
+      nested: true,
     },
     {
-      label: "Feature Prioritization",
-      href: "#how-do-you-determine-what-to-build",
+      label: "Product positioning",
+      href: "#product-positioning",
+      nested: true,
     },
-    { label: "Prototyping", href: "#make-it-real" },
-    { label: "Conduct User Tests", href: "#test-test-test" },
     {
-      label: "Problem Identification & Iteration",
-      href: "#identify-and-improve",
+      label: "Feature prioritization",
+      href: "#feature-prioritization",
+      nested: true,
     },
-    { label: "Results", href: "#results" },
-    { label: "Reflection", href: "#reflection" },
+    { label: "Proof of concept", href: "#proof-of-concept" },
+    {
+      label: "User testing and reiteration",
+      href: "#user-testing-and-reiteration",
+    },
+    { label: "Final product", href: "#final-product" },
+    { label: "Outtakes", href: "#outtakes" },
   ],
   chordio: [
     { label: "Overview", href: "#overview" },
@@ -52,10 +57,17 @@ export const caseStudyTocBySlug: Record<string, CaseStudyTocItem[]> = {
   ],
   "un-habitat-urban-data": [
     { label: "Overview", href: "#overview" },
-    { label: "Problem", href: "#problem" },
-    { label: "Process", href: "#process" },
-    { label: "Design Decisions", href: "#design-decisions" },
-    { label: "Reflection", href: "#reflection" },
+    { label: "The team and my role", href: "#the-team-and-my-role" },
+    { label: "Challenge", href: "#challenge" },
+    {
+      label: "Key UX flows I implemented",
+      href: "#key-ux-flows-i-implemented",
+    },
+    { label: "Landing page", href: "#landing-page", nested: true },
+    { label: "Sunburst Diagram", href: "#sunburst-diagram", nested: true },
+    { label: "Indicator Data", href: "#indicator-data", nested: true },
+    { label: "Survey app", href: "#survey-app", nested: true },
+    { label: "Outtakes", href: "#outtakes" },
   ],
   "un-habitat-admin": [
     { label: "Overview", href: "#overview" },

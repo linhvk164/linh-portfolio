@@ -100,8 +100,8 @@ export default async function ProjectPage({ params }: PageProps) {
                   year={project.year}
                   productName={project.productName}
                   title={
-                    slug === "folio"
-                      ? "From Discovery & User Research to a Working Beta in 2 Months"
+                    slug === "folio" || slug === "un-habitat-urban-data"
+                      ? project.title
                       : "About the project"
                   }
                 />
