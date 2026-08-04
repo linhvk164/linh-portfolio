@@ -7,6 +7,8 @@ const OPENING_SESSION_KEY = "linhvk-opening-seen";
 type TypewriterTaglineProps = {
   text: string;
   className?: string;
+  /** Show full text immediately (no typewriter) */
+  instant?: boolean;
 };
 
 function renderWithLineBreaks(value: string) {
@@ -18,11 +20,21 @@ function renderWithLineBreaks(value: string) {
   ));
 }
 
-export function TypewriterTagline({ text, className }: TypewriterTaglineProps) {
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
+export function TypewriterTagline({
+  text,
+  className,
+  instant = false,
+}: TypewriterTaglineProps) {
+  const [displayed, setDisplayed] = useState(instant ? text : "");
+  const [done, setDone] = useState(instant);
 
   useEffect(() => {
+    if (instant) {
+      setDisplayed(text);
+      setDone(true);
+      return;
+    }
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -55,7 +67,7 @@ export function TypewriterTagline({ text, className }: TypewriterTaglineProps) {
       window.clearTimeout(startId);
       window.clearInterval(intervalId);
     };
-  }, [text]);
+  }, [text, instant]);
 
   return (
     <p className={className} aria-label={text.replace(/\n/g, " ")}>

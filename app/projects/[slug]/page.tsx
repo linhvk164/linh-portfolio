@@ -8,6 +8,7 @@ import { LatestProjectsSection } from "@/components/case-studies/LatestProjectsS
 import { CaseStudyShell } from "@/components/case-studies/CaseStudyShell";
 import { ProjectTitleRow } from "@/components/ProjectTitleRow";
 import { PageFooter } from "@/components/SiteShell";
+import { caseStudyMetaBySlug } from "@/data/caseStudyMeta";
 import { getProjectBySlug, projects } from "@/data/projects";
 import { caseStudyLayout } from "@/lib/layout";
 import { formatProjectMeta } from "@/lib/projectTitle";
@@ -99,6 +100,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   slug={project.slug}
                   year={project.year}
                   productName={project.productName}
+                  role={caseStudyMetaBySlug[slug]?.role}
                   title={
                     slug === "folio" || slug === "un-habitat-urban-data"
                       ? project.title

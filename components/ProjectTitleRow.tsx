@@ -7,6 +7,8 @@ type ProjectTitleRowProps = ProjectTitleParts & {
   titleClassName?: string;
   titleAs?: "h1" | "h2" | "p";
   layout?: "stacked" | "split";
+  /** When set (case studies), shown left of company as Role · Company */
+  role?: string;
 };
 
 export function ProjectTitleRow({
@@ -14,6 +16,7 @@ export function ProjectTitleRow({
   year,
   productName,
   title,
+  role,
   className = "",
   metaClassName = "text-ink-soft",
   titleClassName = "project-card-title text-ink",
@@ -21,9 +24,10 @@ export function ProjectTitleRow({
   layout = "stacked",
 }: ProjectTitleRowProps) {
   const yearLabel = formatYearLabel(year, slug);
+  const companyLabel = role ? `${role} · ${productName}` : productName;
   const metaRow = (
     <div className={`flex items-baseline justify-between gap-4 ${labelCaps} ${metaClassName}`}>
-      <div className="min-w-0">{productName}</div>
+      <div className="min-w-0">{companyLabel}</div>
       <div className="shrink-0">{yearLabel}</div>
     </div>
   );
@@ -35,7 +39,7 @@ export function ProjectTitleRow({
           {title}
         </TitleTag>
         <div className="shrink-0 text-right">
-          <div className={labelCaps}>{productName}</div>
+          <div className={labelCaps}>{companyLabel}</div>
           <div className={`${labelCaps} ${metaClassName}`}>{yearLabel}</div>
         </div>
       </div>

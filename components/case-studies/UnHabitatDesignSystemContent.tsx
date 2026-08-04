@@ -89,7 +89,7 @@ export function UnHabitatDesignSystemContent() {
           Together, these decisions created a design system that supported future product growth while 
           making the experience easier to navigate for users.
         </p>
-        <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/Frame 746.png"/>
+        <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/Icons.png"/>
         <CaseStudyImagePlaceholder label="Process image" src="/images/un-habitat/quality of life-solution 3.png"/>
       </CaseStudySection>
 

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { PageEnter } from "@/components/PageEnter";
+import { ArticlesSection } from "@/components/ArticlesSection";
 import { ProjectGridCard } from "@/components/ProjectGridCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import {
@@ -48,18 +48,20 @@ const STACK_POSE: ReadonlyArray<{
   { x: -3, y: -3, rotate: -2, z: 7 },
 ];
 
-const STACK_WIDTH_PX = 300;
+const STACK_WIDTH_PX = 450;
 const STACK_ASPECT = 0.75;
 
 /** Deal onto the stack */
-const INTRO_START_DELAY_MS = 160;
-const INTRO_STAGGER_MS = 95;
-const INTRO_DURATION_MS = 560;
+const INTRO_START_DELAY_MS = 120;
+const INTRO_STAGGER_MS = 75;
+const INTRO_DURATION_MS = 440;
 /** Pause while the full stack is visible */
-const STACK_HOLD_MS = 210;
+const STACK_HOLD_MS = 150;
 /** Auto-fly into grid slots */
-const FLIGHT_DURATION_MS = 980;
-const FLIGHT_STAGGER_MS = 75;
+const FLIGHT_DURATION_MS = 880;
+const FLIGHT_STAGGER_MS = 65;
+/** Crossfade flyers → real covers before revealing chrome */
+const CROSSFADE_MS = 280;
 
 function projectsBySlugs(
   slugs: readonly string[],
@@ -114,7 +116,7 @@ function FlyerCover({
       alt=""
       width={720}
       height={540}
-      sizes="300px"
+      sizes="450px"
       priority={priority}
       loading={priority ? "eager" : "lazy"}
       draggable={false}
@@ -227,7 +229,7 @@ export function HomeWorkSection() {
     let raf = 0;
     let startedAt: number | null = null;
     let finished = false;
-    let sidebarRevealed = false;
+    let crossfadeTimer = 0;
 
     const dealEndMs =
       INTRO_START_DELAY_MS +
@@ -238,8 +240,6 @@ export function HomeWorkSection() {
       flightStartMs +
       Math.max(0, flightProjects.length - 1) * FLIGHT_STAGGER_MS +
       FLIGHT_DURATION_MS;
-    // Reveal chrome once the first covers are mostly home — don't wait for the last stagger.
-    const sidebarRevealMs = flightStartMs + FLIGHT_DURATION_MS * 0.35;
 
     const readStackOrigin = (index: number): CoverRect | null => {
       const anchor = stackAnchorRef.current;
@@ -260,12 +260,26 @@ export function HomeWorkSection() {
     const finish = () => {
       if (finished) return;
       finished = true;
+
+      // Pin flyers to final slots, reveal covers underneath, then fade flyers out.
+      flightProjects.forEach((project) => {
+        const flyer = flyerRefs.current.get(project.slug);
+        const target = coverRefs.current.get(project.slug);
+        if (!flyer || !target) return;
+        const endRect = target.getBoundingClientRect();
+        flyer.style.transition = `opacity ${CROSSFADE_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        flyer.style.width = `${endRect.width}px`;
+        flyer.style.height = `${endRect.height}px`;
+        flyer.style.transform = `translate3d(${endRect.left}px, ${endRect.top}px, 0)`;
+        flyer.style.opacity = "0";
+      });
+
       setCoversHidden(false);
-      setFlyersLive(false);
-      if (!sidebarRevealed) {
-        sidebarRevealed = true;
-        notifyHomeCoversSettled();
-      }
+      notifyHomeCoversSettled();
+
+      crossfadeTimer = window.setTimeout(() => {
+        setFlyersLive(false);
+      }, CROSSFADE_MS + 40);
     };
 
     const update = (now = performance.now()) => {
@@ -274,11 +288,6 @@ export function HomeWorkSection() {
 
       if (startedAt === null) startedAt = now;
       const elapsed = now - startedAt;
-
-      if (!sidebarRevealed && elapsed >= sidebarRevealMs) {
-        sidebarRevealed = true;
-        notifyHomeCoversSettled();
-      }
 
       if (elapsed >= flightStartMs) {
         setMountedFlyerCount(flightProjects.length);
@@ -313,15 +322,17 @@ export function HomeWorkSection() {
           flightStartMs + index * FLIGHT_STAGGER_MS;
         const flightElapsed = elapsed - cardFlightStart;
         const flightT = clamp(flightElapsed / FLIGHT_DURATION_MS, 0, 1);
+        // Soft settle into the slot — ease out more in the last stretch.
         const flightEased = easeInOutCubic(flightT);
+        const settle = easeOutCubic(flightT);
 
         const left = lerp(origin.left, endRect.left, flightEased);
         const top = lerp(stackTop, endRect.top, flightEased);
-        const width = lerp(origin.width, endRect.width, flightEased);
-        const height = lerp(origin.height, endRect.height, flightEased);
-        const rotate = lerp(stackRotate, 0, flightEased);
-        const scale = lerp(stackScale, 1, flightEased);
-        const opacity = lerp(stackOpacity, 1, Math.min(1, flightEased * 1.2));
+        const width = lerp(origin.width, endRect.width, settle);
+        const height = lerp(origin.height, endRect.height, settle);
+        const rotate = lerp(stackRotate, 0, settle);
+        const scale = lerp(stackScale, 1, settle);
+        const opacity = lerp(stackOpacity, 1, Math.min(1, flightEased * 1.15));
 
         if (dealT <= 0) {
           flyer.style.opacity = "0";
@@ -329,7 +340,8 @@ export function HomeWorkSection() {
           return;
         }
 
-        flyer.style.willChange = "transform";
+        flyer.style.willChange = "transform, opacity";
+        flyer.style.transition = "none";
         flyer.style.visibility = "visible";
         flyer.style.opacity = String(opacity);
         flyer.style.width = `${width}px`;
@@ -351,11 +363,13 @@ export function HomeWorkSection() {
     return () => {
       finished = true;
       if (raf) cancelAnimationFrame(raf);
+      if (crossfadeTimer) window.clearTimeout(crossfadeTimer);
       window.removeEventListener("resize", onResize);
     };
   }, [flightActive, flyersLive, flightProjects]);
 
   const deferHeavyMedia = flightActive && coversHidden;
+  const hideCopy = flightActive && coversHidden;
 
   const renderCard = (
     project: FeaturedProject,
@@ -371,10 +385,11 @@ export function HomeWorkSection() {
         coverHidden={trackCover && flightActive && coversHidden}
         deferHeavyMedia={trackCover && deferHeavyMedia}
         uniformCover={uniformCover}
+        copyHidden={hideCopy}
       />
     );
 
-    if (flightActive && trackCover) {
+    if (flightActive) {
       return (
         <div key={project.slug} className="w-full min-w-0">
           {card}
@@ -395,47 +410,26 @@ export function HomeWorkSection() {
 
   return (
     <>
-      <div className="flex w-full flex-col gap-16 md:gap-16 lg:gap-5">
-        <section
-          aria-label="Introduction continued"
-          className="grid w-full grid-cols-1 items-start justify-items-start gap-4 pt-1 text-left md:gap-5 lg:grid-cols-[auto_auto] lg:items-end lg:justify-start lg:gap-14"
-        >
-          <div className="home-intro-enter-support w-full lg:mb-8">
-            <div className="flex w-full max-w-[30rem] flex-col items-start gap-3 md:max-w-[34rem] md:gap-4 lg:max-w-[min(100%,34rem)]">
-              <p className="home-intro-support max-w-none">
-                I specialize in taking abstract social good concepts and turning
-                them into <strong> digital products.</strong> My
-                background in <strong>non-profits</strong> fuels a drive to{" "}
-                <strong>solve real user problems.</strong> I recently shipped a
-                global quality-of-life platform across 82+ cities, designing
-                accessible data visualizations and CMS tools.
-              </p>
-              <div className="home-intro-enter-hint">
-                <p className="intro-scroll-hint flex items-center justify-start gap-1.5 text-sm text-ink-soft">
-                  <span className="intro-scroll-hint-glyph" aria-hidden>
-                    ↓
-                  </span>
-                  Scroll down to explore !
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* Invisible origin for the flyer stack — viewport center */}
+      {flightActive ? (
+        <div
+          ref={stackAnchorRef}
+          aria-hidden
+          className="pointer-events-none fixed top-1/2 left-1/2 z-0 aspect-[4/3] w-[420px] max-w-[55vw] -translate-x-1/2 -translate-y-1/2 opacity-0"
+        />
+      ) : null}
 
-          <PageEnter
-            delay={80}
-            className="relative hidden min-h-[300px] w-[340px] max-w-full lg:block"
-          >
-            <div
-              ref={stackAnchorRef}
-              className="relative aspect-[4/3] w-[340px] max-w-full"
-              aria-hidden
-            />
-          </PageEnter>
-        </section>
-
+      <div className="flex w-full flex-col gap-16 md:gap-16 lg:gap-14">
         <section id="work" ref={workRef} className="flex w-full flex-col gap-14 md:gap-16">
           <div className="flex w-full flex-col gap-6 md:gap-8">
-            <h2 className={sectionHeadingClassName}>Selected work</h2>
+            <h2
+              className={`${sectionHeadingClassName}${
+                hideCopy ? " invisible" : ""
+              }`}
+              aria-hidden={hideCopy || undefined}
+            >
+              Selected work
+            </h2>
             {!isDesktop ? (
               <div className="flex min-w-0 flex-col gap-5">
                 {mobileSelectedProjects.map((project, index) =>
@@ -459,7 +453,14 @@ export function HomeWorkSection() {
           </div>
 
           <div className="flex w-full flex-col gap-6 md:gap-8">
-            <h2 className={sectionHeadingClassName}>Discover more</h2>
+            <h2
+              className={`${sectionHeadingClassName}${
+                hideCopy ? " invisible" : ""
+              }`}
+              aria-hidden={hideCopy || undefined}
+            >
+              Discover more
+            </h2>
             <div className="grid w-full grid-cols-1 items-start gap-5 sm:grid-cols-2 sm:gap-x-5 md:grid-cols-3 md:gap-x-6">
               {otherProjects.map((project, index) =>
                 renderCard(project, index * 80, {
@@ -469,6 +470,8 @@ export function HomeWorkSection() {
               )}
             </div>
           </div>
+
+          {!hideCopy ? <ArticlesSection instant /> : null}
         </section>
       </div>
 

@@ -50,19 +50,24 @@ function useHomeCoversSettled(isHome: boolean) {
 function SidebarCard({
   showNav = true,
   wide = false,
+  instant = false,
 }: {
   showNav?: boolean;
   /** Full-width mobile/tablet header — banner beside content from md up */
   wide?: boolean;
+  /** Skip staggered enter animations */
+  instant?: boolean;
 }) {
   const pathname = usePathname();
   const isExplore = pathname.startsWith("/explore");
   const headline = isExplore ? site.exploreHeadline : site.name;
   const tagline = isExplore ? site.exploreTagline : site.tagline;
 
+  const introItem = instant ? "" : "sidebar-intro-item ";
+
   return (
     <div
-      className={`sidebar-card-enter overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
+      className={`${instant ? "" : "sidebar-card-enter "}overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
         wide
           ? "md:grid md:grid-cols-[minmax(0,0.75fr)_minmax(16rem,1.25fr)] md:items-stretch"
           : ""
@@ -70,7 +75,7 @@ function SidebarCard({
     >
       {/* Banner — top on phone; right column on tablet+ when wide */}
       <div
-        className={`sidebar-banner-enter relative overflow-hidden ${
+        className={`${instant ? "" : "sidebar-banner-enter "}relative overflow-hidden ${
           wide
             ? "aspect-[4/3] md:order-2 md:aspect-auto md:min-h-[17rem]"
             : "aspect-[687/372]"
@@ -81,7 +86,7 @@ function SidebarCard({
           alt=""
           fill
           priority
-          className="sidebar-banner-image scale-[1.12] object-cover object-center"
+          className={`${instant ? "" : "sidebar-banner-image "}scale-[1.12] object-cover object-center`}
           sizes="(max-width: 1024px) 60vw, 320px"
         />
         <Link
@@ -119,24 +124,25 @@ function SidebarCard({
               alt={site.name}
               width={88}
               height={88}
-              className="sidebar-intro-item h-[5.5rem] w-[5.5rem] rounded-full border-[3px] border-white object-cover shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+              className={`${introItem}h-[5.5rem] w-[5.5rem] rounded-full border-[3px] border-white object-cover shadow-[0_1px_2px_rgba(0,0,0,0.04)]`}
               priority
             />
-            <div className="sidebar-intro-item mt-3 w-full min-w-0">
+            <div className={`${introItem}mt-3 w-full min-w-0`}>
               <p className="sidebar-name tracking-tight">{headline}</p>
               <p className="sidebar-role">{site.title}</p>
             </div>
             <TypewriterTagline
               key={tagline}
               text={tagline}
-              className={`sidebar-tagline sidebar-intro-item ${
+              instant={instant}
+              className={`sidebar-tagline ${introItem}${
                 wide ? "text-center md:text-left" : "text-center"
               }`}
             />
           </div>
 
           <div
-            className={`sidebar-intro-item flex w-full items-center ${
+            className={`${introItem}flex w-full items-center ${
               wide
                 ? "justify-center text-center md:w-auto md:justify-start md:text-left"
                 : "justify-center text-center"
@@ -159,7 +165,7 @@ function SidebarCard({
         </div>
 
         {showNav ? (
-          <div className="sidebar-intro-item mt-5 rounded-2xl border border-border bg-white/95 p-1.5 backdrop-blur-md">
+          <div className={`${introItem}mt-5 rounded-2xl border border-border bg-white/95 p-1.5 backdrop-blur-md`}>
             <PrimaryNav className="flex items-stretch gap-1.5" />
           </div>
         ) : null}
@@ -187,7 +193,7 @@ export function SiteSidebar() {
         </header>
       ) : null}
 
-      {/* Desktop — fixed left panel (home: only after scrolling past the hero) */}
+      {/* Desktop — fixed left panel (home: after flyer intro settles) */}
       <aside
         className={`fixed top-0 left-0 z-40 hidden h-screen w-[320px] flex-col p-4 lg:flex ${
           showDesktopChrome ? "pointer-events-auto" : "pointer-events-none"
@@ -203,19 +209,21 @@ export function SiteSidebar() {
           </ViewTransition>
         ) : showDesktopChrome ? (
           <ViewTransition name="site-side-panel" share="sidebar-collapse">
-            <div>
+            <div className={isHome ? "sidebar-panel-enter" : undefined}>
               <SidebarCard showNav />
             </div>
           </ViewTransition>
         ) : null}
       </aside>
 
-      {/* Mobile / tablet — floating bottom nav */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
-        <div className="pointer-events-auto w-full max-w-[22rem] rounded-2xl border border-border bg-white/95 p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.1)] backdrop-blur-md">
-          <PrimaryNav className="flex items-stretch gap-1.5" />
+      {/* Mobile / tablet — floating bottom nav (not on case studies) */}
+      {!caseStudySlug ? (
+        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
+          <div className="pointer-events-auto w-full max-w-[22rem] rounded-2xl border border-border bg-white/95 p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.1)] backdrop-blur-md">
+            <PrimaryNav className="flex items-stretch gap-1.5" />
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {/* Floating resume — bottom left (home: with the side panel) */}
       {showDesktopChrome ? (

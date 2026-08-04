@@ -3,6 +3,7 @@ import type { Ref } from "react";
 import { CardHoverOverlay } from "@/components/CardHoverOverlay";
 import { CoverMedia } from "@/components/CoverMedia";
 import type { FeaturedProject } from "@/data/featuredProjects";
+import { caseStudyMetaBySlug } from "@/data/caseStudyMeta";
 import { PlaceholderCover } from "@/components/PlaceholderCover";
 import { ProjectTags } from "@/components/ProjectTags";
 import { ProjectTitleRow } from "@/components/ProjectTitleRow";
@@ -19,6 +20,8 @@ type ProjectGridCardProps = {
   deferHeavyMedia?: boolean;
   /** Crop covers to a shared aspect so a row of cards lines up. */
   uniformCover?: boolean;
+  /** Hide title/meta while the home flyer intro is playing */
+  copyHidden?: boolean;
 };
 
 export function ProjectGridCard({
@@ -27,6 +30,7 @@ export function ProjectGridCard({
   coverHidden = false,
   deferHeavyMedia = false,
   uniformCover = false,
+  copyHidden = false,
 }: ProjectGridCardProps) {
   const isExternal =
     project.hoverType === "website" && Boolean(project.externalUrl);
@@ -36,6 +40,7 @@ export function ProjectGridCard({
   const showLightweightStill = deferHeavyMedia && Boolean(project.coverImage);
   const showDeferredPlaceholder = deferHeavyMedia && !project.coverImage && hasCover;
   const coverAspect = "aspect-[3/2]";
+  const role = caseStudyMetaBySlug[project.slug]?.role;
   const mediaClassName = uniformCover
     ? "object-cover object-center transition-transform duration-200 group-hover:scale-[1.05]"
     : "h-auto w-full bg-bg transition-transform duration-200 group-hover:scale-[1.03]";
@@ -138,7 +143,10 @@ export function ProjectGridCard({
         </Link>
       )}
 
-      <div className="min-w-0 text-left">
+      <div
+        className={`min-w-0 text-left${copyHidden ? " invisible" : ""}`}
+        aria-hidden={copyHidden || undefined}
+      >
         {isExternal ? (
           <a
             href={href}
@@ -146,11 +154,11 @@ export function ProjectGridCard({
             rel="noopener noreferrer"
             className="block"
           >
-            <ProjectTitleRow {...project} />
+            <ProjectTitleRow {...project} role={role} />
           </a>
         ) : (
           <Link href={href} transitionTypes={["nav-forward"]} className="block">
-            <ProjectTitleRow {...project} />
+            <ProjectTitleRow {...project} role={role} />
           </Link>
         )}
       </div>
