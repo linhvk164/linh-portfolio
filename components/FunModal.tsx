@@ -202,7 +202,7 @@ export function FunModal({ item, onClose }: FunModalProps) {
           rel="noopener noreferrer"
           className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
         >
-          Visit website
+          {item.externalLabel ?? "Visit website"}
           <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
         </a>
       ) : null}

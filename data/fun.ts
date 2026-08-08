@@ -15,9 +15,59 @@ export type FunItem = {
   coverImage?: string;
   youtubeId?: string;
   externalUrl?: string;
+  externalLabel?: string;
 };
 
 export const funItems: FunItem[] = [
+  {
+    id: "lets-catchup",
+    name: "Let's Catchup",
+    title: "group scheduling for friends across timezones",
+    created: "2026",
+    tools: "Vercel, Figma, Cursor AI",
+    context: "Social tool",
+    description:
+      "If you have trouble scheduling time to call your friend groups in different timezones, I built this for you! People can add their availabilities and the app automatically calculates timezone differences and recommends the best overlap, while still being cute and personal. It's free and no account needed.",
+    images: [
+      "/images/explore/lets-catchup/flipped.png",
+      "/images/explore/lets-catchup/howitworks.png",
+      "/images/explore/lets-catchup/inbox.png",
+    ],
+    coverImage: "/images/explore/lets-catchup/lets-catchup-cover.png",
+    externalUrl: "https://lets-catchup.vercel.app/",
+    externalLabel: "Check out Let's Catchup!",
+  },
+  {
+    id: "radiant-roots",
+    name: "Radiant Roots",
+    title: "website design",
+    created: "2026",
+    tools: "Framer, Figma",
+    context: "Web design",
+    description:
+      "A freelance website for Radiant Roots, a local medspa in Ontario",
+    images: ["/images/explore/radiant-roots-cover.webp"],
+    coverImage: "/images/explore/radiant-roots-cover.webp",
+    externalUrl: "https://radiantroots.framer.website/",
+  },
+  {
+    id: "porcelain-boy",
+    name: "porcelain boy",
+    title: "songwriting + video editing",
+    created: "2024",
+    tools: "Premiere Pro, After Effects",
+    context: "Music video",
+    description:
+      "Filmed a music video with my friends for a song I wrote and recorded!",
+    images: [
+      "/images/explore/porcelainboy/porcelainboy-1.png",
+      "/images/explore/porcelainboy/porcelainboy-2.png",
+      "/images/explore/porcelainboy/porcelainboy-3.png",
+      "/images/explore/porcelainboy/porcelainboy-4.png",
+    ],
+    coverImage: "/images/explore/porcelainboy/porcelain-boy-cover.webp",
+    youtubeId: "qm1NaNR09MY",
+  },
   {
     id: "mako-asya",
     name: "mako asya",
@@ -81,37 +131,6 @@ export const funItems: FunItem[] = [
     ],
     coverImage: "/images/explore/tako/tako-cover.png",
     externalUrl: "https://www.velocityincubator.com/company/tako-inc",
-  },
-  {
-    id: "radiant-roots",
-    name: "Radiant Roots",
-    title: "website design",
-    created: "2026",
-    tools: "Framer, Figma",
-    context: "Web design",
-    description:
-      "A freelance website for Radiant Roots, a local medspa in Ontario",
-    images: ["/images/explore/radiant-roots-cover.webp"],
-    coverImage: "/images/explore/radiant-roots-cover.webp",
-    externalUrl: "https://radiantroots.framer.website/",
-  },
-  {
-    id: "porcelain-boy",
-    name: "porcelain boy",
-    title: "songwriting + video editing",
-    created: "2024",
-    tools: "Premiere Pro, After Effects",
-    context: "Music video",
-    description:
-      "Filmed a music video with my friends for a song I wrote and recorded!",
-    images: [
-      "/images/explore/porcelainboy/porcelainboy-1.png",
-      "/images/explore/porcelainboy/porcelainboy-2.png",
-      "/images/explore/porcelainboy/porcelainboy-3.png",
-      "/images/explore/porcelainboy/porcelainboy-4.png",
-    ],
-    coverImage: "/images/explore/porcelainboy/porcelain-boy-cover.webp",
-    youtubeId: "qm1NaNR09MY",
   },
   {
     id: "what-am-i-supposed-to-do",
