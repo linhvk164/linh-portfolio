@@ -2,10 +2,9 @@ import { ClickSound } from "@/components/ClickSound";
 import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
-import { SiteFrame } from "@/components/SiteFrame";
+import { MainColumn, SiteFrame } from "@/components/SiteFrame";
 import { SiteSidebar } from "@/components/SiteSidebar";
 import { SiteFooter } from "@/components/SiteNav";
-import { mainArea } from "@/lib/layout";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
@@ -15,9 +14,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <ClickSound />
       <SiteFrame>
         <SiteSidebar />
-        <div className="lg:pl-[320px]">
-          <div className={mainArea}>{children}</div>
-        </div>
+        <MainColumn>{children}</MainColumn>
       </SiteFrame>
     </>
   );

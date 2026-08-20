@@ -17,7 +17,7 @@ export function SiteFooter() {
   return (
     <footer
       id="contact"
-      className="overflow-hidden rounded-tl-[2.75rem] bg-accent md:rounded-tl-[3.5rem]"
+      className="scroll-mt-24 overflow-hidden rounded-tl-[2.75rem] bg-accent md:rounded-tl-[3.5rem]"
     >
       <div className={footerPad}>
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-12">
@@ -144,7 +144,7 @@ export function SiteFooter() {
           >
             Hozier ♫
           </a>
-          . Last updated July 2026.
+          . Last updated August 2026.
         </p>
       </div>
     </footer>

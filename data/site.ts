@@ -41,5 +41,6 @@ export const footerNavItems = [
   { label: "Home", href: "/" },
   { label: "Explore", href: "/explore" },
   { label: "About", href: "/about" },
+  { label: "Design Studio", href: "/designstudio" },
   { label: "Contact", href: "/#contact" },
 ] as const;

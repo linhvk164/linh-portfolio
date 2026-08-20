@@ -84,7 +84,7 @@ export function ScrollToTopButton() {
               ? { position: "absolute", right: 16, bottom: FOOTER_GAP_PX }
               : { position: "fixed", right: 16, bottom: baseBottom }
           }
-          className="pointer-events-auto z-[90] inline-flex h-12 items-center gap-2 rounded-full border border-[#d0d0d0] bg-white px-4 text-sm font-medium text-ink shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-colors duration-200 hover:border-ink-soft hover:bg-[#f7f7f7]"
+          className="pointer-events-auto z-[90] inline-flex h-12 items-center gap-2 rounded-full border border-[#d0d0d0] bg-white px-4 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink-soft hover:bg-[#f7f7f7]"
           aria-label="Scroll to top"
         >
           <ArrowUp size={16} strokeWidth={2.25} aria-hidden />

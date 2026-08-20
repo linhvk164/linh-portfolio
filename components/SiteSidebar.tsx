@@ -178,8 +178,11 @@ export function SiteSidebar() {
   const pathname = usePathname();
   const caseStudySlug = useCaseStudySlug();
   const isHome = pathname === "/";
+  const isDesignStudio = pathname.startsWith("/designstudio");
   const coversSettled = useHomeCoversSettled(isHome);
   const showDesktopChrome = !isHome || coversSettled;
+
+  if (isDesignStudio) return null;
 
   return (
     <>
