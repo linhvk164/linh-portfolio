@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { BookOpen, Check, Globe2, Handshake, Target } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { DesignStudioFaq } from "@/components/DesignStudioFaq";
 import { DesignStudioStats } from "@/components/DesignStudioStats";
 import { designStudio, designStudioCallHref } from "@/data/designStudio";
 import { publicPath } from "@/lib/assets";
@@ -240,7 +241,10 @@ export function DesignStudioContent() {
 
   return (
     <div id="top" className="mx-auto w-full max-w-5xl">
-      <section className="relative flex min-h-[min(72vh,40rem)] flex-col items-center justify-center px-2 py-16 text-center md:py-24">
+      <section
+        className="relative flex min-h-[min(72vh,40rem)] flex-col items-center justify-center px-2 py-16 text-center md:py-24"
+        aria-labelledby="design-studio-hero-title"
+      >
         <div className="mb-8 flex flex-wrap justify-center gap-2 md:hidden">
           {[...hero.tagsLeft, ...hero.tagsRight].map((tag, index) => (
             <span
@@ -273,12 +277,15 @@ export function DesignStudioContent() {
           </div>
 
           <div className="page-enter-item flex items-center justify-center gap-2.5">
-            <h1 className="design-studio-hero-title tracking-tight text-ink">
+            <h1
+              id="design-studio-hero-title"
+              className="design-studio-hero-title tracking-tight text-ink"
+            >
               {hero.headline}
             </h1>
             <Image
               src={publicPath(HERO_PROFILE_SRC)}
-              alt=""
+              alt="Linh Khuong, web designer in Waterloo, Ontario"
               width={104}
               height={104}
               className="design-studio-hero-avatar shrink-0 rounded-full object-cover"
@@ -341,7 +348,10 @@ export function DesignStudioContent() {
       </div>
 
       <div className="mt-20 space-y-16 md:mt-24 md:space-y-20">
-        <div className="mt-6 grid gap-10 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)] md:items-center md:gap-16">
+        <section
+          aria-labelledby="about"
+          className="mt-6 grid gap-10 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.75fr)] md:items-center md:gap-16"
+        >
           <ScrollReveal>
             <p className={`${labelCaps} text-ink-soft`}>{about.kicker}</p>
             <h2
@@ -362,9 +372,9 @@ export function DesignStudioContent() {
           <ScrollReveal delay={90}>
             <DesignStudioStats />
           </ScrollReveal>
-        </div>
+        </section>
 
-        <div>
+        <section aria-labelledby="process">
           <ScrollReveal>
             <p className={`${labelCaps} text-ink-soft`}>{process.brow}</p>
             <h2 id="process" className={`${sectionHeadingClassName} mt-2`}>
@@ -392,12 +402,18 @@ export function DesignStudioContent() {
               </li>
             ))}
           </ol>
-        </div>
+        </section>
 
-        <section className="design-studio-why-me relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-accent py-16 md:py-20">
+        <section
+          className="design-studio-why-me relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 bg-accent py-16 md:py-20"
+          aria-labelledby="why-me"
+        >
           <div className="mx-auto w-full max-w-5xl px-2">
             <ScrollReveal>
-              <h2 className={`${sectionHeadingClassName} text-white`}>
+              <h2
+                id="why-me"
+                className={`${sectionHeadingClassName} text-white`}
+              >
                 {whyMe.heading}
               </h2>
             </ScrollReveal>
@@ -428,10 +444,13 @@ export function DesignStudioContent() {
           </div>
         </section>
 
-        <div>
+        <section aria-labelledby="trusted-by-leaders">
           <ScrollReveal>
             <div className="text-center">
-              <h2 className="design-studio-about-title tracking-tight text-ink">
+              <h2
+                id="trusted-by-leaders"
+                className="design-studio-about-title tracking-tight text-ink"
+              >
                 {testimonials.heading}
               </h2>
               <div className="mx-auto mt-3 max-w-2xl space-y-1 text-base leading-relaxed text-ink-muted md:text-lg">
@@ -444,9 +463,9 @@ export function DesignStudioContent() {
           <div className="mt-8">
             <TrustedMasonryGrid liveSites={liveSites} testimonials={testimonials} />
           </div>
-        </div>
+        </section>
 
-        <div className="pb-16 md:pb-20">
+        <section className="pb-16 md:pb-20" aria-labelledby="pricing">
           <ScrollReveal>
             <p className={`${labelCaps} text-ink-soft`}>{offer.brow}</p>
             <h2 id="pricing" className={`${sectionHeadingClassName} mt-2`}>
@@ -521,7 +540,11 @@ export function DesignStudioContent() {
               {hero.cta}
             </a>
           </ScrollReveal>
-        </div>
+        </section>
+
+        <section aria-labelledby="faq">
+          <DesignStudioFaq />
+        </section>
       </div>
     </div>
   );

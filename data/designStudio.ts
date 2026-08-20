@@ -7,14 +7,17 @@ export const designStudio = {
   hero: {
     headline: "Hello! I'm Linh.",
     subheadingLines: [
-      "I'm a designer who can",
+      "I'm a web designer who can",
       "bring your brand",
       "the attention it",
     ],
     subheadingEmphasis: "deserves",
     subheadingAfter: ".",
     cta: "Let's Chat",
-    availabilityLines: ["Open to freelance", "and remote roles"],
+    availabilityLines: [
+      "Open to freelance",
+      "Currently based in Waterloo, ON, Canada",
+    ],
     socialProof: "4+ years of experience",
     tagsLeft: ["civic tech", "AI prototyping", "SaaS"],
     tagsRight: ["0 → 1 startups", "user research", "UI design"],
@@ -69,6 +72,44 @@ export const designStudio = {
         "Edits, updates, and revisions when you need them. Pay only for the hours you use. Month to month, no minimum commitment.",
     },
     note: "That's it. For $450, you have a website. Add support whenever you need changes.",
+  },
+  faq: {
+    brow: "FAQ",
+    heading: "Got questions?",
+    image: "/images/about/Work trip picture.webp",
+    imageAlt: "Linh on a work trip",
+    items: [
+      {
+        question: "Can I use my own custom domain?",
+        answer:
+          "Yes. The $450 package includes a yourwebsite.vercel.app domain. If you already have a custom domain, I will connect it for you. If you need help buying and setting one up, I can walk you through it step by step.",
+      },
+      {
+        question: "Can you build an e-commerce site for $450?",
+        answer:
+          "No. E-commerce sites need more features and take more time to build, so pricing starts higher. Reach out and we can talk about what you need.",
+      },
+      {
+        question: "Can I add more pages to my website?",
+        answer:
+          "Yes. Each additional page is $50 on top of the base package.",
+      },
+      {
+        question: "Do you do branding and logo too?",
+        answer:
+          "Yes, I do! Branding and logo design are available as an add-on for an additional $200.",
+      },
+      {
+        question: "How does the legal process work?",
+        answer:
+          "I have a contract ready for us to review. We both sign it before development begins, so everything is clear from the start.",
+      },
+      {
+        question: "Do I have to move forward after the intro call?",
+        answer:
+          "Not at all. The intro call is a chance to say hi and see if we are a good fit. There is no obligation to proceed.",
+      },
+    ],
   },
   whyMe: {
     heading: "Why Work With Me",

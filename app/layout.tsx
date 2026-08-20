@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { SiteShell } from "@/components/SiteShell";
+import { siteUrl } from "@/lib/siteUrl";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -11,7 +12,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "linhvk — UX/UI Designer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "linhvk — UX/UI Designer",
+    template: "%s",
+  },
   description:
     "UX/UI designer based in Canada. Branding, illustrations, and no-code development.",
   icons: {
