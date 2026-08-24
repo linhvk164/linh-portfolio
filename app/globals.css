@@ -1164,3 +1164,31 @@ body.explore-page {
   background-size: 28px 28px !important;
   background-position: top left !important;
 }
+
+.home-discover-grid {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, #ededed 1px, transparent 1px),
+    linear-gradient(to bottom, #ededed 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: top left;
+}
+
+@keyframes home-discover-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.home-discover-track {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-discover-track {
+    animation: none;
+  }
+}

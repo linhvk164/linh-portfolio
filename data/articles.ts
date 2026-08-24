@@ -5,6 +5,11 @@ export type Article = {
   coverImage: string;
   year: string;
   host: string;
+  /**
+   * linkedin-title — cream card with LinkedIn mark + headline only
+   * post — cover image post card
+   */
+  variant?: "post" | "linkedin-title";
 };
 
 export const articles: Article[] = [
@@ -16,6 +21,7 @@ export const articles: Article[] = [
     coverImage: "/images/press/un-statistical-commission.jpg",
     year: "2026",
     host: "LinkedIn",
+    variant: "linkedin-title",
   },
   {
     id: "uwaterloo-hackathon",
@@ -24,14 +30,7 @@ export const articles: Article[] = [
     coverImage: "/images/press/uwaterloo-hackathon.jpg",
     year: "2025",
     host: "University of Waterloo",
-  },
-  {
-    id: "folio-share-your-process",
-    title: "Share your process — building Folio for language learners",
-    url: "https://www.linkedin.com/posts/linhvankhuong_share-your-process-share-your-process-share-7471292601237782529-kzUf/",
-    coverImage: "/images/press/folio-share-your-process.jpg",
-    year: "2026",
-    host: "LinkedIn",
+    variant: "linkedin-title",
   },
   {
     id: "suzhou-hackathon",
@@ -40,6 +39,7 @@ export const articles: Article[] = [
     coverImage: "/images/press/suzhou-hackathon.jpg",
     year: "2025",
     host: "LinkedIn",
+    variant: "linkedin-title",
   },
   {
     id: "waterloo-hackathon",
@@ -49,6 +49,7 @@ export const articles: Article[] = [
     coverImage: "/images/press/waterloo-hackathon.jpg",
     year: "2025",
     host: "LinkedIn",
+    variant: "linkedin-title",
   },
   {
     id: "welcome-webinar",
@@ -58,6 +59,7 @@ export const articles: Article[] = [
     coverImage: "/images/press/welcome-webinar.jpg",
     year: "2025",
     host: "LinkedIn",
+    variant: "linkedin-title",
   },
   {
     id: "qoli-team",
@@ -67,5 +69,6 @@ export const articles: Article[] = [
     coverImage: "/images/press/qoli-team.jpg",
     year: "2025",
     host: "LinkedIn",
+    variant: "linkedin-title",
   },
 ];

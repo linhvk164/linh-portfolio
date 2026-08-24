@@ -26,7 +26,7 @@ export function UnHabitatUrbanDataContent() {
         <p>
           I joined as the 5th person on the Quality of Life Initiative
           Innovation team and helped design a global platform that now brings
-          together rich data from over 82 cities. The platform launched
+          together rich data from over 170 cities. The platform launched
           worldwide in February 2025.
         </p>
         <p>
@@ -96,7 +96,7 @@ export function UnHabitatUrbanDataContent() {
               <p>
                 From there, I redesigned the page with a clear CTA, labeled the
                 city dots, simplified the branding so it stopped competing with
-                the content, and added stats like &ldquo;82+ cities
+                the content, and added stats like &ldquo;170+ cities
                 monitored&rdquo; to give users immediate proof of scale and
                 credibility before they explored further.
               </p>

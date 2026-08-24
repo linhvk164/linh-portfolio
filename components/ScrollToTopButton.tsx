@@ -5,15 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const SHOW_AFTER_PX = 320;
 const FOOTER_GAP_PX = 16;
-/** Mobile clearance above bottom nav (~nav height + gap) */
-const MOBILE_BASE_BOTTOM_PX = 108;
-const DESKTOP_BASE_BOTTOM_PX = 16;
-
-function getBaseBottom() {
-  return window.matchMedia("(min-width: 1024px)").matches
-    ? DESKTOP_BASE_BOTTOM_PX
-    : MOBILE_BASE_BOTTOM_PX;
-}
+const BASE_BOTTOM_PX = 16;
 
 /**
  * Fixed at the viewport bottom while scrolling. When the footer arrives,
@@ -23,13 +15,9 @@ export function ScrollToTopButton() {
   const anchorRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [parked, setParked] = useState(false);
-  const [baseBottom, setBaseBottom] = useState(DESKTOP_BASE_BOTTOM_PX);
 
   useEffect(() => {
     const update = () => {
-      const base = getBaseBottom();
-      setBaseBottom(base);
-
       const anchor = anchorRef.current;
       const scrolledEnough = window.scrollY > SHOW_AFTER_PX;
 
@@ -38,22 +26,20 @@ export function ScrollToTopButton() {
         setVisible(scrolledEnough);
         document.documentElement.style.setProperty(
           "--scroll-top-bottom",
-          `${base}px`,
+          `${BASE_BOTTOM_PX}px`,
         );
         return;
       }
 
       const anchorTop = anchor.getBoundingClientRect().top;
-      // Park when footer reaches the resting button; absolute bottom:GAP keeps it flush
       const shouldPark =
-        anchorTop <= window.innerHeight - base + FOOTER_GAP_PX;
+        anchorTop <= window.innerHeight - BASE_BOTTOM_PX + FOOTER_GAP_PX;
       setParked(shouldPark);
       setVisible(scrolledEnough);
 
-      // Reel / other UI keep the resting viewport offset (not the parked absolute gap)
       document.documentElement.style.setProperty(
         "--scroll-top-bottom",
-        `${base}px`,
+        `${BASE_BOTTOM_PX}px`,
       );
     };
 
@@ -82,7 +68,7 @@ export function ScrollToTopButton() {
           style={
             parked
               ? { position: "absolute", right: 16, bottom: FOOTER_GAP_PX }
-              : { position: "fixed", right: 16, bottom: baseBottom }
+              : { position: "fixed", right: 16, bottom: BASE_BOTTOM_PX }
           }
           className="pointer-events-auto z-[90] inline-flex h-12 items-center gap-2 rounded-full border border-[#d0d0d0] bg-white px-4 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink-soft hover:bg-[#f7f7f7]"
           aria-label="Scroll to top"

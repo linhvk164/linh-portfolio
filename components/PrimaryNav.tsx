@@ -2,16 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, Home, User } from "lucide-react";
+import { Home, User } from "lucide-react";
 import { type ReactNode } from "react";
 
-type NavKey = "home" | "explore" | "about";
+type NavKey = "home" | "about";
 
 function useActiveNav(): NavKey {
   const pathname = usePathname();
   if (pathname.startsWith("/about")) return "about";
-  if (pathname.startsWith("/explore")) return "explore";
-  if (pathname === "/") return "home";
   return "home";
 }
 
@@ -51,13 +49,6 @@ export function PrimaryNav({ className }: { className?: string }) {
         icon={<Home size={14} strokeWidth={2.25} aria-hidden />}
       >
         Home
-      </NavButton>
-      <NavButton
-        active={active === "explore"}
-        href="/explore"
-        icon={<Compass size={14} strokeWidth={2.25} aria-hidden />}
-      >
-        Explore
       </NavButton>
       <NavButton
         active={active === "about"}

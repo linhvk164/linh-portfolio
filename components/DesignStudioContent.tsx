@@ -4,6 +4,7 @@ import { BookOpen, Check, Globe2, Handshake, Target } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { DesignStudioFaq } from "@/components/DesignStudioFaq";
 import { DesignStudioStats } from "@/components/DesignStudioStats";
+import { TrustedFeaturedSection } from "@/components/TrustedFeaturedSection";
 import { designStudio, designStudioCallHref } from "@/data/designStudio";
 import { publicPath } from "@/lib/assets";
 import { labelCaps, pillButton } from "@/lib/layout";
@@ -19,116 +20,6 @@ const whyMeIcons = {
   handshake: Handshake,
   story: BookOpen,
 } as const;
-
-const trustedMasonryItemClassName =
-  "mb-2 block w-full break-inside-avoid bg-[#f3f3f3] md:mb-3";
-
-function TrustedMasonryGrid({
-  liveSites,
-  testimonials,
-}: {
-  liveSites: typeof designStudio.liveSites;
-  testimonials: typeof designStudio.testimonials;
-}) {
-  const projectBySlug = Object.fromEntries(
-    liveSites.map((site) => [site.slug, site]),
-  );
-  const testimonialBySlug = Object.fromEntries(
-    testimonials.items.map((item) => [item.slug, item]),
-  );
-
-  return (
-    <div className="columns-2 gap-2 md:columns-3 md:gap-3">
-      {testimonials.gridOrder.map((entry, index) => {
-        if (entry.type === "project-stack") {
-          return (
-            <ScrollReveal
-              key={`stack-${entry.slugs.join("-")}`}
-              delay={index * 60}
-              className={trustedMasonryItemClassName}
-            >
-              <div className="space-y-2 md:space-y-3">
-                {entry.slugs.map((slug) => {
-                  const site = projectBySlug[slug];
-                  if (!site) return null;
-
-                  return (
-                    <a
-                      key={site.slug}
-                      href={site.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative block aspect-[16/10] overflow-hidden"
-                    >
-                      <Image
-                        src={publicPath(site.image)}
-                        alt={site.name}
-                        fill
-                        className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 50vw, 33vw"
-                      />
-                    </a>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
-          );
-        }
-
-        if (entry.type === "project") {
-          const site = projectBySlug[entry.slug];
-          if (!site) return null;
-
-          return (
-            <ScrollReveal
-              key={`project-${site.slug}`}
-              delay={index * 60}
-              className={trustedMasonryItemClassName}
-            >
-              <a
-                href={site.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block aspect-[16/10] overflow-hidden"
-              >
-                <Image
-                  src={publicPath(site.image)}
-                  alt={site.name}
-                  fill
-                  className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-              </a>
-            </ScrollReveal>
-          );
-        }
-
-        const item = testimonialBySlug[entry.slug];
-        if (!item) return null;
-
-        return (
-          <ScrollReveal
-            key={`testimonial-${item.slug}`}
-            delay={index * 60}
-            className={trustedMasonryItemClassName}
-          >
-            <figure className="flex flex-col p-5 md:p-6">
-              <blockquote className="text-sm leading-relaxed text-ink-muted md:text-[0.9375rem]">
-                “{item.quote}”
-              </blockquote>
-              <figcaption className="mt-4">
-                <p className="text-sm font-semibold tracking-tight text-ink">
-                  {item.name}
-                </p>
-                <p className="text-xs text-ink-soft">{item.role}</p>
-              </figcaption>
-            </figure>
-          </ScrollReveal>
-        );
-      })}
-    </div>
-  );
-}
 
 function CompanyLogo({
   company,
@@ -234,8 +125,6 @@ export function DesignStudioContent() {
     about,
     offer,
     whyMe,
-    liveSites,
-    testimonials,
     process,
   } = designStudio;
 
@@ -444,26 +333,7 @@ export function DesignStudioContent() {
           </div>
         </section>
 
-        <section aria-labelledby="trusted-by-leaders">
-          <ScrollReveal>
-            <div className="text-center">
-              <h2
-                id="trusted-by-leaders"
-                className="design-studio-about-title tracking-tight text-ink"
-              >
-                {testimonials.heading}
-              </h2>
-              <div className="mx-auto mt-3 max-w-2xl space-y-1 text-base leading-relaxed text-ink-muted md:text-lg">
-                {testimonials.body.map((sentence) => (
-                  <p key={sentence}>{sentence}</p>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
-          <div className="mt-8">
-            <TrustedMasonryGrid liveSites={liveSites} testimonials={testimonials} />
-          </div>
-        </section>
+        <TrustedFeaturedSection />
 
         <section className="pb-16 md:pb-20" aria-labelledby="pricing">
           <ScrollReveal>

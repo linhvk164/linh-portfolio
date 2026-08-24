@@ -13,12 +13,72 @@ export type FunItem = {
   description: string;
   images: string[];
   coverImage?: string;
+  /** Optional looping cover video for grid / carousel cards */
+  coverVideo?: string;
   youtubeId?: string;
   externalUrl?: string;
   externalLabel?: string;
 };
 
 export const funItems: FunItem[] = [
+  {
+    id: "qol-hackathon",
+    name: "Quality of Life Hackathon",
+    title: "civic data hackathon program",
+    created: "2025",
+    tools: "Figma, Cursor AI, Vercel",
+    context: "Interactive design · EdTech",
+    description:
+      "An interactive experience for 300+ students to explore Quality of Life domains. I led creative direction and built the event site to drive registration across events in Canada, China, and Ghana.",
+    images: [
+      "/images/press/uwaterloo-hackathon.jpg",
+      "/images/press/suzhou-hackathon.jpg",
+      "/images/press/waterloo-hackathon.jpg",
+      "/images/about/hackathon-1.JPG",
+    ],
+    coverImage: "/images/un-habitat/qolihackathon.png",
+    coverVideo: "/images/un-habitat/qolihackathon.mp4",
+    externalUrl: "https://www.qolihackathon.com/gh",
+    externalLabel: "Visit the hackathon site",
+  },
+  {
+    id: "un-habitat-design-system",
+    name: "QoL Design System",
+    title: "200+ component design system",
+    created: "2024",
+    tools: "Figma",
+    context: "Design systems · Accessibility",
+    description:
+      "A scalable design system for UN-Habitat's Quality of Life Initiative. I redesigned the nine domain icons, set WCAG-tested color, and built a shared visual language that sped up design and development across the platform.",
+    images: [
+      "/images/un-habitat/Icons.png",
+      "/images/un-habitat/Frame 746.png",
+      "/images/un-habitat/Charts.png",
+      "/images/un-habitat/landing-page-v2.png",
+    ],
+    coverImage: "/images/un-habitat/qoli-icons.webp",
+    externalUrl: "https://www.qolimpact.com",
+    externalLabel: "Visit QoL Impact",
+  },
+  {
+    id: "chordio",
+    name: "Chordio",
+    title: "AI songwriting prototype",
+    created: "2023",
+    tools: "Figma, Prototyping",
+    context: "AI prototype · UX/UI",
+    description:
+      "A songwriting tool shaped by interviews with musicians. I synthesized insights from five interviews into feature direction, then prototyped flows for capturing ideas, chords, and musical memos.",
+    images: [
+      "/images/songwriting-app/homepage.png",
+      "/images/songwriting-app/High-fis.png",
+      "/images/songwriting-app/Medium-fis.png",
+      "/images/songwriting-app/chordio-workspace.png",
+      "/images/songwriting-app/Add Chords.png",
+      "/images/songwriting-app/Music Memo.png",
+    ],
+    coverImage: "/images/songwriting-app/chordio-main-image.png",
+  },
   {
     id: "lets-catchup",
     name: "Let's Catchup",
@@ -150,4 +210,18 @@ export const funItems: FunItem[] = [
     coverImage: "/images/explore/whatamisupposedtodo/whatamisupposedtodo-cover.jpg",
     youtubeId: "QfFWuCQwuq8",
   },
+];
+
+/** Landing carousel order — spreads brand / mixed-media projects apart. */
+export const homeDiscoverItems: FunItem[] = [
+  funItems.find((item) => item.id === "qol-hackathon")!,
+  funItems.find((item) => item.id === "mako-asya")!,
+  funItems.find((item) => item.id === "un-habitat-design-system")!,
+  funItems.find((item) => item.id === "porcelain-boy")!,
+  funItems.find((item) => item.id === "chordio")!,
+  funItems.find((item) => item.id === "tako-inc")!,
+  funItems.find((item) => item.id === "lets-catchup")!,
+  funItems.find((item) => item.id === "mixed-media")!,
+  funItems.find((item) => item.id === "radiant-roots")!,
+  funItems.find((item) => item.id === "what-am-i-supposed-to-do")!,
 ];

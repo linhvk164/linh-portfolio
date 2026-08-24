@@ -32,15 +32,12 @@ export const site = {
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Explore", href: "/explore" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export const footerNavItems = [
-  { label: "Home", href: "/" },
-  { label: "Explore", href: "/explore" },
-  { label: "About", href: "/about" },
-  { label: "Design Studio", href: "/designstudio" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Resources", comingSoon: true },
+  { label: "Freelance", href: "/freelance" },
 ] as const;

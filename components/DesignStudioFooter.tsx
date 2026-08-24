@@ -32,13 +32,11 @@ export function DesignStudioFooter() {
                 <h2 className="design-studio-footer-heading !text-[1.875rem] font-bold leading-tight tracking-tight text-white md:!text-[2.5rem]">
                   {footer.heading}
                 </h2>
-                <div className="design-studio-footer-sub mt-5 max-w-3xl space-y-0 text-white/80">
-                  {footer.subheadingLines.map((line, index) => (
+                <div className="design-studio-footer-sub mt-5 max-w-3xl space-y-1 text-white/70">
+                  {footer.subheadingLines.map((line) => (
                     <p
                       key={line}
-                      className={`design-studio-footer-sub-line !text-[1.0625rem] leading-snug md:!text-[1.1875rem] ${
-                        index === 0 ? "!font-bold" : "font-normal"
-                      }`}
+                      className="text-sm leading-relaxed md:text-[0.9375rem]"
                     >
                       {line}
                     </p>

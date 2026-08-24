@@ -5,7 +5,7 @@ export type CaseStudyTldr = {
 export const caseStudyTldrBySlug: Record<string, CaseStudyTldr> = {
   "un-habitat-urban-data": {
     summary:
-      "Designed accessible (WCAG 2.1) data visualizations that turned multi-source urban datasets from 80+ cities into a clear Quality of Life exploration experience. Mapped indicator relationships before screens, then rebuilt the core visualization as a half-sunburst fan chart so users see the big picture first and drill into detail only when they need it. Shipped a working prototype in 5 months; the platform launched globally in February 2025.",
+      "Designed accessible (WCAG 2.1) data visualizations that turned multi-source urban datasets from 170+ cities into a clear Quality of Life exploration experience. Mapped indicator relationships before screens, then rebuilt the core visualization as a half-sunburst fan chart so users see the big picture first and drill into detail only when they need it. Shipped a working prototype in 5 months; the platform launched globally in February 2025.",
   },
   "un-habitat-admin": {
     summary:

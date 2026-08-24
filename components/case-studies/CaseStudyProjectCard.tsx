@@ -10,11 +10,10 @@ export function CaseStudyProjectCard({ project }: { project: FeaturedProject }) 
   return (
     <Link
       href={`/projects/${project.slug}`}
-      transitionTypes={["nav-forward"]}
       className="group min-w-0 text-left"
     >
       <div className={gridCardShell}>
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] border border-border bg-bg transition-transform duration-300 ease-out group-hover:scale-[1.02]">
+        <div className="relative aspect-[1280/726] overflow-hidden rounded-[var(--radius-card)] border border-border bg-bg transition-transform duration-300 ease-out group-hover:scale-[1.02]">
           {hasCover ? (
             <CoverMedia
               alt={project.title}

@@ -5,6 +5,7 @@ import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { MainColumn, SiteFrame } from "@/components/SiteFrame";
 import { SiteSidebar } from "@/components/SiteSidebar";
 import { SiteFooter } from "@/components/SiteNav";
+import { SiteTopNav } from "@/components/SiteTopNav";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <ScrollToTop />
       <ClickSound />
       <SiteFrame>
+        <SiteTopNav />
         <SiteSidebar />
         <MainColumn>{children}</MainColumn>
       </SiteFrame>

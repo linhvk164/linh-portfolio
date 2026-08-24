@@ -2,13 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
+import { isFullBleedPage } from "@/lib/fullBleed";
 import { mainArea } from "@/lib/layout";
 
 export function SiteFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isExplore =
     pathname.startsWith("/explore") || pathname.startsWith("/side-quests");
-  const isDesignStudio = pathname.startsWith("/designstudio");
 
   useEffect(() => {
     document.body.classList.toggle("explore-page", isExplore);
@@ -18,25 +18,19 @@ export function SiteFrame({ children }: { children: ReactNode }) {
   }, [isExplore]);
 
   return (
-    <div
-      className={`min-h-screen ${
-        isDesignStudio
-          ? ""
-          : "pb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:pb-0"
-      } ${isExplore ? "explore-page" : "bg-bg"}`}
-    >
+    <div className={`min-h-screen ${isExplore ? "explore-page" : "bg-bg"}`}>
       {children}
     </div>
   );
 }
 
-/** Offsets main content for the desktop sidebar, except on Design Studio. */
+/** Offsets main content for the case study TOC panel. */
 export function MainColumn({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isDesignStudio = pathname.startsWith("/designstudio");
+  const fullBleed = isFullBleedPage(pathname);
 
   return (
-    <div className={isDesignStudio ? "" : "lg:pl-[320px]"}>
+    <div className={fullBleed ? "" : "lg:pl-[320px]"}>
       <div className={mainArea}>{children}</div>
     </div>
   );

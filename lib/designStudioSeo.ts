@@ -3,12 +3,12 @@ import { designStudio } from "@/data/designStudio";
 import { site } from "@/data/site";
 import { absoluteUrl } from "@/lib/siteUrl";
 
-const pagePath = "/designstudio";
+const pagePath = "/freelance";
 const pageUrl = absoluteUrl(pagePath);
 const ogImage = absoluteUrl("/images/general/profile-cropped.webp");
 
 export const designStudioPageTitle =
-  "Custom Website Design in Waterloo, Ontario | Linh Khuong Design Studio";
+  "Freelance Web Design in Waterloo, Ontario | Linh Khuong";
 
 export const designStudioPageDescription =
   "Freelance web designer in Waterloo, Ontario. Custom single-page websites from $450, delivered in 5 to 6 days. Branding, logo design, and ongoing support available.";
@@ -26,7 +26,7 @@ export const designStudioMetadata: Metadata = {
     "small business website",
     "landing page design",
     "Linh Khuong",
-    "Design Studio",
+    "Freelance",
   ],
   alternates: {
     canonical: pagePath,
@@ -73,7 +73,7 @@ export function getDesignStudioJsonLd() {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "@id": `${pageUrl}#business`,
-      name: "Linh Khuong Design Studio",
+      name: "Linh Khuong Freelance",
       description: designStudioPageDescription,
       url: pageUrl,
       image: ogImage,

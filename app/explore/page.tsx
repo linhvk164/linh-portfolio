@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import { ExploreWorkspace } from "@/components/ExploreWorkspace";
-import { PageFooter } from "@/components/SiteShell";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Explore — linhvk",
-  description:
-    "See more of Linh Khuong's work — graphic design, multi-media art, and pixel art explorations.",
-};
+import { useEffect } from "react";
 
-export default function ExplorePage() {
+/** Old Explore route — send visitors to the Discover section on the homepage. */
+export default function ExploreRedirectPage() {
+  useEffect(() => {
+    window.location.replace("/#discover");
+  }, []);
+
   return (
-    <>
-      <div className="w-full min-w-0 px-4 py-6 md:pl-5 md:pr-10 md:py-8 lg:pl-6">
-        <ExploreWorkspace />
-      </div>
-      <PageFooter />
-    </>
+    <main className="flex min-h-[50vh] items-center justify-center px-4">
+      <p className="text-sm text-ink-muted">
+        Redirecting to{" "}
+        <a href="/#discover" className="font-medium text-accent underline">
+          Discover more
+        </a>
+        …
+      </p>
+    </main>
   );
 }

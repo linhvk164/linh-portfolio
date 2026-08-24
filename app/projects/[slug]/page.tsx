@@ -1,4 +1,3 @@
-import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
 import { BackLink } from "@/components/BackLink";
 import { FolioInstagramReel } from "@/components/FolioInstagramReel";
@@ -58,72 +57,50 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <>
-      <ViewTransition
-        enter={{
-          "nav-forward": "content-from-right",
-          "nav-back": "content-from-left",
-          default: "content-from-right",
-        }}
-        exit={{
-          "nav-forward": "content-exit-left",
-          "nav-back": "content-exit-right",
-          default: "none",
-        }}
-        default="none"
-      >
-        <article className="case-study-content-enter">
-          <div className={caseStudyLayout}>
-            <div className="lg:hidden">
-              <BackLink
-                label="Back to home"
-                href="/"
-                transitionTypes={["nav-back"]}
-              />
-            </div>
-
-            <CaseStudyShell
-              slug={slug}
-              hero={
-                slug === "folio" ? (
-                  <CaseStudyImagePlaceholder
-                    label="Folio cover video"
-                    src="/images/folio/folio-cover-casestudy.mp4"
-                  />
-                ) : undefined
-              }
-              header={
-                <ProjectTitleRow
-                  layout="stacked"
-                  titleAs="h1"
-                  titleClassName="case-study-header-title text-balance text-ink"
-                  metaClassName="pt-1 text-ink-soft"
-                  slug={project.slug}
-                  year={project.year}
-                  productName={project.productName}
-                  role={caseStudyMetaBySlug[slug]?.role}
-                  title={
-                    slug === "folio" || slug === "un-habitat-urban-data"
-                      ? project.title
-                      : "About the project"
-                  }
-                />
-              }
-            >
-              <CaseStudyContent slug={slug} fallback={fallbackContent} />
-            </CaseStudyShell>
-
-            <LatestProjectsSection currentSlug={slug} />
-
-            <div className="mt-12 pt-8">
-              <BackLink
-                label="Back to home"
-                href="/"
-                transitionTypes={["nav-back"]}
-              />
-            </div>
+      <article>
+        <div className={caseStudyLayout}>
+          <div className="lg:hidden">
+            <BackLink label="Back to home" href="/" />
           </div>
-        </article>
-      </ViewTransition>
+
+          <CaseStudyShell
+            slug={slug}
+            hero={
+              slug === "folio" ? (
+                <CaseStudyImagePlaceholder
+                  label="Folio cover video"
+                  src="/images/folio/folio-cover-casestudy.mp4"
+                />
+              ) : undefined
+            }
+            header={
+              <ProjectTitleRow
+                layout="stacked"
+                titleAs="h1"
+                titleClassName="case-study-header-title text-balance text-ink"
+                metaClassName="pt-1 text-ink-soft"
+                slug={project.slug}
+                year={project.year}
+                productName={project.productName}
+                role={caseStudyMetaBySlug[slug]?.role}
+                title={
+                  slug === "folio" || slug === "un-habitat-urban-data"
+                    ? project.title
+                    : "About the project"
+                }
+              />
+            }
+          >
+            <CaseStudyContent slug={slug} fallback={fallbackContent} />
+          </CaseStudyShell>
+
+          <LatestProjectsSection currentSlug={slug} />
+
+          <div className="mt-12 pt-8">
+            <BackLink label="Back to home" href="/" />
+          </div>
+        </div>
+      </article>
       {slug === "folio" && <FolioInstagramReel />}
       <PageFooter />
     </>

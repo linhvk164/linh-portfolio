@@ -117,7 +117,7 @@ export const designStudio = {
       {
         icon: "globe",
         title: "Real-world experience",
-        body: "4+ years designing for startups, small businesses, and global platforms. I helped launch products used across 100+ cities.",
+        body: "4+ years designing for startups, small businesses, and global platforms. I helped launch products used across 170+ cities.",
       },
       {
         icon: "target",
@@ -195,11 +195,7 @@ export const designStudio = {
     },
   ],
   testimonials: {
-    heading: "Trusted by leaders",
-    body: [
-      "Click and explore my previous work.",
-      "See what industry leaders have to say about them.",
-    ],
+    headingLines: ["Kind words from", "People I've Worked With"],
     items: [
       {
         quote:
@@ -222,16 +218,6 @@ export const designStudio = {
         role: "Founder @Hemi's Holistic Healing",
         slug: "dhorea-ramanula",
       },
-    ],
-    gridOrder: [
-      { type: "project", slug: "folio" },
-      { type: "testimonial", slug: "grayson-bass" },
-      { type: "project", slug: "qolimpact" },
-      { type: "testimonial", slug: "salman-navqi" },
-      { type: "project-stack", slugs: ["qol-hackathon", "radiant-roots"] },
-      { type: "project", slug: "lets-catchup" },
-      { type: "testimonial", slug: "dhorea-ramanula" },
-      { type: "project", slug: "dhorea" },
     ],
   },
   process: {
@@ -261,10 +247,9 @@ export const designStudio = {
     ],
   },
   footer: {
-    heading: "Collaboration = innovation",
+    heading: "Collaboration = Innovation ✨",
     subheadingLines: [
-      "So let's make something great together!",
-      "Feel free to schedule an intro call.",
+      "So feel free to schedule an intro call!",
       "I'm always happy to make new connections :D",
     ],
     cta: "Let's chat",

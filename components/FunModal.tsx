@@ -89,24 +89,39 @@ export function FunModal({ item, onClose }: FunModalProps) {
   if (!item) return null;
 
   const activeSrc = gallery[activeIndex] ?? gallery[0];
-  const showVideo = Boolean(item.youtubeId) && activeIndex === 0;
+  const showYoutube = Boolean(item.youtubeId) && activeIndex === 0;
+  const showCoverVideo =
+    Boolean(item.coverVideo) && activeIndex === 0 && !item.youtubeId;
   const metaRows = [
     { label: "Created", value: item.created },
     { label: "Tools", value: item.tools },
     { label: "Context", value: item.context },
   ];
-  const showThumbs = gallery.length > 1 || Boolean(item.youtubeId);
+  const showThumbs =
+    gallery.length > 1 || Boolean(item.youtubeId) || Boolean(item.coverVideo);
 
   const galleryPanel = (
     <div className="order-1 flex min-h-0 flex-[1.2] flex-col bg-white px-4 py-4 sm:px-5 sm:py-5 md:order-2 md:h-full md:flex-none md:px-6 md:py-6 lg:px-8 lg:py-7">
       <div className="relative min-h-[200px] w-full flex-1 overflow-hidden sm:min-h-[240px]">
-        {showVideo && item.youtubeId ? (
+        {showYoutube && item.youtubeId ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}`}
             title={item.name}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="absolute inset-0 h-full w-full border-0"
+          />
+        ) : showCoverVideo && item.coverVideo ? (
+          <video
+            key={item.coverVideo}
+            src={publicPath(item.coverVideo)}
+            poster={item.coverImage ? publicPath(item.coverImage) : undefined}
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-contain"
           />
         ) : (
           <Image
@@ -129,7 +144,9 @@ export function FunModal({ item, onClose }: FunModalProps) {
         {showThumbs
           ? gallery.map((src, index) => {
               const isActive = index === activeIndex;
-              const isVideoThumb = Boolean(item.youtubeId) && index === 0;
+              const isVideoThumb =
+                index === 0 &&
+                (Boolean(item.youtubeId) || Boolean(item.coverVideo));
               return (
                 <button
                   key={`${item.id}-thumb-${index}`}
@@ -235,7 +252,7 @@ export function FunModal({ item, onClose }: FunModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative z-10 flex h-[min(92vh,760px)] w-full max-w-5xl flex-col overflow-hidden rounded-3xl bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)] modal-panel-in">
+      <div className="relative z-10 flex max-h-[min(85vh,640px)] w-full max-w-4xl flex-col overflow-hidden rounded-3xl bg-white shadow-[0_16px_48px_rgba(0,0,0,0.12)] modal-panel-in md:h-[min(85vh,640px)]">
         <button
           type="button"
           aria-label="Close"
@@ -245,7 +262,7 @@ export function FunModal({ item, onClose }: FunModalProps) {
           <X size={18} strokeWidth={2} />
         </button>
 
-        <div className="flex h-full min-h-0 flex-col overflow-hidden md:grid md:grid-cols-[280px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)]">
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:grid md:grid-cols-[260px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]">
           {galleryPanel}
           {infoPanel}
         </div>

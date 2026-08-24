@@ -61,13 +61,23 @@ export const aboutCarousel: AboutCarouselSlide[] = [
 export const aboutCta =
   "If you'd like to learn more about my work or want to chat, don't hesitate to reach out over email or LinkedIn. 🎉";
 
+/** Homepage about block (landing page only — /about keeps aboutSections). */
+export const homeAbout = {
+  brow: "A little birdie told me...",
+  heading: "You're looking for a Designer?",
+  paragraphs: [
+    "Hey there, I'm Linh, a UX/UI designer from Vietnam, based in Canada. Most recently, I worked as a UX/UI Designer at UN-Habitat's Quality of Life Initiative. We created a platform to showcase 170+ cities' quality of life.",
+    "My goal is to understand people, empathize with their challenges, and help them find solutions through intuitive and insightful interactions.",
+  ],
+} as const;
+
 export const aboutSections: AboutSection[] = [
   {
     heading: "About Linh",
     paragraphs: [
       "Hey there, I'm Linh — a UX/UI designer from Vietnam, based in Canada.",
       "I love all things design aka art that is useful and practical. I enjoy creating digital products that simplify complexity and make information easier to understand and use.",
-      "Most recently, I worked as a UX/UI Designer at UN-Habitat’s Quality of Life Initiative! We created a platform to showcase over 100 cities’ quality of life and it was an incredibly rewarding and informative journey.",
+      "Most recently, I worked as a UX/UI Designer at UN-Habitat’s Quality of Life Initiative! We created a platform to showcase over 170 cities’ quality of life and it was an incredibly rewarding and informative journey.",
       "From contributing to a global urban data platform to exploring AI-powered creative tools, my work sits at the intersection of design, technology, and human behavior. I’m especially interested in using design to support real communities and create meaningful, human-centered experiences.",
       "My goal when it comes to design is to understand people, to have empathy towards the challenges they are presented with, and to help them find solutions through intuitive and insightful interactions.",
     ],
@@ -88,7 +98,7 @@ export const aboutExperience: AboutExperience[] = [
     org: "UN-Habitat Quality of Life Initiative",
     dates: "Jul 2024 – Jan 2026",
     description:
-      "Shipped a global quality-of-life platform live across **82+ cities**, designing accessible data visualizations and CMS tools in **Figma**. Built a **200+ component design system** from scratch, speeding up design and dev velocity by **50%**. Worked alongside **10 cross-functional teammates** and **25+ city officials** to shape the product's direction.",
+      "Shipped a global quality-of-life platform live across **170+ cities**, designing accessible data visualizations and CMS tools in **Figma**. Built a **200+ component design system** from scratch, speeding up design and dev velocity by **50%**. Worked alongside **10 cross-functional teammates** and **25+ city officials** to shape the product's direction.",
   },
   {
     role: "Product Designer & Project Manager",

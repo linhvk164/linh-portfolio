@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} h-full scroll-smooth font-sans`}
+      className={`${plusJakartaSans.variable} h-full font-sans`}
     >
       <head>
         <script
@@ -45,7 +45,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full bg-bg font-sans text-base text-ink antialiased">
+      <body className="min-h-full overflow-x-hidden bg-bg font-sans text-base text-ink antialiased">
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

@@ -39,10 +39,10 @@ export function ProjectGridCard({
   const linkClassName = "group relative block w-full min-w-0";
   const showLightweightStill = deferHeavyMedia && Boolean(project.coverImage);
   const showDeferredPlaceholder = deferHeavyMedia && !project.coverImage && hasCover;
-  const coverAspect = "aspect-[3/2]";
+  const coverAspect = "aspect-[1280/726]";
   const role = caseStudyMetaBySlug[project.slug]?.role;
   const mediaClassName = uniformCover
-    ? "object-cover object-center transition-transform duration-200 group-hover:scale-[1.05]"
+    ? "object-cover object-center transition-transform duration-200 group-hover:scale-[1.03]"
     : "h-auto w-full bg-bg transition-transform duration-200 group-hover:scale-[1.03]";
 
   const media = (
@@ -67,7 +67,7 @@ export function ProjectGridCard({
                   natural={false}
                   stillOnly
                   loading="lazy"
-                  className={`absolute inset-0 h-full w-full ${mediaClassName} scale-110`}
+                  className={`absolute inset-0 h-full w-full ${mediaClassName}`}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
@@ -95,7 +95,7 @@ export function ProjectGridCard({
                   stillOnly={!project.coverVideo}
                   loading="lazy"
                   videoPreload="metadata"
-                  className={`absolute inset-0 h-full w-full ${mediaClassName} scale-110`}
+                  className={`absolute inset-0 h-full w-full ${mediaClassName}`}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
@@ -134,11 +134,7 @@ export function ProjectGridCard({
           {media}
         </a>
       ) : (
-        <Link
-          href={href}
-          transitionTypes={["nav-forward"]}
-          className={linkClassName}
-        >
+        <Link href={href} className={linkClassName}>
           {media}
         </Link>
       )}
@@ -157,7 +153,7 @@ export function ProjectGridCard({
             <ProjectTitleRow {...project} role={role} />
           </a>
         ) : (
-          <Link href={href} transitionTypes={["nav-forward"]} className="block">
+          <Link href={href} className="block">
             <ProjectTitleRow {...project} role={role} />
           </Link>
         )}

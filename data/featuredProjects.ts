@@ -38,10 +38,10 @@ export const featuredProjects: FeaturedProject[] = [
     slug: "un-habitat-urban-data",
     year: "2025",
     productName: "UN Quality Of Life Initiative",
-    title: "A Global Data Platform for 82+ Cities in 5 Months",
+    title: "A Global Data Platform for 170+ Cities in 5 Months",
     footerLabel: "Quality of Life — Data Visualization",
     overview:
-      "Designed data visualizations for a platform live across 100+ cities, shaping direction with 25+ city officials and global stakeholders.",
+      "Designed data visualizations for a platform live across 170+ cities, shaping direction with 25+ city officials and global stakeholders.",
     tagList: ["Data Visualization", "Accessibility", "Civic Tech"],
     coverImage: "/images/un-habitat/quality of life main image.webp",
     coverVideo: "/images/un-habitat/qoli-cover-video.mp4",
@@ -49,7 +49,7 @@ export const featuredProjects: FeaturedProject[] = [
     accent: "yellow",
     hoverType: "case-study",
     coverAspect: "16/10",
-    coverFit: "contain",
+    coverFit: "cover",
   },
   {
     slug: "un-habitat-admin",
@@ -58,7 +58,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Admin Workflows That Helped Cities Implement Data Faster",
     footerLabel: "Quality of Life — Admin Dashboard",
     overview:
-      "Streamlined upload and review workflows for city administrators across a platform used in 100+ cities.",
+      "Streamlined upload and review workflows for city administrators across a platform used in 170+ cities.",
     tagList: ["Admin Dashboard", "Workflow Design", "UX/UI"],
     coverImage: "/images/un-habitat/cityexplorer-main-image.webp",
     accent: "yellow",
@@ -119,9 +119,9 @@ export const featuredProjects: FeaturedProject[] = [
 ];
 
 const homeSelectedOrder = [
-  "folio",
   "un-habitat-urban-data",
   "un-habitat-admin",
+  "folio",
   "lofu",
 ] as const;
 

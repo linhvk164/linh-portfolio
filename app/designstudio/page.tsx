@@ -1,28 +1,22 @@
-import { DesignStudioContent } from "@/components/DesignStudioContent";
-import { DesignStudioFooter } from "@/components/DesignStudioFooter";
-import { DesignStudioJsonLd } from "@/components/DesignStudioJsonLd";
-import { DesignStudioNav } from "@/components/DesignStudioNav";
-import { designStudioMetadata } from "@/lib/designStudioSeo";
+"use client";
 
-export const metadata = designStudioMetadata;
+import { useEffect } from "react";
 
-export default function DesignStudioPage() {
+/** Old Design Studio URL — redirect to Freelance. */
+export default function DesignStudioRedirectPage() {
+  useEffect(() => {
+    window.location.replace("/freelance");
+  }, []);
+
   return (
-    <>
-      <DesignStudioJsonLd />
-      <DesignStudioNav />
-      <main
-        id="main-content"
-        className="w-full min-w-0 px-4 pt-8 md:px-5 md:pt-10 lg:px-8 lg:pt-12"
-      >
-        <DesignStudioContent />
-        <div
-          className="page-enter mx-auto w-full max-w-5xl"
-          style={{ animationDelay: "280ms" }}
-        >
-          <DesignStudioFooter />
-        </div>
-      </main>
-    </>
+    <main className="flex min-h-[50vh] items-center justify-center px-4">
+      <p className="text-sm text-ink-muted">
+        Redirecting to{" "}
+        <a href="/freelance" className="font-medium text-accent underline">
+          Freelance
+        </a>
+        …
+      </p>
+    </main>
   );
 }
