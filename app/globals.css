@@ -1233,3 +1233,37 @@ body.explore-page {
     animation: none;
   }
 }
+
+/* Interactive client proposal deck */
+.proposal-deck {
+  --proposal-bg: #ffffff;
+  --proposal-ink: #111111;
+  --proposal-muted: #6b6b6b;
+  --proposal-border: #dcdcdc;
+  --proposal-accent: #586e5e;
+  --proposal-sage: #586e5e;
+  --proposal-chip: #f3f3f3;
+  background: #ffffff;
+  color: var(--proposal-ink);
+}
+
+@keyframes proposal-slide-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.proposal-slide-enter {
+  animation: proposal-slide-enter 280ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proposal-slide-enter {
+    animation: none;
+  }
+}

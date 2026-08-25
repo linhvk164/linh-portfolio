@@ -98,10 +98,9 @@ function blendVoice(traits: BrandDnaDimension[]) {
   return `${primaryVoice} There's also a ${secondaryLabel} undertone that keeps the tone from feeling one-note.`;
 }
 
-export function generateBrandDna(
-  answers: Record<string, string>,
+export function generateBrandDnaFromScores(
+  scores: BrandDnaScores,
 ): BrandDnaResult {
-  const scores = calculateScores(answers);
   const ranked = rankDimensions(scores);
   const topTraits = ranked.slice(0, 3);
   const [primary, secondary, tertiary] = topTraits;
@@ -149,6 +148,12 @@ export function generateBrandDna(
     avoid,
     copyText,
   };
+}
+
+export function generateBrandDna(
+  answers: Record<string, string>,
+): BrandDnaResult {
+  return generateBrandDnaFromScores(calculateScores(answers));
 }
 
 export function resetQuizAnswers(): Record<string, string> {
