@@ -14,7 +14,7 @@ export const site = {
   location: "Based in Ontario, Canada",
   status: "Prev @ the UN",
   previously: "@ the UN",
-  experience: "4+ Years",
+  experience: "3+ Years",
   intro: {
     line1: "Hey! I'm Linh Khuong",
     line2: "a UX/UI Designer, a Brand Designer",

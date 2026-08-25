@@ -180,7 +180,7 @@ export function HomeContent() {
               className="design-studio-hero-sub page-enter-item mt-2 max-w-xl text-ink"
               style={{ animationDelay: "90ms" }}
             >
-              Strategic UX/UI Product Designer with 4+ years of experience in
+              Strategic UX/UI Product Designer in
               civic tech and early stage startups.
             </p>
           </div>

@@ -18,7 +18,7 @@ export const designStudio = {
       "Open to freelance",
       "Currently based in Waterloo, ON, Canada",
     ],
-    socialProof: "4+ years of experience",
+    socialProof: "Previously @ the UN",
     tagsLeft: ["civic tech", "AI prototyping", "SaaS"],
     tagsRight: ["0 → 1 startups", "user research", "UI design"],
   },
@@ -27,7 +27,7 @@ export const designStudio = {
     kicker: "A little birdie told me...",
     headlineLines: ["Someone's in need", "of a website?"],
     lead: "Do not fret! Whether it's a revamp or a completely new website, I gotchu ;D",
-    body: "With 4+ years building products and design systems across startups, small businesses, and global platforms (UN-Habitat's Quality of Life Initiative), I know what works. Every design reflects your business, your goals, and what makes you stand out.",
+    body: "With 3+ years building products and design systems across startups, small businesses, and global platforms (UN-Habitat's Quality of Life Initiative), I know what works. Every design reflects your business, your goals, and what makes you stand out.",
     stats: [
       {
         value: 4,
@@ -117,7 +117,7 @@ export const designStudio = {
       {
         icon: "globe",
         title: "Real-world experience",
-        body: "4+ years designing for startups, small businesses, and global platforms. I helped launch products used across 170+ cities.",
+        body: "3+ years designing for startups, small businesses, and global platforms. I helped launch products used across 170+ cities.",
       },
       {
         icon: "target",
