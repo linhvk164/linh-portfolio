@@ -3,13 +3,13 @@
 :root {
   /* Color — portfolio palette (flat, light) */
   --bg: #ffffff;
-  --surface: #f5f2eb;
-  --surface-muted: #f0ece4;
+  --surface: #f3f3f3;
+  --surface-muted: #ececec;
   --ink: #000000;
   --ink-soft: #8a8a8a;
   --ink-muted: #5c5c5c;
   --case-study-body: #6b6b6b;
-  --badge: #ebe6dc;
+  --badge: #ececec;
   --accent: #586e5e;
   --accent-hover: #475a4d;
   --cursor-hover-bg: #344539;
@@ -732,6 +732,27 @@ html:has(.opening-overlay) body {
   }
 }
 
+@keyframes brand-dna-question-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-dna-question-enter {
+  animation: brand-dna-question-enter 320ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-dna-question-enter {
+    animation: none;
+  }
+}
+
 @keyframes explore-card-enter {
   from {
     opacity: 0;
@@ -1028,6 +1049,26 @@ h2.design-studio-about-title {
 
 .design-studio-why-me h3 {
   color: #ffffff !important;
+}
+
+.brand-dna-promo .label-caps,
+.brand-dna-promo h2.design-studio-about-title,
+.brand-dna-promo p {
+  color: #ffffff !important;
+}
+
+.brand-dna-promo h2.design-studio-about-title {
+  margin: 0;
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 768px) {
+  .brand-dna-promo h2.design-studio-about-title {
+    font-size: 2.375rem !important;
+  }
 }
 
 h2.design-studio-footer-heading {

@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { BookOpen, Check, Globe2, Handshake, Target } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { DesignStudioFaq } from "@/components/DesignStudioFaq";
@@ -291,6 +292,30 @@ export function DesignStudioContent() {
               </li>
             ))}
           </ol>
+
+          <ScrollReveal delay={120}>
+            <aside
+              className="brand-dna-promo mt-10 rounded-2xl bg-accent px-6 py-8 md:mt-12 md:px-8 md:py-10"
+              aria-labelledby="brand-dna-promo"
+            >
+              <p className={`${labelCaps}`}>{process.brandDna.brow}</p>
+              <h2
+                id="brand-dna-promo"
+                className="design-studio-about-title mt-3 tracking-tight"
+              >
+                {process.brandDna.heading}
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed md:text-lg">
+                {process.brandDna.body}
+              </p>
+              <Link
+                href={process.brandDna.href}
+                className="mt-8 inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-accent transition-all duration-200 hover:scale-[1.02] hover:bg-white/90"
+              >
+                {process.brandDna.cta}
+              </Link>
+            </aside>
+          </ScrollReveal>
         </section>
 
         <section

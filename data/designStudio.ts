@@ -245,6 +245,13 @@ export const designStudio = {
         body: "You go live with your newly built website. Time to show it off.",
       },
     ],
+    brandDna: {
+      brow: "Brand DNA",
+      heading: "Not sure what your brand should feel like?",
+      body: "Take the free Brand DNA quiz. A few quick questions about your personality and taste turn into a clear voice, visual direction, and brand brief you can use right away.",
+      cta: "Discover your Brand DNA",
+      href: "/brand-dna",
+    },
   },
   footer: {
     heading: "Collaboration = Innovation ✨",
