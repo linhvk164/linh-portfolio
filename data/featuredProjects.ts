@@ -36,9 +36,9 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     slug: "un-habitat-urban-data",
-    year: "2025",
+    year: "2026",
     productName: "UN Quality Of Life Initiative",
-    title: "A Global Data Platform for 170+ Cities in 5 Months",
+    title: "From 62 to 170+ Cities: Scaling a Global Data Platform",
     footerLabel: "Quality of Life — Data Visualization",
     overview:
       "Designed data visualizations for a platform live across 170+ cities, shaping direction with 25+ city officials and global stakeholders.",
@@ -53,7 +53,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     slug: "un-habitat-admin",
-    year: "2025",
+    year: "2026",
     productName: "UN Quality Of Life Initiative",
     title: "Admin Workflows That Helped Cities Implement Data Faster",
     footerLabel: "Quality of Life — Admin Dashboard",
@@ -66,7 +66,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     slug: "un-habitat-design-system",
-    year: "2024",
+    year: "2026",
     productName: "UN Quality Of Life Initiative",
     title: "Creating a Scalable Icon System for Quality of Life Domains",
     footerLabel: "Quality of Life — Design System",
@@ -79,7 +79,7 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     slug: "qol-hackathon",
-    year: "2025",
+    year: "2026",
     productName: "Quality Of Life Hackathon Program",
     title: "Interactive Civic Data Platform For 300+ Students",
     footerLabel: "Quality of Life — Hackathon",

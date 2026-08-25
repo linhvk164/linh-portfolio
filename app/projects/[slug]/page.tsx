@@ -66,10 +66,11 @@ export default async function ProjectPage({ params }: PageProps) {
           <CaseStudyShell
             slug={slug}
             hero={
-              slug === "folio" ? (
+              project.coverVideo || project.coverImage ? (
                 <CaseStudyImagePlaceholder
-                  label="Folio cover video"
-                  src="/images/folio/folio-cover-casestudy.mp4"
+                  label={`${project.productName} cover`}
+                  src={project.coverVideo ?? project.coverImage}
+                  fit={false}
                 />
               ) : undefined
             }
@@ -83,11 +84,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 year={project.year}
                 productName={project.productName}
                 role={caseStudyMetaBySlug[slug]?.role}
-                title={
-                  slug === "folio" || slug === "un-habitat-urban-data"
-                    ? project.title
-                    : "About the project"
-                }
+                title={project.title}
               />
             }
           >

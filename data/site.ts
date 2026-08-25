@@ -37,7 +37,7 @@ export const navItems = [
 
 export const footerNavItems = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Resources", href: "/brand-dna" },
   { label: "Freelance", href: "/freelance" },
 ] as const;

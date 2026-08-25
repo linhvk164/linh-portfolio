@@ -190,10 +190,10 @@ export function HomeDiscoverCarousel() {
                   className={`${sectionHeadingClassName} mt-2`}
                 >
                   <span className="block">
-                    Vibe-coding, mix-media, music production,
+                    Vibe-coding, mix-media, music,
                   </span>
                   <span className="block">
-                    and other projects I do in my free time
+                    and other projects I do in my free time :)
                   </span>
                 </h2>
               </div>

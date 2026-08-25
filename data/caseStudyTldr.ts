@@ -5,11 +5,11 @@ export type CaseStudyTldr = {
 export const caseStudyTldrBySlug: Record<string, CaseStudyTldr> = {
   "un-habitat-urban-data": {
     summary:
-      "Designed accessible (WCAG 2.1) data visualizations that turned multi-source urban datasets from 170+ cities into a clear Quality of Life exploration experience. Mapped indicator relationships before screens, then rebuilt the core visualization as a half-sunburst fan chart so users see the big picture first and drill into detail only when they need it. Shipped a working prototype in 5 months; the platform launched globally in February 2025.",
+      "Designed a global Quality of Life data platform that grew city adoption from 62 to 170+ cities and helped secure $20M in pro bono support. Built WCAG 2.1 AA accessible visualizations, a 200+ component design system, and clearer onboarding so city officials could explore complex urban data and make policy decisions at scale within a 6-month timeline.",
   },
   "un-habitat-admin": {
     summary:
-      "Designed enterprise CMS experiences that replaced manual Excel uploads and fragmented city workflows with clearer Joining, Onboarding, and Implementing flows. Automated repetitive tasks, simplified multi-step paths, standardized statuses and error states, and partnered with engineers to design an AI-powered chatbot for city administrators—accelerating front-end and CMS work with Cursor and Windsurf. Result: admins spend less time decoding the interface and more time keeping city data accurate.",
+      "Redesigned Joining, Onboarding, and Implementing workflows so city administrators could upload and maintain Quality of Life data without manual Excel handoffs. Automated reminders, document signing, and error flagging reduced admin friction and helped scale adoption from 62 to 170+ cities in six months.",
   },
   "un-habitat-design-system": {
     summary:

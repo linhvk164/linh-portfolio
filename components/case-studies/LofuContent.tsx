@@ -165,7 +165,7 @@ export function LofuContent() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection eyebrow="Reflection" title="Designing with empathy first">
+      <CaseStudySection id="what-i-learned" title="What I Learned">
         <p>
           Lofu taught me that designing for sensitive topics requires empathy
           long before visual design.

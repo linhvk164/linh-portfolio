@@ -1,10 +1,13 @@
 import { AboutCarousel } from "@/components/AboutCarousel";
+import { AboutExperienceList } from "@/components/AboutExperienceList";
 import { PageEnter } from "@/components/PageEnter";
 import { ToolStackMarquee } from "@/components/ToolStackMarquee";
 import {
   aboutCarousel,
   aboutCta,
+  aboutEducation,
   aboutExperience,
+  aboutLeadership,
   aboutSections,
 } from "@/data/about";
 import { site } from "@/data/site";
@@ -51,28 +54,9 @@ function AboutParagraph({ text }: { text: string }) {
   );
 }
 
-function ExperienceDescription({ text }: { text: string }) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-
-  return (
-    <p className="text-base leading-relaxed text-ink-muted md:text-lg">
-      {parts.map((part, index) => {
-        if (part.startsWith("**") && part.endsWith("**")) {
-          return (
-            <strong key={index} className="font-semibold text-ink">
-              {part.slice(2, -2)}
-            </strong>
-          );
-        }
-        return <span key={index}>{part}</span>;
-      })}
-    </p>
-  );
-}
-
 export function AboutContent() {
   return (
-    <div className="w-full">
+    <div className="w-full pb-28 md:pb-24 lg:pb-20">
       <PageEnter>
         <AboutCarousel slides={aboutCarousel} />
       </PageEnter>
@@ -82,7 +66,6 @@ export function AboutContent() {
           <PageEnter
             key={section.heading}
             delay={100 + sectionIndex * 80}
-            className="max-w-3xl"
           >
             <h2
               className={
@@ -93,7 +76,7 @@ export function AboutContent() {
             >
               {section.heading}
             </h2>
-            <div className="mt-4 space-y-4 text-base leading-relaxed text-ink-muted md:mt-5 md:space-y-5 md:text-lg">
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-case-study-body md:mt-5 md:space-y-5">
               {section.paragraphs.map((paragraph) => (
                 <AboutParagraph
                   key={paragraph.slice(0, 48)}
@@ -104,7 +87,7 @@ export function AboutContent() {
           </PageEnter>
         ))}
 
-        <PageEnter delay={260} className="max-w-3xl">
+        <PageEnter delay={260}>
           <AboutParagraph text={aboutCta} />
         </PageEnter>
 
@@ -112,28 +95,36 @@ export function AboutContent() {
           <ToolStackMarquee />
         </PageEnter>
 
-        <PageEnter delay={340} className="max-w-4xl pb-28 md:pb-24 lg:pb-20">
-          <h2 className={sectionHeadingClassName}>Experience</h2>
-          <div className="mt-4 space-y-6 md:mt-5 md:space-y-8">
-            {aboutExperience.map((job) => (
-              <div
-                key={`${job.role}-${job.dates}`}
-                className="grid grid-cols-1 gap-2 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:gap-12 md:gap-16"
-              >
-                <div className="space-y-0.5">
-                  <h3 className="text-sm font-semibold tracking-tight text-ink">
-                    {job.role}
-                  </h3>
-                  {job.org ? (
-                    <p className="text-sm leading-snug text-ink-muted">
-                      {job.org}
-                    </p>
-                  ) : null}
-                  <p className="text-xs text-ink-soft">{job.dates}</p>
-                </div>
-                <ExperienceDescription text={job.description} />
-              </div>
-            ))}
+        <PageEnter delay={340}>
+          <AboutExperienceList
+            heading="Experience"
+            jobs={aboutExperience}
+            defaultOpenFirst
+          />
+        </PageEnter>
+
+        <PageEnter delay={380}>
+          <AboutExperienceList
+            heading="Leadership & Community"
+            jobs={aboutLeadership}
+          />
+        </PageEnter>
+
+        <PageEnter delay={420}>
+          <div>
+            <h2 className={sectionHeadingClassName}>Education</h2>
+            <div className="mt-4 space-y-1 md:mt-5">
+              <h3 className="text-base font-semibold tracking-tight text-ink">
+                {aboutEducation.school}
+              </h3>
+              <p className="text-sm leading-snug text-ink-muted">
+                {aboutEducation.degree}
+              </p>
+              <p className="text-xs text-ink-soft">{aboutEducation.detail}</p>
+              <p className="mt-3 text-base leading-relaxed text-case-study-body">
+                {aboutEducation.certificates}
+              </p>
+            </div>
           </div>
         </PageEnter>
       </div>

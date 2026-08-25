@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
-import { isFullBleedPage } from "@/lib/fullBleed";
 import { mainArea } from "@/lib/layout";
 
 export function SiteFrame({ children }: { children: ReactNode }) {
@@ -24,14 +23,7 @@ export function SiteFrame({ children }: { children: ReactNode }) {
   );
 }
 
-/** Offsets main content for the case study TOC panel. */
+/** Main page column — case study TOC is fixed and does not shift layout. */
 export function MainColumn({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const fullBleed = isFullBleedPage(pathname);
-
-  return (
-    <div className={fullBleed ? "" : "lg:pl-[320px]"}>
-      <div className={mainArea}>{children}</div>
-    </div>
-  );
+  return <div className={mainArea}>{children}</div>;
 }

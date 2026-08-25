@@ -1,4 +1,4 @@
-export const sidebarWidth = "320px";
+export const sidebarWidth = "12rem";
 
 export const pageContainer =
   "mx-auto w-full max-w-6xl px-5 md:px-8";
@@ -13,9 +13,25 @@ export const footerColumns =
 export const mainContent =
   "w-full min-w-0 px-4 py-6 md:pl-5 md:pr-10 md:py-8 lg:pl-6";
 
-/** Case study pages — generous right gutter for title, cover, and body */
-export const caseStudyLayout =
-  "w-full min-w-0 px-4 py-6 md:pl-5 md:pr-[clamp(5rem,22vw,18rem)] md:py-8 lg:pl-6";
+/**
+ * Case-study reading column — same width and padding, without TOC offset.
+ * Use for pages like About that should match case study spacing.
+ */
+export const caseStudyReadingLayout =
+  "mx-auto w-full min-w-0 max-w-[40rem] px-4 py-6 sm:max-w-[44rem] sm:px-6 md:max-w-3xl md:px-8 md:py-8";
+
+/**
+ * Case study pages — reading column + left margin for the TOC gutter:
+ * max(22rem, 50% - half of max-w-3xl).
+ */
+export const caseStudyLayout = `${caseStudyReadingLayout} lg:ml-[max(22rem,calc(50%-24rem))] lg:mr-auto`;
+
+/** Fixed TOC gutter width — keep in sync with caseStudyLayout left margin */
+export const caseStudyTocGutter =
+  "w-[max(22rem,calc(50%-24rem))]";
+
+/** Narrow TOC column centered inside the gutter */
+export const caseStudyTocWidth = "w-56";
 
 /** Main area */
 export const mainArea = "min-h-screen";

@@ -15,7 +15,7 @@ type NavItem =
 
 const navItems: NavItem[] = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Freelance", href: "/freelance" },
   { label: "Resume", href: publicPath(site.resume), external: true },
 ];

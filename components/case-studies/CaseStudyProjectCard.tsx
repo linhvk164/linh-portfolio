@@ -24,7 +24,7 @@ export function CaseStudyProjectCard({ project }: { project: FeaturedProject }) 
                   ? "object-contain object-center"
                   : "object-cover object-center"
               }`}
-              sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           ) : (
             <PlaceholderCover accent={project.accent} bordered={false} fill />

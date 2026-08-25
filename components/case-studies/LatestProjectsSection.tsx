@@ -5,8 +5,19 @@ import {
 } from "@/data/featuredProjects";
 import { labelCaps } from "@/lib/layout";
 
+/** Case studies with full write-ups ready to browse. */
+const readableCaseStudySlugs = new Set([
+  "folio",
+  "un-habitat-urban-data",
+  "un-habitat-admin",
+  "lofu",
+]);
+
 export function getOtherCaseStudies(currentSlug: string): FeaturedProject[] {
-  return caseStudyProjects.filter((project) => project.slug !== currentSlug);
+  return caseStudyProjects.filter(
+    (project) =>
+      project.slug !== currentSlug && readableCaseStudySlugs.has(project.slug),
+  );
 }
 
 type LatestProjectsSectionProps = {
@@ -25,7 +36,7 @@ export function LatestProjectsSection({
       <p className={`${labelCaps} mb-5 text-case-study-body/70`}>
         Latest Projects
       </p>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {projects.map((project) => (
           <CaseStudyProjectCard key={project.slug} project={project} />
         ))}

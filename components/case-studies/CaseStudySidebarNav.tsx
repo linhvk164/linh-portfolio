@@ -12,7 +12,7 @@ export function CaseStudySidebarNav({ slug }: CaseStudySidebarNavProps) {
   const items = getCaseStudyToc(slug);
 
   return (
-    <div className="flex h-full flex-col gap-10 overflow-y-auto pt-10 pr-2 pb-2">
+    <div className="flex h-full flex-col gap-8 overflow-y-auto pt-10 pb-2">
       <BackLink label="Back to home" href="/" />
 
       {items.length > 0 ? <CaseStudyTocList slug={slug} /> : null}

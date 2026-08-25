@@ -332,7 +332,7 @@ export function FolioContent() {
         </div>
       </CaseStudySection>
 
-      <CaseStudySection id="outtakes" title="Outtakes">
+      <CaseStudySection id="what-i-learned" title="What I Learned">
         <p>
           Leading Folio from research to launch taught me that good UX comes
           from removing the friction that stops people from doing what they
