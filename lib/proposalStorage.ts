@@ -43,6 +43,15 @@ export function saveProposalAnswers(answers: ProposalAnswers) {
   }
 }
 
+export function clearProposalAnswers() {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(proposalConfig.storageKey);
+  } catch {
+    // Ignore private mode failures.
+  }
+}
+
 export function scoreMiniBrandDna(
   answers: Record<string, string>,
 ): BrandDnaScores {

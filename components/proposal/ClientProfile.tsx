@@ -61,7 +61,13 @@ function ProfileColumn({
   );
 }
 
-export function ClientProfile({ answers }: { answers: ProposalAnswers }) {
+export function ClientProfile({
+  answers,
+  onClearForm,
+}: {
+  answers: ProposalAnswers;
+  onClearForm: () => void;
+}) {
   const dna = getMiniBrandDnaResult(answers.brandDnaAnswers);
   const goalLabels: string[] = goalOptions
     .filter((option) => answers.goals.includes(option.id))
@@ -93,7 +99,11 @@ export function ClientProfile({ answers }: { answers: ProposalAnswers }) {
             {headline}
           </h3>
         </div>
-        <ClientBriefActions answers={answers} align="end" />
+        <ClientBriefActions
+          answers={answers}
+          align="end"
+          onClearForm={onClearForm}
+        />
       </div>
 
       <div className="grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">

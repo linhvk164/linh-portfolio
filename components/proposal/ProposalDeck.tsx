@@ -12,6 +12,7 @@ import {
   type ProposalAnswers,
 } from "@/data/proposal";
 import {
+  clearProposalAnswers,
   loadProposalAnswers,
   saveProposalAnswers,
 } from "@/lib/proposalStorage";
@@ -65,6 +66,12 @@ export function ProposalDeck() {
     setAnswers((current) => ({ ...current, ...partial }));
   };
 
+  const clearForm = () => {
+    const empty = createEmptyProposalAnswers();
+    setAnswers(empty);
+    clearProposalAnswers();
+  };
+
   return (
     <div className="proposal-deck flex min-h-[calc(100vh-3.5rem)] flex-col md:min-h-[calc(100vh-4rem)]">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-5 md:px-6 md:py-6 lg:px-8">
@@ -107,6 +114,7 @@ export function ProposalDeck() {
               slideId={slide.id}
               answers={answers}
               patch={patch}
+              onClearForm={clearForm}
             />
           </Slide>
         </div>

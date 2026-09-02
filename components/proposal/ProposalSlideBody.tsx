@@ -27,9 +27,15 @@ type SlideBodyProps = {
   slideId: string;
   answers: ProposalAnswers;
   patch: (partial: Partial<ProposalAnswers>) => void;
+  onClearForm: () => void;
 };
 
-export function ProposalSlideBody({ slideId, answers, patch }: SlideBodyProps) {
+export function ProposalSlideBody({
+  slideId,
+  answers,
+  patch,
+  onClearForm,
+}: SlideBodyProps) {
   switch (slideId) {
     case "welcome":
       return (
@@ -517,7 +523,7 @@ export function ProposalSlideBody({ slideId, answers, patch }: SlideBodyProps) {
             A full agreement that covers scope, timeline, payment, revisions, and
             will be sent to you for review and signature.
           </p>
-          <ClientProfile answers={answers} />
+          <ClientProfile answers={answers} onClearForm={onClearForm} />
         </div>
       );
 

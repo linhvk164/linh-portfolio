@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { Copy, Download, Eye, X } from "lucide-react";
+import { Copy, Download, Eye, RotateCcw, X } from "lucide-react";
 import type { ProposalAnswers } from "@/data/proposal";
 import {
   downloadProposalBrief,
@@ -11,9 +11,11 @@ import {
 export function ClientBriefActions({
   answers,
   align = "center",
+  onClearForm,
 }: {
   answers: ProposalAnswers;
   align?: "center" | "end";
+  onClearForm: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -41,6 +43,17 @@ export function ClientBriefActions({
 
   const handleDownload = () => {
     downloadProposalBrief(brief);
+  };
+
+  const handleClearForm = () => {
+    if (
+      !window.confirm(
+        "Clear all discovery answers? This cannot be undone.",
+      )
+    ) {
+      return;
+    }
+    onClearForm();
   };
 
   const iconButtonClassName =
@@ -80,6 +93,16 @@ export function ClientBriefActions({
             title={copied ? "Copied" : "Copy"}
           >
             <Copy size={18} strokeWidth={2.25} aria-hidden />
+          </button>
+          <button
+            type="button"
+            onClick={handleClearForm}
+            className="inline-flex h-10 items-center gap-1.5 rounded-full border border-[var(--proposal-border)] bg-white px-3.5 text-sm font-semibold text-[var(--proposal-ink)] transition-colors hover:border-[var(--proposal-accent)] hover:bg-[var(--proposal-accent)] hover:text-white"
+            aria-label="Clear form"
+            title="Clear form"
+          >
+            <RotateCcw size={16} strokeWidth={2.25} aria-hidden />
+            Clear form
           </button>
         </div>
         {copied ? (
